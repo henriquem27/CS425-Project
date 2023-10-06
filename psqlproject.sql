@@ -73,7 +73,13 @@ CREATE TABLE Passes (
 
 INSERT INTO season(Season_ID, Start_date, End_date) VALUES (2022,'2022-01-01','2022-12-31');
 
-SELECT * FROM Teams;
+SELECT * FROM GoalKeepers;
+
+SELECT * FROM Salaries;
+
+
+
+
 ---- Indexes
 
 
