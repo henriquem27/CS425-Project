@@ -1,7 +1,8 @@
 -- Create the Player table
 CREATE TABLE Player (
-    Player_ID SERIAL PRIMARY KEY,
-    Team_ID INT REFERENCES Teams (Team_ID),
+    Player_ID INT PRIMARY KEY,
+    Team_ID VARCHAR(4) REFERENCES Teams (Team_ID),
+    Season_ID INT REFERENCES Season(Season_ID),
     Player_Name VARCHAR(255),
     Position VARCHAR(255),
     Minutes INT,
@@ -12,31 +13,32 @@ CREATE TABLE Player (
 
 -- Create the Teams table
 CREATE TABLE Teams (
-    Team_ID SERIAL PRIMARY KEY,
-    Games INT,
+    Team_ID VARCHAR(4) PRIMARY KEY,
+    Season_ID INT REFERENCES Season(Season_ID),
+    GamesPlayed INT,
     ShotsFor INT,
     ShotsAgainst INT,
     GoalsFor INT,
-    GoalsAgainst INT
+    GoalsAgainst INT,
+    Points INT
 );
 
--- Create the Games table
+-- Create the Games table home team id
 CREATE TABLE Games (
     GameID SERIAL Primary KEY,
     Date DATE,
-    Team_ID INT REFERENCES Teams (Team_ID),
-    HomeTeam VARCHAR(255),
+    Home_Team_ID VARCHAR(4) REFERENCES Teams (Team_ID),
     HomeGoals INT,
-    Away VARCHAR(255),
+    Away_team_ID VARCHAR(4) REFERENCES Teams (Team_ID),
     AwayGoals INT
 );
 
 -- Create the GoalKeepers table
 CREATE TABLE GoalKeepers (
-    Player_ID SERIAL PRIMARY KEY,
-    Team_ID INT REFERENCES Teams (Team_ID),
-    Player_Name VARCHAR(255),
-    Season VARCHAR(255),
+    GK_ID INT PRIMARY KEY,
+    Team_ID VARCHAR(4) REFERENCES Teams (Team_ID),
+    Season_ID INT REFERENCES Season(Season_ID),
+    GK_Name VARCHAR(255),
     Minutes INT,
     ShotsFaced INT,
     GoalsConceded INT,
@@ -45,9 +47,7 @@ CREATE TABLE GoalKeepers (
 
 -- Create the Season table
 CREATE TABLE Season (
-    Season_ID SERIAL PRIMARY KEY,
-    Team_ID INT REFERENCES Teams (Team_ID),
-    Season VARCHAR(255),
+    Season_ID INT PRIMARY KEY,
     Start_date DATE,
     End_date DATE
 );
@@ -56,25 +56,27 @@ CREATE TABLE Season (
 CREATE TABLE Salaries (
     Player_ID INT PRIMARY KEY REFERENCES Player (Player_ID),
     Base_Salary DECIMAL(10, 2),
+    Season_ID INT REFERENCES Season(Season_ID),
     GuaranteedCompensation DECIMAL(10, 2)
 );
 
 -- Create the Passes table
 CREATE TABLE Passes (
     Player_ID INT REFERENCES Player (Player_ID),
+    Season_ID INT REFERENCES Season(Season_ID),
     Minute INT,
-    Passes INT,
+    Passes INT, SCORE DECIMAL(10,2),
     Distance DECIMAL(10, 2),
     Vertical DECIMAL(10, 2)
 );
 
--- Create the Goals table
-CREATE TABLE Goals (
-    Player_ID INT PRIMARY KEY REFERENCES Player (Player_ID),
-    AssistingPlayerName VARCHAR(255),
-    Scorer_Name VARCHAR(255),
-    GoalKeeper_Name VARCHAR(255)
-);
+
+INSERT INTO season(Season_ID, Start_date, End_date) VALUES (2022,'2022-01-01','2022-12-31');
+
+SELECT * FROM Teams;
+---- Indexes
+
+
 --- C.R.U.D
 
 
@@ -89,5 +91,8 @@ CREATE TABLE Goals (
 
 --- Create View
 
+---- temporary tables ( Create and drop)
 
+--- store procedure easily store values
 
+--- function
