@@ -75,7 +75,7 @@ INSERT INTO season(Season_ID, Start_date, End_date) VALUES (2022,'2022-01-01','2
 
 SELECT * FROM GoalKeepers;
 
-SELECT * FROM Salaries;
+SELECT * FROM Passes;
 
 
 
@@ -87,15 +87,29 @@ SELECT * FROM Salaries;
 
 
 ----Create
+INSERT INTO season(Season_ID, Start_date, End_date) VALUES (2023,'2023-01-01','2023-12-31');
 
 ---Read
-
+SELECT p.Player_Name,ps.Distance FROM player p, passes ps where p.player_id=ps.player_id LIMIT 15;
 --- update
-
+UPDATE season SET Start_date=Start_date+15 WHERE Season_ID=2022;
+SELECT * FROM Season;
 --- Delete
-
+DELETE FROM Season WHERE Season_ID=2023;
 
 --- Create View
+CREATE VIEW TOP15PlayerData AS
+    SELECT player.Player_Name,player.Position,player.ShotsOnGoal,player.Goals,passes.Passes,Salaries.GuaranteedCompensation
+    FROM player,passes,salaries
+    where passes.Player_ID=player.Player_ID AND salaries.Player_ID=player.Player_ID AND player.Season_ID=2022
+    ORDER BY GuaranteedCompensation DESC LIMIT 15;
+
+SELECT * FROM TOP15PlayerData;
+
+
+CREATE VIEW TEAM_BUDGET AS SELECT p.Team_ID,CAST(SUM(GuaranteedCompensation) AS money) AS Team_Budget FROM player p, salaries s WHERE s.player_id=p.player_id GROUP BY Team_ID ORDER BY Team_Budget DESC;
+
+SELECT * FROM TEAM_BUDGET;
 
 ---- temporary tables ( Create and drop)
 
