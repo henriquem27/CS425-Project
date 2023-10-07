@@ -55,9 +55,9 @@ CREATE TABLE Season (
 -- Create the Salaries table
 CREATE TABLE Salaries (
     Player_ID INT PRIMARY KEY REFERENCES Player (Player_ID),
-    Base_Salary DECIMAL(10, 2),
+    Base_Salary DECIMAL(20, 2),
     Season_ID INT REFERENCES Season(Season_ID),
-    GuaranteedCompensation DECIMAL(10, 2)
+    GuaranteedCompensation DECIMAL(20, 2)
 );
 
 -- Create the Passes table
@@ -112,7 +112,58 @@ CREATE VIEW TEAM_BUDGET AS SELECT p.Team_ID,CAST(SUM(GuaranteedCompensation) AS 
 SELECT * FROM TEAM_BUDGET;
 
 ---- temporary tables ( Create and drop)
+CREATE TABLE Temp_Player_Salary(
+     Player_ID INT PRIMARY KEY,
+     Player_Name VARCHAR(255),
+     Shots INT,
+     Salary DECIMAL(10,2)
 
+);
+INSERT INTO Temp_Player_Salary
+SELECT player.Player_ID,player.Player_Name,player.Shots,Salaries.GuaranteedCompensation
+    FROM player,salaries
+    where salaries.Player_ID=player.Player_ID AND player.Season_ID=2022
+    ORDER BY GuaranteedCompensation DESC LIMiT 50;
+
+SELECT * FROM Temp_Player_Salary;
+
+DROP TABLE temp_player_salary;
+
+select * FROM season;
 --- store procedure easily store values
+
+CREATE PROCEDURE newSeason(
+season_ids INT,
+Start_dates DATE,
+End_dates Date
+)
+language SQL
+as $$
+
+    INSERT INTO Season(Season_ID, Start_date, End_date)
+    VALUES(season_ids,Start_dates,End_dates)
+
+
+$$;
+
+CALL newSeason(2019,'2019-01-01','2019-01-01');
+
+SELECT * FROM season;
+
+--- Update procedure
+
+Create PROCEDURE BaseSalaryUpdate(player_ids INT,Amount NUMERIC(20,2))
+
+language sql
+as $$
+    update salaries
+    set base_salary=base_salary+Amount, guaranteedcompensation=guaranteedcompensation+Amount
+    where Player_ID=player_ids;
+    $$;
+
+Select * from Salaries where Player_ID=122;
+--- Give a 30,000 Raise
+CALL BaseSalaryUpdate(122,-30000);
+Select * from Salaries where Player_ID=122;
 
 --- function
