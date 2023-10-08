@@ -152,7 +152,7 @@ SELECT * FROM season;
 
 --- Update procedure
 
-Create PROCEDURE BaseSalaryUpdate(player_ids INT,Amount NUMERIC(20,2))
+Create PROCEDURE SalaryUpdate(player_ids INT,Amount NUMERIC(20,2))
 
 language sql
 as $$
@@ -167,3 +167,18 @@ CALL BaseSalaryUpdate(122,-30000);
 Select * from Salaries where Player_ID=122;
 
 --- function
+
+CREATE FUNCTION GoalDifferential(teamid VARCHAR(4)) returns INT
+LANGUAGE plpgsql
+as
+$$
+    DECLARE GoalDiff INT;
+    BEGIN
+        SELECT Teams.GoalsFor-Teams.GoalsAgainst INTO GoalDiff FROM Teams WHERE Team_ID=teamid;
+    return GoalDiff;
+    end;
+
+    $$;
+
+SELECT Team_ID,GoalsFor,GoalsAgainst,GoalDifferential('MIA') FROM Teams where Team_ID='MIA';
+
