@@ -47,7 +47,7 @@ CREATE TABLE GoalKeepers (
 );
 
 -- Create the Season table
-CREATE TABLE Season (
+CREATE TABLE Seasons (
     Season_ID INT PRIMARY KEY,
     Start_date DATE,
     End_date DATE
@@ -264,5 +264,12 @@ CALL SalaryUpdate(111,10000);
 
 
 SELECT * FROM Salary_Changes;
+
+
+--- Bulk Load
+
+COPY  seasons FROM '/Users/henrique/Documents/IIT/IITFALL2023/CS425-Project/season.csv'
+    WITH CSV HEADER DELIMITER ',';
+
 
 
