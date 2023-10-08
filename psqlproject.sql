@@ -204,3 +204,65 @@ $$
 
 SELECT Team_ID,GoalsFor,GoalsAgainst,GoalDifferential('MIA') FROM Teams where Team_ID='MIA';
 
+
+--- Percentage
+
+CREATE FUNCTION PlayerSalaryPercentage(Player_IDS INT) RETURNS NUMERIC
+LANGUAGE plpgsql
+AS
+$$
+DECLARE
+    SalaryPercentage NUMERIC;
+BEGIN
+    -- Calculate the total salary of players on the specified team
+
+    -- Get the team's budget from the Teams table
+
+    SELECT ROUND((GuaranteedCompensation / CAST(Team_Budget as DECIMAL)) * 100,2) INTO SalaryPercentage FROM Salaries,Player, TEAM_BUDGET WHERE(TEAM_BUDGET.Team_ID=(SELECT Team_ID FROM Player WHERE Player_ID=Player_IDS)) ;
+
+    RETURN SalaryPercentage;
+END;
+$$;
+
+
+SELECT Player_Name,playersalarypercentage(111) FROM Player WHERE Player_ID=111;
+
+
+
+
+--- trigger function
+
+
+---- Store Changes in Here
+CREATE TABLE Salary_Changes(
+    Player_ID INT,
+    Salary_Change DECIMAL(20,2),
+    DATE_OF_CHANGE DATE
+);
+
+CREATE FUNCTION Store_Salary_Changes()
+RETURNS TRIGGER
+LANGUAGE plpgsql
+AS $$BEGIN
+        IF NEW.guaranteedCompensation <> OLD.guaranteedcompensation THEN
+            INSERT INTO Salary_Changes(Player_ID,Salary_Change,DATE_OF_CHANGE)
+            VALUES(OLD.player_id,NEW.guaranteedcompensation-OLD.guaranteedcompensation,now());
+
+        END IF;
+        RETURN NEW;
+
+    END;
+    $$;
+
+CREATE TRIGGER Log_Salary
+BEFORE UPDATE ON Salaries
+FOR EACH ROW
+WHEN(OLD.GuaranteedCompensation IS DISTINCT FROM New.GuaranteedCompensation)
+EXECUTE FUNCTION Store_Salary_Changes();
+
+CALL SalaryUpdate(111,10000);
+
+
+SELECT * FROM Salary_Changes;
+
+
