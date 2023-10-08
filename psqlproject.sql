@@ -3,14 +3,15 @@ CREATE TABLE Player (
     Player_ID INT PRIMARY KEY,
     Team_ID VARCHAR(4) REFERENCES Teams (Team_ID),
     Season_ID INT REFERENCES Season(Season_ID),
-    Player_Name VARCHAR(255),
-    Position VARCHAR(255),
+    Player_Name VARCHAR(45),
+    Position VARCHAR(4),
     Minutes INT,
     Shots INT,
     ShotsOnGoal INT,
     Goals INT
 );
 
+SELECT * FROM Passes LIMIT 20;
 -- Create the Teams table
 CREATE TABLE Teams (
     Team_ID VARCHAR(4) PRIMARY KEY,
@@ -38,7 +39,7 @@ CREATE TABLE GoalKeepers (
     GK_ID INT PRIMARY KEY,
     Team_ID VARCHAR(4) REFERENCES Teams (Team_ID),
     Season_ID INT REFERENCES Season(Season_ID),
-    GK_Name VARCHAR(255),
+    GK_Name VARCHAR(45),
     Minutes INT,
     ShotsFaced INT,
     GoalsConceded INT,
@@ -81,8 +82,15 @@ SELECT * FROM Passes;
 
 
 ---- Indexes
+CREATE INDEX player_position ON Player(Position);
 
-
+SELECT
+    indexname,
+    indexdef
+FROM
+    pg_indexes
+WHERE
+    tablename = 'player';
 --- C.R.U.D
 
 
@@ -129,7 +137,21 @@ SELECT * FROM Temp_Player_Salary;
 
 DROP TABLE temp_player_salary;
 
-select * FROM season;
+
+CREATE TABLE Most_time_played_Season(
+    Player_Name VARCHAR(45),
+    Position VARCHAR(4),
+    Minutes INT
+
+);
+
+INSERT INTO Most_time_played_Season
+    SELECT Player_Name,Position,Minutes FROM Player ORDER BY Minutes DESC LIMIT 50;
+
+SELECT * FROM Most_time_played_Season;
+
+DROP TABLE Most_time_played_Season;
+
 --- store procedure easily store values
 
 CREATE PROCEDURE newSeason(
@@ -163,7 +185,7 @@ as $$
 
 Select * from Salaries where Player_ID=122;
 --- Give a 30,000 Raise
-CALL BaseSalaryUpdate(122,-30000);
+CALL SalaryUpdate(122,-30000);
 Select * from Salaries where Player_ID=122;
 
 --- function
