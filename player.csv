@@ -1,707 +1,194 @@
-﻿Player_ID,Team,Player_NAME,SEASON,Position,Minutes,Shots,SoT,G
-647,NER,A.J. DeLaGarza,2022,FB,314,0,0,0
-202,RSL,Aaron Herrera,2022,FB,2497,15,3,0
-205,NYRB,Aaron Long,2022,CB,2622,19,8,4
-606,DCU,Abdoul Zanne,2022,ST,6,1,0,0
-655,SEA,Abdoulaye Cissoko,2022,CB,457,1,1,0
-281,MIN,Abu Danladi,2022,W,717,10,4,2
-148,HOU,Adalberto Carrasquilla,2022,DM,2659,29,6,2
-531,CLT,Adam Armour,2022,W,109,3,2,1
-142,NER,Adam Buksa,2022,ST,888,34,15,7
-305,HOU,Adam Lundkvist,2022,FB,2847,7,2,0
-699,LAG,Adam Saldana,2022,CM,17,0,0,0
-582,CLT,Adilson Malanda,2022,CB,595,3,0,0
-524,VAN,Adrián Cubas,2022,CM,1462,11,3,1
-513,MIN,Adrien Hunou,2022,ST,168,2,1,0
-586,DCU,Adrien Pérez,2022,AM,151,1,1,0
-509,MTL,Ahmed Hamdi,2022,AM,379,3,0,0
-427,CLB,Aidan Morris,2022,DM,2008,13,1,0
-357,ATL,Aiden McFadden,2022,FB,693,5,1,0
-633,MIA,Aimé Mabika,2022,CB,1126,2,0,0
-450,NSH,Aké Arnaud Loba,2022,ST,421,4,1,1
-428,MIN,Alan Benítez,2022,FB,640,5,3,1
-269,ATL,Alan Franco,2022,CB,2993,12,5,1
-378,CLT,Alan Steven Franco,2022,W,849,8,1,0
-77,FCD,Alan Velasco,2022,W,2064,57,18,6
-166,SEA,Albert Rusnák,2022,DM,2825,42,10,3
-96,PHI,Alejandro Bedoya,2022,CM,2677,36,13,6
-25,TOR,Alejandro Pozuelo,2022,AM,2651,33,20,6
-540,VAN,Alessandro Schöpf,2022,AM,368,2,0,0
-503,ATL,Alex De John,2022,CB,462,8,1,0
-532,CHI,Alex Monis,2022,W,5,1,1,1
-145,NSH,Alex Muyl,2022,FB,2208,28,10,2
-214,SEA,Alex Roldan,2022,FB,2851,9,3,1
-153,NYC,Alexander Callens,2022,CB,2685,25,11,5
-87,ATX,Alexander Ring,2022,DM,3066,41,15,4
-93,ORL,Alexandre Pato,2022,ST,1339,40,13,3
-485,CLB,Alexandru Matan,2022,W,58,3,1,0
-339,NYC,Alfredo Morales,2022,DM,2141,16,1,0
-613,VAN,Ali Ahmed,2022,FB,62,1,0,0
-174,MTL,Alistair Johnston,2022,FB,2929,14,5,4
-403,CIN,Allan Cruz,2022,CM,459,8,4,0
-116,CIN,Álvaro Barreal,2022,FB,2406,48,24,5
-253,CIN,Alvas Powell,2022,FB,2094,22,7,0
-342,ATL,Amar Sejdic,2022,CM,1403,13,4,0
-245,RSL,Anderson Julio,2022,ST,619,20,10,3
-657,CHI,Andre Reynolds,2022,W,470,0,0,0
-144,COL,Andre Shinyashiki,2022,W,1226,34,17,7
-288,NYC,Andres Jasson,2022,FB,541,5,1,0
-430,ORL,Andrés Perea,2022,DM,949,12,3,1
-553,NYRB,Andrés Reyes,2022,CB,768,4,2,0
-311,SKC,Andreu Fontàs,2022,CB,2672,13,3,2
-167,RSL,Andrew Brody,2022,FB,3229,15,8,2
-496,NER,Andrew Farrell,2022,CB,3028,4,0,0
-120,ATL,Andrew Gutman,2022,FB,2162,31,14,4
-444,DCU,Andy Najar,2022,FB,1816,8,2,0
-421,NSH,Aníbal Godoy,2022,CM,1025,4,1,1
-529,COL,Anthony Markanich,2022,FB,257,4,1,0
-399,NYC,Anton Tinnerholm,2022,FB,661,5,1,0
-589,CLT,Anton Walkes,2022,CB,2005,5,1,0
-482,ORL,Antônio Carlos,2022,CB,1804,14,3,0
-81,MIA,Ariel Lassiter,2022,W,1790,49,22,4
-340,NER,Arnór Ingvi Traustason,2022,W,561,14,3,0
-468,CIN,Arquimides Ordonez,2022,W,123,7,1,0
-390,CLB,Artur,2022,DM,1813,23,4,0
-348,NYRB,Ashley Fletcher,2022,ST,285,10,3,0
-375,COL,Auston Trusty,2022,CB,1589,11,0,0
-157,TOR,Ayo Akinola,2022,ST,1365,26,7,2
-672,DCU,Azaad Liadi,2022,AM,14,0,0,0
-472,MIN,Bakaye Dibassy,2022,CB,2468,8,2,1
-113,CLT,Ben Bender,2022,CM,1792,25,8,3
-705,NER,Ben Reveno,2022,W,6,0,0,0
-290,SKC,Ben Sweat,2022,FB,1665,10,3,0
-151,SJE,Benjamin Kikanovic,2022,W,1501,21,6,6
-581,FCD,Benjamin Redzic,2022,DM,97,4,0,0
-176,ORL,Benji Michel,2022,W,1676,25,8,1
-639,FCD,Bernard Kamungo,2022,W,26,0,0,0
-181,POR,Bill Tuiloma,2022,CB,2532,47,12,6
-674,POR,Blake Bodily,2022,ST,30,0,0,0
-161,RSL,Bobby Wood,2022,ST,1050,26,12,3
-516,RSL,Bode Davis,2022,W,119,2,1,1
-98,MIN,Bongokuhle Hlongwane,2022,W,1754,44,19,2
-195,CHI,Boris Sekulic,2022,FB,3090,11,1,0
-296,DCU,Brad Smith,2022,FB,1265,6,2,0
-596,RSL,Braian Ojeda,2022,CM,395,3,0,0
-660,PHI,Brandan Craig,2022,DM,6,0,0,0
-102,NER,Brandon Bye,2022,FB,2806,34,9,2
-223,FCD,Brandon Servania,2022,CM,1457,28,8,2
-5,CIN,Brandon Vázquez,2022,ST,2969,82,40,18
-276,CLT,Brandt Bronico,2022,DM,3097,22,8,1
-619,MIA,Brek Shea,2022,FB,182,0,0,0
-578,DCU,Brendan Hines-Ike,2022,CB,1884,4,1,0
-16,CIN,Brenner,2022,ST,2236,77,34,18
-373,MIN,Brent Kallman,2022,CB,1524,9,2,2
-128,CHI,Brian Gutierrez,2022,W,1803,27,8,2
-143,LAFC,Brian Rodríguez,2022,W,895,28,10,2
-101,VAN,Brian White,2022,ST,1805,41,19,4
-689,HOU,Brooklyn Raines,2022,CM,40,0,0,0
-83,ATL,Brooks Lennon,2022,FB,2249,17,9,2
-187,COL,Bryan Acosta,2022,DM,2084,12,1,0
-556,RSL,Bryan Oviedo,2022,FB,396,3,2,0
-172,MIA,Bryce Duke,2022,AM,1642,15,4,1
-42,NSH,C.J. Sapong,2022,ST,2653,51,15,5
-134,SJE,Cade Cowell,2022,W,1697,43,14,3
-345,NYRB,Caden Clark,2022,W,577,7,2,1
-626,VAN,Caio Alexandre,2022,CM,102,1,0,0
-671,LAFC,Cal Jennings,2022,W,33,0,0,0
-238,ATL,Caleb Wiley,2022,FB,1631,8,3,1
-286,CIN,Calvin Harris,2022,FB,216,7,3,1
-186,SKC,Cameron Duke,2022,CM,1361,12,2,0
-231,NYRB,Cameron Harper,2022,FB,875,13,5,2
-8,NER,Carles Gil,2022,AM,3181,69,25,7
-27,HOU,Carlos Ferreira,2022,ST,2521,68,26,13
-501,TOR,Carlos Salcedo,2022,CB,1316,3,1,0
-322,CHI,Carlos Terán,2022,CB,1855,12,5,1
-13,LAFC,Carlos Vela,2022,W,2528,61,26,12
-395,ATX,Cecilio Domínguez,2022,W,300,9,3,2
-413,ORL,César Araujo,2022,DM,2702,17,2,0
-600,LAG,Chase Gasper,2022,FB,933,2,0,0
-10,LAG,Chicharito,2022,ST,2811,88,38,18
-572,PHI,Chris Donovan,2022,ST,150,1,1,0
-165,DCU,Chris Durkin,2022,CM,2475,15,4,1
-683,RSL,Chris Kablan,2022,W,33,0,0,0
-679,TOR,Chris Mavinga,2022,CB,1690,0,0,0
-71,CHI,Chris Mueller,2022,W,2132,48,19,4
-510,DCU,Chris Odoi-Atsem,2022,FB,939,2,0,0
-170,DCU,Christian Benteke,2022,ST,605,24,8,1
-206,CLT,Christian Fuchs,2022,FB,2143,18,6,3
-533,NER,Christian Makoun,2022,CB,1368,10,2,0
-275,CLT,Christian Ortíz,2022,CM,703,12,3,1
-665,RSL,Christopher Garcia,2022,W,9,0,0,0
-446,NYC,Christopher Gloster,2022,FB,531,4,2,1
-583,CLT,Christopher Hegardt,2022,CM,35,0,0,0
-333,MIA,Christopher McVey,2022,FB,3357,10,4,1
-268,POR,Claudio Bravo,2022,FB,2441,24,2,0
-320,COL,Collen Warner,2022,DM,742,5,3,1
-574,MIA,Corentin Jean,2022,W,91,2,0,0
-141,HOU,Corey Baird,2022,W,1466,16,7,2
-76,PHI,Cory Burke,2022,ST,1353,43,17,7
-152,POR,Cristhian Paredes,2022,CM,1843,23,8,2
-4,LAFC,Cristian Arango,2022,ST,2562,108,47,16
-111,NYRB,Cristian Cásseres Jr,2022,CM,2446,43,13,2
-126,VAN,Cristian Dájome,2022,FB,1966,38,12,2
-17,SJE,Cristian Espinoza,2022,W,3054,73,25,7
-411,VAN,Cristián Gutiérrez,2022,FB,691,3,0,0
-95,SEA,Cristian Roldan,2022,W,2297,36,13,4
-569,LAFC,Cristian Tello,2022,W,121,4,3,0
-79,CLB,Cucho Hernández,2022,ST,1445,88,30,9
-315,MIN,D.J. Taylor,2022,FB,2275,14,3,1
-45,POR,Dairon Asprilla,2022,W,2052,50,17,10
-368,NER,Damian Rivera,2022,W,474,7,3,1
-270,MIA,Damion Lowe,2022,CB,2632,11,5,1
-349,RSL,Damir Kreilach,2022,AM,331,9,4,1
-497,LAG,Daniel Aguirre,2022,DM,438,4,2,1
-680,LAFC,Daniel Crisostomo,2022,CM,40,0,0,0
-477,NYRB,Daniel Edelman,2022,CM,1130,6,1,1
-2,PHI,Daniel Gazdag,2022,AM,3216,61,42,22
-199,NSH,Daniel Lovitz,2022,FB,2878,12,3,1
-283,ATX,Daniel Pereira Gil,2022,DM,2270,20,8,2
-80,CLT,Daniel Ríos,2022,ST,1558,38,14,7
-56,SKC,Dániel Sallói,2022,W,2759,72,28,7
-408,HOU,Daniel Steres,2022,CB,1500,7,3,2
-575,LAFC,Daniel Trejo,2022,W,59,1,1,0
-267,ATX,Danny Hoesen,2022,ST,467,14,6,3
-452,SEA,Danny Leyva,2022,CM,1046,8,0,0
-218,LAFC,Danny Musovski,2022,W,636,13,6,2
-347,COL,Danny Wilson,2022,CB,2331,15,4,0
-617,COL,Dantouma Toure,2022,W,70,1,1,1
-462,POR,Dario Zuparic,2022,CB,2455,10,0,0
-203,CLB,Darlington Nagbe,2022,DM,3358,13,5,3
-456,COL,Darren Yapi,2022,ST,223,8,4,0
-417,HOU,Darwin Cerén,2022,DM,1285,9,2,0
-35,HOU,Darwin Quintero,2022,AM,1938,42,19,8
-185,NSH,Dave Romney,2022,CB,2907,19,5,3
-454,POR,David Ayala,2022,CM,852,11,3,0
-173,NSH,Dax McCarty,2022,DM,1946,16,2,0
-183,TOR,Deandre Kerr,2022,W,1435,22,6,3
-226,MIA,DeAndre Yedlin,2022,FB,3299,5,0,0
-193,VAN,Déiber Caicedo,2022,ST,1066,19,4,1
-57,LAG,Dejan Joveljic,2022,ST,1194,34,22,11
-169,NER,DeJuan Jones,2022,FB,2984,19,2,1
-149,LAFC,Denis Bouanga,2022,W,556,26,8,1
-61,CLB,Derrick Etienne,2022,W,2431,49,21,9
-383,CLT,Derrick Jones,2022,DM,1053,7,1,1
-319,LAG,Derrick Williams,2022,CB,2381,15,3,0
-312,POR,Diego Chara,2022,DM,2706,4,0,0
-47,ATX,Diego Fagundez,2022,W,2952,37,12,6
-675,POR,Diego Gutiérrez,2022,ST,9,0,0,0
-486,RSL,Diego Luna,2022,W,376,8,1,0
-146,LAFC,Diego Palacios,2022,FB,2669,14,5,1
-11,COL,Diego Rubio,2022,AM,2670,93,39,16
-40,MTL,Djordje Mihailovic,2022,CM,2193,41,24,9
-139,ATL,Dom Dwyer,2022,ST,729,21,7,4
-352,TOR,Domenico Criscito,2022,FB,1300,17,4,1
-155,CIN,Dominique Badji,2022,ST,1217,28,13,0
-701,LAFC,Doneil Henry,2022,CB,326,0,0,0
-455,DCU,Donovan Pines,2022,CB,1619,7,0,0
-130,LAG,Douglas Costa,2022,W,1559,45,16,4
-636,COL,Drew Moor,2022,CB,279,1,0,0
-558,DCU,Drew Skundrich,2022,CM,998,5,0,0
-293,NYRB,Dru Yearwood,2022,CM,1716,16,6,2
-260,NER,Dylan Borrero,2022,W,660,19,6,3
-364,NYRB,Dylan Nealis,2022,FB,2016,9,1,0
-536,SEA,Dylan Teves,2022,W,121,1,1,1
-704,VAN,Easton Ongaro,2022,ST,49,0,0,0
-595,LAFC,Eddie Segura,2022,CB,921,3,1,0
-566,MIA,Edison Azcona,2022,W,22,0,0,0
-255,DCU,Edison Flores,2022,AM,908,15,2,1
-494,FCD,Edwin Cerrillo,2022,DM,2114,7,1,0
-391,ATL,Edwin Mosquera,2022,W,376,8,4,0
-694,FCD,Edwin Munjoma,2022,FB,113,0,0,0
-99,LAG,Efrain Álvarez,2022,W,1566,49,17,3
-304,NYRB,Elias Manoel,2022,ST,384,10,6,2
-318,FCD,Ema Twumasi,2022,FB,2343,10,2,0
-18,MIN,Emanuel Reynoso,2022,AM,2718,77,28,10
-470,ATL,Emerson Hyndman,2022,DM,333,2,2,0
-192,MIA,Emerson Rodríguez,2022,W,642,14,9,2
-644,VAN,Emiliano Brienza,2022,ST,8,1,0,0
-422,ATX,Emiliano Rigoni,2022,W,311,3,1,0
-168,NER,Emmanuel Boateng,2022,W,1112,14,6,2
-44,ORL,Ercan Kara,2022,ST,1929,48,19,11
-402,NSH,Eric Miller,2022,FB,1489,2,0,0
-425,SJE,Eric Remedi,2022,DM,1556,11,4,0
-560,VAN,Erik Godoy,2022,CB,496,2,1,1
-512,RSL,Erik Holt,2022,CB,620,6,1,0
-324,CLB,Erik Hurtado,2022,ST,499,12,6,3
-204,SKC,Erik Thommy,2022,CM,948,38,18,3
-632,LAG,Eriq Zavaleta,2022,CB,222,1,0,0
-211,POR,Eryk Williamson,2022,DM,1284,6,1,0
-637,NER,Esmir Bajraktarevic,2022,CM,141,0,0,0
-576,HOU,Ethan Bartlow,2022,CB,1024,1,1,0
-557,SEA,Ethan Dobbelaere,2022,FB,309,2,1,0
-117,ATX,Ethan Finlay,2022,W,2006,23,8,5
-453,NSH,Ethan Zubak,2022,ST,259,4,2,0
-597,RSL,Everton Luiz,2022,CM,488,1,0,0
-300,CHI,Fabian Herbers,2022,W,1209,21,6,1
-354,FCD,Facundo Quignón,2022,DM,1435,11,3,1
-64,ORL,Facundo Torres,2022,W,2798,53,14,9
-51,HOU,Fafa Picault,2022,W,2604,58,23,7
-74,TOR,Federico Bernardeschi,2022,W,1202,40,16,8
-287,CHI,Federico Navarro,2022,DM,2708,21,4,2
-271,ATX,Felipe,2022,DM,891,10,4,1
-302,COL,Felipe Gutiérrez,2022,DM,887,10,3,0
-135,SKC,Felipe Hernandez,2022,CM,1959,34,7,2
-441,POR,Felipe Mora,2022,ST,119,3,2,1
-677,VAN,Florian Jungwirth,2022,CB,938,0,0,0
-327,SJE,Francisco Calvo,2022,CB,1286,15,5,2
-551,LAFC,Francisco Ginella,2022,CM,528,5,0,0
-379,LAFC,Franco Escobar,2022,FB,1264,5,2,1
-65,MIN,Franco Fragapane,2022,W,2170,34,15,7
-369,ATL,Franco Ibarra,2022,DM,1075,10,0,0
-119,FCD,Franco Jara,2022,ST,1078,38,11,3
-310,NYRB,Frankie Amaya,2022,CM,2169,15,7,1
-103,SEA,Fredy Montero,2022,ST,1410,43,16,4
-97,NYC,Gabriel Pereira,2022,W,1486,33,16,8
-458,MTL,Gabriele Corbo,2022,CB,1268,4,0,0
-562,DCU,Gaoussou Samake,2022,FB,131,0,0,0
-232,LAFC,Gareth Bale,2022,W,425,17,7,2
-252,LAG,Gastón Brugman,2022,CM,1220,15,7,3
-262,CHI,Gastón Giménez,2022,DM,1852,29,11,0
-608,NYC,Gedion Zelalem,2022,DM,230,1,1,0
-398,CIN,Geoff Cameron,2022,CB,2294,8,2,0
-654,MIA,George Acosta,2022,CM,12,1,1,0
-384,ATL,George Campbell,2022,CB,1619,8,3,0
-666,POR,George Fochive,2022,CM,40,0,0,0
-250,NER,Giacomo Vrioni,2022,ST,279,10,4,1
-483,LAFC,Giorgio Chiellini,2022,CB,787,3,0,0
-24,MIA,Gonzalo Higuaín,2022,ST,1930,50,20,16
-299,SKC,Graham Zusi,2022,FB,1815,13,4,2
-303,MIA,Gregore,2022,DM,2986,17,5,0
-341,HOU,Griffin Dorsey,2022,FB,1843,10,4,1
-487,DCU,Griffin Yow,2022,AM,307,5,2,0
-75,NER,Gustavo Bou,2022,ST,1740,73,31,8
-607,COL,Gustavo Vallecilla,2022,CB,632,4,0,0
-386,CLT,Guzmán Corujo,2022,CB,2271,13,4,1
-19,CLB,Gyasi Zardes,2022,ST,2499,53,19,10
-648,NSH,Handwalla Bwana,2022,W,18,0,0,0
-1,NSH,Hany Mukhtar,2022,ST,3082,126,65,23
-346,CIN,Haris Medunjanin,2022,CM,561,2,0,0
-438,CLT,Harrison Afful,2022,FB,1437,12,2,0
-591,CIN,Harrison Robledo,2022,CM,58,0,0,0
-663,MIA,Harvey Neville,2022,FB,15,0,0,0
-678,NYRB,Hassan Ndam,2022,CB,52,0,0,0
-380,MIN,Hassani Dotson,2022,FB,685,3,1,1
-109,NYC,Héber,2022,ST,1171,34,15,8
-372,HOU,Héctor Herrera,2022,DM,773,11,2,0
-361,ATX,Héctor Jiménez,2022,FB,664,3,0,0
-479,NER,Henry Kessler,2022,CB,2017,10,2,1
-669,TOR,Hugo Mbongue,2022,ST,22,0,0,0
-528,CIN,Ian Murphy,2022,CB,1635,1,1,1
-542,MTL,Ibrahim Sunusi,2022,AM,264,2,1,0
-397,TOR,Ifunanyachi Achara,2022,W,457,6,5,0
-256,LAFC,Ilie Sánchez,2022,DM,2956,16,4,1
-239,MIA,Indiana Vassilev,2022,W,1183,19,12,2
-573,CIN,Isaac Atanga,2022,FB,51,0,0,0
-237,MTL,Ismael Koné,2022,CM,1750,24,6,2
-493,LAFC,Ismael Tajouri-Shradi,2022,W,204,4,2,2
-332,ORL,Iván Angulo,2022,W,603,14,5,0
-429,CLB,Jacen Russel-Rowe,2022,ST,255,4,1,0
-212,PHI,Jack Elliott,2022,CB,3167,24,6,2
-688,ORL,Jack Lynn,2022,ST,25,0,0,0
-376,NSH,Jack Maher,2022,CB,2063,5,2,2
-294,PHI,Jack McGlynn,2022,CM,1145,19,6,1
-323,COL,Jack Price,2022,CM,1211,1,0,0
-489,SJE,Jack Skahan,2022,FB,132,1,1,1
-571,ATL,Jackson Conway,2022,ST,52,3,0,0
-280,DCU,Jackson Hopkins,2022,W,1009,8,1,0
-416,SEA,Jackson Ragen,2022,CB,1544,6,2,0
-236,SJE,Jackson Yueill,2022,DM,2924,20,6,4
-242,TOR,Jacob Shaffelburg,2022,FB,1251,24,7,2
-629,MIN,Jacori Hayes,2022,DM,105,1,0,0
-137,FCD,Jáder Obrian,2022,W,1512,23,8,2
-506,TOR,Jahkeele Marshall-Rutty,2022,FB,707,4,1,0
-621,MIA,Jairo Quinteros,2022,CB,310,1,0,0
-353,CHI,Jairo Torres,2022,W,770,18,6,0
-706,SKC,Jake Davis,2022,CM,31,0,0,0
-356,ATL,Jake Mulraney,2022,W,1031,14,2,1
-502,VAN,Jake Nerwinski,2022,CB,1986,4,0,0
-389,PHI,Jakob Glesnes,2022,CB,3394,20,3,0
-640,CLB,Jalil Anibaba,2022,CB,252,1,0,0
-316,CLB,James Igbekeme,2022,W,1021,14,2,0
-70,SJE,Jamiro Monteiro,2022,AM,2847,36,15,4
-246,SJE,Jan Gregus,2022,DM,1842,21,9,0
-588,CLT,Jan Sobociński,2022,CB,436,1,0,0
-670,ATX,Jared Stroud,2022,W,65,0,0,0
-66,POR,Jaroslaw Niezgoda,2022,ST,2156,36,18,9
-604,NYRB,Jason Pendant,2022,FB,100,1,0,0
-330,RSL,Jasper Löeffelsend,2022,CM,1769,13,1,1
-338,VAN,Javain Brown,2022,CB,2030,10,2,1
-690,CHI,Javier Casas,2022,DM,64,0,0,0
-518,SJE,Javier López,2022,CM,259,3,1,1
-235,TOR,Jayden Nelson,2022,W,2120,29,9,1
-358,CLT,Jaylin Lindsey,2022,FB,1848,5,3,0
-624,RSL,Jaziel Orozco,2022,CB,345,3,1,0
-138,MIA,Jean Mota,2022,DM,2882,52,11,2
-78,RSL,Jefferson Savarino,2022,ST,1668,55,21,7
-7,SJE,Jeremy Ebobisse,2022,ST,3174,103,46,17
-686,PHI,Jesús Bueno,2022,CM,16,0,0,0
-279,LAFC,Jesús David Murillo,2022,CB,2586,16,4,2
-15,FCD,Jesús Ferreira,2022,ST,2913,82,43,18
-38,TOR,Jesús Jiménez,2022,ST,2608,53,21,9
-515,ORL,Jhegson Méndez,2022,DM,756,5,0,0
-618,ATX,Jhohan Romaña,2022,CB,395,2,1,0
-616,ATX,Jhojan Valencia,2022,DM,540,3,0,0
-59,CHI,Jhon Durán,2022,ST,1534,60,24,8
-440,CHI,Jhon Espinoza,2022,FB,592,4,0,0
-394,SEA,Jimmy Medranda,2022,FB,753,15,4,0
-220,ORL,João Moutinho,2022,FB,2712,18,4,2
-511,SEA,João Paulo,2022,DM,489,6,1,1
-125,MTL,Joaquín Torres,2022,AM,1464,26,11,3
-200,MTL,Joel Waterman,2022,CB,2947,12,7,3
-517,MIA,Joevin Jones,2022,FB,156,0,0,0
-682,ORL,Joey Dezart,2022,FB,7,0,0,0
-460,RSL,Johan Kappelhof,2022,CB,591,5,1,1
-388,CIN,John Nelson,2022,FB,1332,3,0,0
-164,NYRB,John Tolkin,2022,FB,3041,33,8,1
-39,SKC,Johnny Russell,2022,W,2923,65,21,8
-523,MTL,Jojea Kwizera,2022,FB,321,2,0,0
-350,ATX,Jon Gallagher,2022,FB,2378,10,2,1
-474,NER,Jonathan Bell,2022,CB,1145,3,1,1
-436,CHI,Jonathan Bornstein,2022,FB,1330,5,1,1
-522,MIN,Jonathan González,2022,CM,224,3,1,1
-69,COL,Jonathan Lewis,2022,W,2418,57,24,5
-527,RSL,Jonathan Menéndez,2022,ST,161,4,1,0
-306,CLB,Jonathan Mensah,2022,CB,2847,22,9,2
-112,TOR,Jonathan Osorio,2022,CM,1919,25,12,9
-662,LAG,Jonathan Perez,2022,FB,14,0,0,0
-30,SEA,Jordan Morris,2022,W,2500,54,24,7
-514,TOR,Jordan Perruzza,2022,W,286,8,2,0
-221,CLT,Jordy Alcívar,2022,CM,1123,16,7,1
-406,PHI,José Andrés Martínez,2022,DM,2777,30,4,0
-525,FCD,José Antonio Martínez,2022,CB,2879,7,2,0
-53,LAFC,José Cifuentes,2022,CM,2557,56,23,7
-681,SKC,José Mauri,2022,DM,27,0,0,0
-407,POR,José Van Rankin,2022,FB,2087,12,4,1
-60,ATL,Josef Martínez,2022,ST,1637,49,21,9
-359,CLT,Joseph Mora,2022,FB,1889,6,0,0
-360,MIN,Joseph Rosales,2022,DM,1174,13,3,0
-484,CLB,Josh Williams,2022,CB,1581,6,1,0
-545,SEA,Joshua Atencio,2022,DM,808,7,1,0
-634,FCD,Joshué Quiñonez,2022,CB,139,0,0,0
-329,NER,Jozy Altidore,2022,ST,676,14,2,1
-272,ATL,Juan José Purata,2022,CB,1604,14,8,6
-614,POR,Juan Mosquera,2022,FB,218,2,1,0
-564,SJE,Judson,2022,DM,718,5,0,0
-158,LAG,Julian Araujo,2022,FB,3021,14,2,0
-14,PHI,Julián Carranza,2022,ST,2379,90,36,14
-92,VAN,Julian Gressel,2022,FB,2557,33,11,2
-162,ATX,Julio Cascante,2022,CB,3011,29,9,3
-285,CIN,Júnior Moreno,2022,CM,2212,15,3,2
-106,ORL,Júnior Urso,2022,DM,2817,50,21,5
-244,RSL,Justen Glad,2022,CB,2525,18,8,3
-521,NYC,Justin Haak,2022,DM,866,1,1,0
-68,RSL,Justin Meram,2022,W,2451,38,11,3
-541,POR,Justin Rasmussen,2022,FB,714,4,1,0
-343,NER,Justin Rennicks,2022,ST,834,12,5,2
-86,CHI,Kacper Przybylko,2022,ST,1742,46,15,5
-577,TOR,Kadin Chung,2022,FB,495,1,0,0
-100,PHI,Kai Wagner,2022,FB,3278,14,2,0
-645,FCD,Kalil ElMedkhar,2022,W,116,2,0,0
-178,MTL,Kamal Miller,2022,CB,2536,24,8,2
-156,CLT,Kamil Jozwiak,2022,W,1264,18,4,0
-37,CLT,Karol Swiderski,2022,ST,2656,72,36,10
-563,SKC,Kayden Pierre,2022,FB,1072,1,0,0
-249,NYC,Keaton Parks,2022,DM,1187,21,11,2
-251,COL,Keegan Rosenberry,2022,FB,3280,20,5,2
-73,MTL,Kei Kamara,2022,ST,1751,45,17,9
-121,LAFC,Kellyn Acosta,2022,CM,2824,32,9,2
-603,LAG,Kelvin Leerdam,2022,FB,549,1,1,0
-420,SEA,Kelyn Rowe,2022,FB,1438,13,3,1
-424,MIN,Kemar Lawrence,2022,FB,2506,8,3,1
-590,CHI,Kendall Burks,2022,CB,206,2,0,0
-381,MIN,Kervin Arriaga,2022,DM,2056,21,3,1
-335,CLT,Kerwin Calderón Vargas,2022,W,682,17,8,0
-88,LAG,Kevin Cabral,2022,W,1832,35,11,1
-519,CLB,Kevin Molino,2022,W,507,5,2,1
-612,NYC,Kevin O'Toole,2022,W,302,2,1,0
-229,SKC,Khiry Shelton,2022,ST,1544,18,6,1
-473,MIA,Kieran Gibbs,2022,FB,695,5,4,0
-696,LAFC,Kim Moon-Hwan,2022,FB,83,0,0,0
-449,DCU,Kimarni Smith,2022,FB,440,8,3,1
-611,ATX,Kipp Keller,2022,CB,359,0,0,0
-684,CLT,Koa Santos,2022,W,62,0,0,0
-693,TOR,Kobe Franklin,2022,CB,17,0,0,0
-565,SKC,Kortne Ford,2022,CB,906,2,0,0
-292,TOR,Kosi Thompson,2022,FB,1837,11,5,1
-641,DCU,Kristian Fletcher,2022,W,71,1,1,1
-49,LAFC,Kwadwo Opoku,2022,W,1946,58,25,7
-650,NYC,Kwaku Owusu,2022,CB,13,1,0,0
-500,NYRB,Kyle Duncan,2022,FB,660,4,0,0
-448,ORL,Kyle Smith,2022,FB,1592,8,5,2
-230,COL,Lalas Abubakar,2022,CB,2781,22,5,4
-550,POR,Larrys Mabiala,2022,CB,1731,5,1,0
-105,MTL,Lassi Lappalainen,2022,FB,2097,28,11,3
-184,LAFC,Latif Blessing,2022,CM,1503,16,4,0
-261,SEA,Leo Chú,2022,W,927,18,1,0
-282,PHI,Leon Flach,2022,CM,3012,11,4,0
-559,VAN,Leonard Owusu,2022,CM,961,3,1,0
-58,MIA,Leonardo Campana,2022,ST,1732,54,25,11
-21,NYRB,Lewis Morgan,2022,W,2915,85,32,14
-469,SKC,Logan Ndenbe,2022,FB,1931,7,1,0
-114,TOR,Lorenzo Insigne,2022,W,1018,49,20,6
-277,TOR,Luca Petrasso,2022,FB,1893,9,3,0
-67,VAN,Lucas Cavallini,2022,ST,1666,53,20,9
-197,COL,Lucas Esteves,2022,FB,2503,28,7,1
-33,CLB,Lucas Zelarayán,2022,AM,2550,85,33,10
-3,CIN,Luciano Acosta,2022,AM,2708,62,22,10
-31,MIN,Luis Amarilla,2022,ST,2536,76,26,9
-147,CLB,Luis Díaz,2022,W,1668,18,7,3
-467,VAN,Luis Martins,2022,FB,524,5,1,0
-28,ATL,Luiz Araújo,2022,W,2382,98,33,4
-464,TOR,Lukas MacNaughton,2022,CB,1975,6,1,0
-274,NSH,Luke Haakenson,2022,CM,718,10,3,0
-124,NYRB,Luquinhas,2022,AM,2140,34,11,5
-605,ATL,Machop Chol,2022,FB,105,1,0,0
-498,NER,Maciel,2022,DM,760,2,0,0
-107,RSL,Maikel Chang,2022,W,1988,27,9,2
-227,NYC,Malte Amundsen,2022,FB,2361,14,2,0
-321,LAFC,Mamadou Fall,2022,CB,1338,13,3,1
-85,ATL,Marcelino Moreno,2022,AM,1957,56,17,2
-295,RSL,Marcelo Silva,2022,CB,3049,26,7,2
-241,FCD,Marco Farfan,2022,FB,2975,8,5,1
-423,SJE,Marcos López,2022,FB,1515,15,2,1
-491,VAN,Marcus Godinho,2022,FB,1123,6,3,0
-233,SKC,Marinos Tzionis,2022,W,912,22,8,1
-224,LAG,Mark Delgado,2022,CM,2764,11,3,2
-150,TOR,Mark-Anthony Kaye,2022,CM,2066,22,10,3
-599,CLB,Marlon Hairston,2022,FB,168,0,0,0
-615,LAG,Martín Cáceres,2022,CB,475,2,0,0
-387,DCU,Martín Rodríguez,2022,W,964,5,0,0
-189,POR,Marvin Loría,2022,W,949,21,7,2
-213,MTL,Mason Toye,2022,ST,802,20,7,2
-700,DCU,Matai Akinmboni,2022,CB,126,0,0,0
-374,ATL,Matheus Rossetto,2022,CM,1757,13,4,0
-278,MTL,Mathieu Choinière,2022,FB,1524,15,2,2
-610,NYC,Matías Pellegrini,2022,FB,81,3,0,0
-475,HOU,Matías Vera,2022,DM,2376,10,1,0
-194,MTL,Matko Miljevic,2022,AM,796,27,9,1
-331,FCD,Matt Hedges,2022,CB,2463,12,3,1
-437,CIN,Matt Miazga,2022,CB,899,5,2,2
-313,NER,Matt Polster,2022,DM,2325,17,8,2
-584,PHI,Matt Real,2022,CM,205,3,1,1
-91,ORL,Mauricio Pereyra,2022,AM,2720,33,10,1
-258,CHI,Mauricio Pineda,2022,DM,2196,15,3,1
-217,COL,Max,2022,CM,1038,23,6,0
-480,NYC,Maxime Chanot,2022,CB,1616,11,2,1
-52,NYC,Maximiliano Morález,2022,AM,2321,40,14,2
-89,ATX,Maximiliano Urruti,2022,ST,2363,58,19,9
-159,HOU,Memo Rodríguez,2022,W,1656,34,10,0
-301,MIN,Mender García,2022,W,573,8,3,1
-698,HOU,Micael,2022,CM,53,0,0,0
-568,VAN,Michael Baldisimo,2022,CM,520,3,2,0
-55,COL,Michael Barrios,2022,W,2087,46,12,2
-377,MIN,Michael Boxall,2022,CB,3045,9,0,0
-190,TOR,Michael Bradley,2022,DM,3411,15,6,3
-136,DCU,Michael Estrada,2022,ST,953,15,5,4
-676,ORL,Michael Halliday,2022,FB,72,0,0,0
-291,CHI,Miguel Ángel Navarro,2022,FB,2391,11,2,0
-123,DCU,Miguel Berry,2022,ST,1822,28,8,2
-642,SJE,Miguel Trauco,2022,FB,144,1,0,0
-54,PHI,Mikael Uhre,2022,ST,1758,47,32,13
-652,ATL,Mikey Ambrose,2022,FB,61,1,0,0
-585,ATL,Miles Robinson,2022,CB,717,3,0,0
-451,CLB,Milos Degenek,2022,CB,2499,11,1,0
-580,CLB,Mohamed Farsi,2022,FB,121,0,0,0
-658,MIA,Mohammed Adams,2022,CM,391,1,0,0
-651,DCU,Moses Nyeman,2022,CM,155,1,0,0
-257,ATX,Moussa Djitté,2022,ST,544,15,7,4
-609,MIN,Nabilai Kibunguchy,2022,DM,199,2,0,0
-366,NER,Nacho Gil,2022,W,216,1,0,0
-326,FCD,Nanu,2022,FB,1356,9,1,0
-265,SJE,Nathan,2022,CB,2468,28,6,3
-284,POR,Nathan,2022,ST,474,18,7,2
-691,CLT,Nathan Byrne,2022,FB,326,0,0,0
-334,PHI,Nathan Harriel,2022,FB,1965,13,2,1
-547,HOU,Nelson Quiñones,2022,W,163,2,2,0
-526,LAG,Nicholas DePuy,2022,CB,1446,9,0,0
-537,ORL,Nicholas Gioacchini,2022,W,168,3,0,0
-355,CIN,Nicholas Markanich,2022,ST,148,6,0,0
-598,RSL,Nick Besler,2022,CM,296,2,1,0
-216,CIN,Nick Hagglund,2022,CB,2968,16,7,1
-219,ATX,Nick Lima,2022,FB,2591,20,1,0
-400,NYC,Nicolás Acevedo,2022,DM,2525,20,5,0
-419,SKC,Nicolas Isimat-Mirin,2022,CB,2506,7,4,0
-36,SEA,Nicolás Lodeiro,2022,AM,2527,40,15,7
-570,COL,Nicolás Mezquida,2022,AM,159,1,1,0
-215,DCU,Nigel Robertha,2022,W,815,10,4,1
-499,MIN,Niko Hansen,2022,W,118,3,0,0
-481,SJE,Niko Tsakiris,2022,AM,414,7,2,0
-435,SKC,Nikola Vujnovic,2022,ST,377,5,3,0
-508,FCD,Nkosi Burgess,2022,CB,1523,4,0,0
-432,CHI,Nnamdi Chinonso Offor,2022,ST,303,5,1,1
-625,MIA,Noah Allen,2022,FB,368,3,0,0
-409,TOR,Noble Okello,2022,CM,390,5,2,0
-414,NER,Noel Buck,2022,W,326,6,3,1
-273,SEA,Nouhou Tolo,2022,FB,2748,14,4,1
-530,CLT,Nuno Santos,2022,DM,185,5,2,1
-495,SEA,Obed Vargas,2022,DM,924,4,0,0
-382,CIN,Obinna Nwobodo,2022,CM,2265,6,1,0
-48,DCU,Ola Kamara,2022,ST,1652,36,21,9
-234,PHI,Olivier Mbaizo,2022,FB,1450,5,2,0
-548,NER,Omar González,2022,CB,854,6,2,0
-122,NYRB,Omir Fernandez,2022,AM,1573,24,7,2
-594,MIN,Oniel Fisher,2022,FB,691,1,0,0
-132,CLT,Orrin McKinze Gaines II,2022,W,1197,15,8,1
-601,SJE,Oskar Aegren,2022,CB,267,1,0,0
-623,ATL,Osvaldo Alonso,2022,DM,365,1,0,0
-549,SJE,Ousseni Bouda,2022,W,164,5,1,0
-308,ATX,Owen Wolff,2022,W,1029,7,1,0
-635,POR,Pablo Bonilla,2022,FB,285,0,0,0
-94,RSL,Pablo Ruiz,2022,CM,2629,46,13,2
-43,NYRB,Patryk Klimala,2022,ST,1792,54,24,5
-34,FCD,Paul Arriola,2022,W,2813,55,22,10
-207,SJE,Paul Marie,2022,FB,2401,25,4,1
-661,TOR,Paul Rothrock,2022,W,42,0,0,0
-314,PHI,Paxten Aaronson,2022,ST,531,12,5,1
-210,FCD,Paxton Pomykal,2022,CM,2627,21,3,0
-180,CLB,Pedro Santos,2022,FB,2570,21,4,1
-177,VAN,Pedro Vite,2022,AM,1324,14,4,2
-687,RSL,Pierre Reedy,2022,W,12,0,0,0
-504,CLT,Quinn McNeill,2022,CM,709,3,2,1
-385,PHI,Quinn Sullivan,2022,ST,316,5,1,1
-188,CHI,Rafael Czichos,2022,CB,2572,19,6,3
-208,LAG,Raheem Edwards,2022,FB,2511,17,3,1
-442,COL,Ralph Priso-Mbongue,2022,CM,533,3,3,1
-90,NSH,Rándall Leal,2022,AM,2277,60,16,2
-371,VAN,Ranko Veselinovic,2022,CB,3010,10,2,1
-84,SEA,Raúl Ruidíaz,2022,ST,1419,51,22,9
-405,DCU,Ravel Morrison,2022,CM,1044,16,5,2
-154,LAG,Rayan Raveloson,2022,CM,1954,33,9,3
-344,CIN,Raymon Gaddis,2022,FB,1251,3,0,0
-490,SEA,Reed Baker-Whiting,2022,AM,102,3,3,0
-209,SKC,Remi Walter,2022,DM,3246,17,6,3
-325,TOR,Richie Laryea,2022,FB,940,1,0,0
-505,MTL,Rida Zouhir,2022,CM,145,4,0,0
-160,LAG,Riqui Puig,2022,CM,913,26,11,3
-370,MIA,Robbie Robinson,2022,W,519,9,3,1
-695,MTL,Róbert Orri Thorkelsson,2022,FB,209,0,0,0
-108,MIA,Robert Taylor,2022,W,2409,40,13,3
-579,SKC,Robert Voloder,2022,CB,788,1,1,1
-538,HOU,Roberto Avila,2022,W,200,4,1,0
-431,ORL,Robin Jansson,2022,CB,2185,15,4,1
-62,MIN,Robin Lod,2022,W,2702,59,21,6
-567,ATX,Rodney Redes,2022,W,228,4,2,0
-426,ORL,Rodrigo Schlegel,2022,CB,2423,10,1,1
-692,SJE,Rodrigues,2022,CB,661,0,0,0
-163,SKC,Roger Espinoza,2022,CM,2013,34,13,2
-659,MIN,Romain Métanire,2022,DM,29,0,0,0
-6,MTL,Romell Quioto,2022,ST,2232,76,34,15
-555,ATL,Ronald Hernández,2022,FB,827,3,2,0
-396,CIN,Ronald Matarrita,2022,FB,264,3,1,1
-50,ATL,Ronaldo Cisneros,2022,ST,1867,48,18,7
-201,ORL,Ruan,2022,FB,2658,8,4,2
-365,ATX,Ruben Gabrielsen,2022,CB,3018,9,4,2
-259,RSL,Rubio Rubín,2022,ST,975,20,8,1
-461,MTL,Rudy Camacho,2022,CB,2746,9,2,1
-362,DCU,Russell Canouse,2022,CM,1331,5,2,1
-404,VAN,Russell Teibert,2022,CM,2231,10,1,0
-29,VAN,Ryan Gauld,2022,AM,2435,75,25,8
-175,LAFC,Ryan Hollingshead,2022,FB,2161,23,11,6
-222,VAN,Ryan Raposo,2022,FB,1600,19,4,2
-466,MIA,Ryan Sailor,2022,CB,1705,6,1,0
-627,NER,Ryan Spaulding,2022,FB,293,2,0,0
-297,LAG,Sacha Kljestan,2022,DM,543,8,2,1
-520,HOU,Sam Junqua,2022,FB,616,1,0,0
-254,COL,Sam Nicholson,2022,W,909,13,4,1
-459,DCU,Sami Guediri,2022,FB,867,3,0,0
-653,SEA,Samuel Adeniran,2022,ST,79,1,0,0
-118,LAG,Samuel Grandsir,2022,W,1787,36,19,3
-336,MTL,Samuel Piette,2022,CM,1658,5,1,0
-32,POR,Santiago Moreno,2022,W,2659,48,21,7
-22,NYC,Santiago Rodríguez,2022,AM,2730,50,18,4
-317,ATL,Santiago Sosa,2022,DM,1544,22,3,1
-543,RSL,Scott Caldwell,2022,CM,1520,3,0,0
-434,NSH,Sean Davis,2022,CM,3085,14,5,1
-247,NYRB,Sean Nealis,2022,CB,3276,21,5,0
-643,CLB,Sean Zawadzki,2022,CM,318,1,1,1
-702,COL,Sebastian Anderson,2022,FB,17,0,0,0
-392,VAN,Sebastian Berhalter,2022,CM,1117,13,4,0
-46,POR,Sebastián Blanco,2022,AM,2010,59,20,7
-9,ATX,Sebastián Driussi,2022,AM,3175,97,39,22
-131,NER,Sebastian Lletget,2022,CM,2424,35,15,3
-546,LAFC,Sebastien Ibeagha,2022,CB,1324,5,0,0
-415,LAG,Sega Coulibaly,2022,CB,2394,9,2,1
-544,NYRB,Serge Ngoma,2022,AM,153,2,2,2
-41,RSL,Sergio Córdova,2022,ST,2458,59,31,9
-667,CHI,Sergio Oregel Jr,2022,DM,15,0,0,0
-307,CLT,Sergio Ruiz,2022,CM,827,6,2,1
-104,CIN,Sergio Santos,2022,ST,842,20,5,1
-476,TOR,Shane O'Neill,2022,CB,2161,2,1,0
-410,NSH,Shaq Moore,2022,FB,972,13,1,0
-539,SJE,Shea Salinas,2022,W,257,4,1,1
-592,SJE,Siad Haji,2022,CB,25,0,0,0
-646,ORL,Silvester van der Water,2022,W,65,1,1,0
-507,VAN,Simon Becher,2022,ST,12,1,1,1
-447,DCU,Sofiane Djeffal,2022,CM,1857,13,1,0
-263,CHI,Stanislav Ivanov,2022,W,940,13,4,1
-673,TOR,Steffen Yeates,2022,FB,44,0,0,0
-243,DCU,Steve Birnbaum,2022,CB,3162,23,6,2
-488,COL,Steven Beitashour,2022,FB,1434,5,0,0
-228,CLB,Steven Moreira,2022,FB,3087,11,4,1
-656,NYRB,Steven Sserwadda,2022,DM,37,1,0,0
-561,PHI,Stuart Findlay,2022,CB,400,3,1,0
-602,NSH,Tah Brian Anunga,2022,CM,959,4,0,0
-20,NYC,Talles Magno,2022,W,2886,65,24,7
-439,SJE,Tanner Beason,2022,CB,2431,5,1,0
-445,RSL,Tate Schmitt,2022,FB,950,7,3,2
-12,NYC,Taty Castellanos,2022,ST,1653,81,33,13
-72,DCU,Taxiarchis Fountas,2022,AM,1613,80,33,12
-471,NSH,Taylor Washington,2022,FB,688,2,0,0
-328,NYC,Tayvon Gray,2022,FB,2125,10,3,0
-140,NSH,Teal Bunbury,2022,ST,747,27,12,5
-248,HOU,Teenage Hadebe,2022,CB,2013,17,3,2
-630,POR,Tega Ikoba,2022,ST,32,1,0,0
-198,ORL,Tesho Akindele,2022,ST,749,22,6,3
-628,TOR,Themi Antonoglou,2022,FB,44,1,0,0
-638,DCU,Theodore Ku-Dipietro,2022,W,286,0,0,0
-23,ATL,Thiago Almada,2022,AM,2622,77,24,6
-110,NYC,Thiago Andrade,2022,W,1625,33,15,5
-664,HOU,Thiago Fernandes,2022,W,34,0,0,0
-478,NYC,Thiago Martins,2022,CB,2364,6,2,0
-418,NYRB,Thomas Edwards,2022,CB,1815,13,2,0
-697,ORL,Thomas Williams,2022,CB,199,0,0,0
-115,HOU,Thorleifur Úlfarsson,2022,W,1377,38,16,4
-401,HOU,Tim Parker,2022,CB,2495,3,1,0
-129,NYRB,Tom Barlow,2022,ST,1255,23,10,4
-196,NER,Tommy McNamara,2022,DM,2670,23,12,4
-264,SJE,Tommy Thompson,2022,FB,1457,11,2,1
-620,DCU,Tony Alfaro,2022,CB,1062,1,0,0
-309,VAN,Tosaint Ricketts,2022,ST,563,11,6,4
-289,VAN,Tristan Blackmon,2022,CB,2350,14,5,1
-191,FCD,Tsiki Ntsabeleng,2022,CM,951,15,4,1
-393,CIN,Tyler Blackett,2022,CB,1504,7,1,0
-351,HOU,Tyler Pasher,2022,W,714,18,6,2
-552,ATL,Tyler Wolff,2022,W,266,4,2,0
-492,SKC,Uri Rosell,2022,DM,1004,3,0,0
-685,CHI,Victor Bezerra,2022,ST,72,0,0,0
-412,DCU,Victor Pálsson,2022,DM,939,15,3,0
-465,MIA,Victor Ulloa,2022,CM,457,1,1,0
-171,LAG,Víctor Vázquez,2022,ST,1270,21,5,2
-127,MTL,Victor Wanyama,2022,CM,2913,36,6,1
-593,NYC,Vuk Latinovich,2022,CB,284,1,0,0
-133,NSH,Walker Zimmerman,2022,CB,2784,29,14,4
-622,ATX,Washington Corozo,2022,DM,70,2,1,0
-668,NYRB,Wikelman Carmona,2022,W,53,0,0,0
-463,MIN,Wil Trapp,2022,DM,2288,11,3,0
-587,ORL,Wilder Cartagena,2022,DM,371,6,1,0
-443,NER,Wilfrid Kaptoum,2022,DM,1155,11,2,1
-225,SEA,Will Bruin,2022,ST,982,20,5,3
-82,SKC,William Agada,2022,ST,1002,41,22,8
-649,SJE,William Richmond,2022,W,56,1,0,0
-554,CLB,William Sands,2022,FB,729,3,0,0
-363,CHI,Wyatt Omsberg,2022,CB,1376,10,4,1
-457,SEA,Xavier Arreaga,2022,CB,2355,9,3,1
-26,CHI,Xherdan Shaqiri,2022,AM,2456,51,16,7
-182,CLB,Yaw Yeboah,2022,W,891,18,5,0
-367,SEA,Yeimar Gómez Andrade,2022,CB,2532,17,4,1
-63,POR,Yimmi Chará,2022,W,2998,46,16,4
-179,CLT,Yordy Reyna,2022,W,933,23,11,3
-266,CIN,Yuya Kubo,2022,CM,1495,15,2,1
-298,POR,Zac McGraw,2022,CB,1225,10,4,1
-535,NYRB,Zach Ryan,2022,ST,69,4,1,0
-240,MTL,Zachary Brault-Guillard,2022,FB,731,6,4,4
-337,ATX,Zan Kolmanic,2022,FB,1187,8,1,0
-631,HOU,Zarek Valentin,2022,FB,403,0,0,0
-433,HOU,Zeca,2022,FB,1263,5,2,0
-703,CIN,Zico Bailey,2022,FB,88,0,0,0
-534,MTL,Zorhan Ludovic Bassong,2022,FB,232,2,0,0
+,Season,Player,Team,Minutes,Shots Faced,Goals Conceded,Saves,Player_ID,Count
+0,2022,Đorđe-Petrović,NER,2065,111,26,84,Đorđe-Petrović-2022-1,1
+1,2022,Andre-Blake,PHI,3394,130,26,100,Andre-Blake-2022-1,1
+2,2023,Roman-Bürki,STL,3195,160,39,120,Roman-Bürki-2023-1,1
+3,2021,Andre-Blake,PHI,2585,98,22,76,Andre-Blake-2021-1,1
+4,2023,Daniel,SJE,2068,113,27,84,Daniel-2023-1,1
+5,2021,Matt-Turner,NER,2752,138,34,101,Matt-Turner-2021-1,1
+6,2022,Aljaz-Ivacic,POR,3208,163,48,112,Aljaz-Ivacic-2022-1,1
+7,2021,JT-Marcinkowski,SJE,3292,186,50,129,JT-Marcinkowski-2021-1,1
+8,2021,Maxime-Crépeau,VAN,2684,126,29,97,Maxime-Crépeau-2021-1,1
+9,2023,Đorđe-Petrović,NER,2186,126,26,98,Đorđe-Petrović-2023-1,1
+10,2023,Andre-Blake,PHI,2566,96,24,70,Andre-Blake-2023-1,1
+11,2022,Brad-Stuver,ATX,3004,140,41,98,Brad-Stuver-2022-1,1
+12,2023,Brad-Stuver,ATX,3318,178,53,124,Brad-Stuver-2023-1,1
+13,2022,Eloy-Room,CLB,3398,146,39,103,Eloy-Room-2022-1,1
+14,2022,Maarten-Paes,FCD,3189,130,34,91,Maarten-Paes-2022-1,1
+15,2021,Brad-Guzan,ATL,2860,127,29,98,Brad-Guzan-2021-1,1
+16,2021,Carlos-Coronel,NYRB,3398,121,33,87,Carlos-Coronel-2021-1,1
+17,2021,Steve-Clark,POR,2319,124,30,88,Steve-Clark-2021-1,1
+18,2023,Roman-Celentano,CIN,3229,117,33,83,Roman-Celentano-2023-1,1
+19,2022,Dayne-St.-Clair,MIN,3094,155,44,109,Dayne-St.-Clair-2022-1,1
+20,2023,JT-Marcinkowski,SJE,1252,54,15,38,JT-Marcinkowski-2023-1,1
+21,2022,Stefan-Frei,SEA,2679,123,38,85,Stefan-Frei-2022-1,1
+22,2021,Alec-Kann,ATL,495,31,8,23,Alec-Kann-2021-1,1
+23,2021,Logan-Ketterer,POR,297,12,3,9,Logan-Ketterer-2021-1,1
+24,2023,Stefan-Frei,SEA,3087,100,26,72,Stefan-Frei-2023-1,1
+25,2023,Alex-Bono,DCU,964,39,11,28,Alex-Bono-2023-1,1
+26,2023,Tim-Melia,SKC,1479,66,23,42,Tim-Melia-2023-1,1
+27,2022,Stefan-Cleveland,SEA,679,37,8,28,Stefan-Cleveland-2022-1,1
+28,2022,Drake-Callender,MIA,2392,116,36,78,Drake-Callender-2022-1,1
+29,2021,Clément-Diop,MTL,799,32,9,23,Clément-Diop-2021-1,1
+30,2022,Steve-Clark,HOU,3237,153,46,104,Steve-Clark-2022-1,1
+31,2023,Kristijan-Kahlina,CLT,2329,108,32,75,Kristijan-Kahlina-2023-1,1
+32,2023,Maarten-Paes,FCD,2815,116,24,90,Maarten-Paes-2023-1,1
+33,2023,Jacob-Jackson,NER,99,10,3,7,Jacob-Jackson-2023-1,1
+34,2021,Gabriel-Slonina,CHI,1062,60,15,45,Gabriel-Slonina-2021-1,1
+35,2022,Chris-Brady,CHI,95,5,1,4,Chris-Brady-2022-1,1
+36,2022,James-Pantemis,MTL,1104,38,11,26,James-Pantemis-2022-1,1
+37,2021,Pedro-Gallese,ORL,2200,99,29,67,Pedro-Gallese-2021-1,1
+38,2022,Isaac-Boehmer,VAN,245,12,4,8,Isaac-Boehmer-2022-1,1
+39,2023,Luka-Gavran,TOR,398,32,12,20,Luka-Gavran-2023-1,1
+40,2021,Brad-Stuver,ATX,3277,191,52,136,Brad-Stuver-2021-1,1
+41,2021,Joe-Bendik,PHI,238,8,3,5,Joe-Bendik-2021-1,1
+42,2022,Max-Anchor,VAN,101,6,2,4,Max-Anchor-2022-1,1
+43,2023,George-Marks,CLT,712,41,12,29,George-Marks-2023-1,1
+44,2022,Alex-Bono,TOR,2449,126,41,84,Alex-Bono-2022-1,1
+45,2022,Matt-Bersano,SJE,151,10,3,6,Matt-Bersano-2022-1,1
+46,2021,Spencer-Richey,SEA,196,5,0,5,Spencer-Richey-2021-1,1
+47,2021,William-Yarbrough,COL,3271,142,31,106,William-Yarbrough-2021-1,1
+48,2022,John-McCarthy,LAFC,101,6,2,4,John-McCarthy-2022-1,1
+49,2021,Stefan-Frei,SEA,1661,62,15,44,Stefan-Frei-2021-1,1
+50,2022,Mason-Stajduhar,ORL,195,14,5,9,Mason-Stajduhar-2022-1,1
+51,2021,Alex-Roldan,SEA,5,1,0,1,Alex-Roldan-2021-1,1
+52,2023,Elliot-Panicco,NSH,198,9,1,8,Elliot-Panicco-2023-1,1
+53,2022,Spencer-Richey,CHI,103,4,2,2,Spencer-Richey-2022-1,1
+54,2023,Andrew-Tarbell,HOU,100,4,0,4,Andrew-Tarbell-2023-1,1
+55,2021,Jeff-Attinella,POR,185,5,1,4,Jeff-Attinella-2021-1,1
+56,2023,Thomas-Hasal,VAN,101,7,2,5,Thomas-Hasal-2023-1,1
+57,2021,Tim-Melia,SKC,2777,100,33,67,Tim-Melia-2021-1,1
+58,2023,Matt-Freese,NYC,906,33,8,25,Matt-Freese-2023-1,1
+59,2023,Justin-Rasmussen,POR,1,0,0,0,Justin-Rasmussen-2023-1,1
+60,2022,Gabriel-Slonina,CHI,3181,126,44,80,Gabriel-Slonina-2022-1,1
+61,2021,Aljaz-Ivacic,POR,464,32,12,20,Aljaz-Ivacic-2021-1,1
+62,2023,Tomás-Romero,TOR,601,35,12,23,Tomás-Romero-2023-1,1
+63,2023,Patrick-Schulte,CLB,3035,133,41,89,Patrick-Schulte-2023-1,1
+64,2023,Zac-MacMath,RSL,2646,116,35,78,Zac-MacMath-2023-1,1
+65,2022,David-Bingham,POR,197,13,3,10,David-Bingham-2022-1,1
+66,2023,Stefan-Cleveland,SEA,203,8,4,4,Stefan-Cleveland-2023-1,1
+67,2022,Brad-Knighton,NER,398,20,7,13,Brad-Knighton-2022-1,1
+68,2023,Maxime-Crépeau,LAFC,600,15,5,10,Maxime-Crépeau-2023-1,1
+69,2023,Chris-Brady,CHI,2836,134,41,89,Chris-Brady-2023-1,1
+70,2021,Sean-Johnson,NYC,2861,115,30,84,Sean-Johnson-2021-1,1
+71,2021,Joe-Willis,NSH,3336,132,31,100,Joe-Willis-2021-1,1
+72,2021,Tyler-Miller,MIN,2958,134,32,101,Tyler-Miller-2021-1,1
+73,2022,Elliot-Panicco,NSH,194,10,3,7,Elliot-Panicco-2022-1,1
+74,2021,Luis-Barraza,NYC,505,12,5,7,Luis-Barraza-2021-1,1
+75,2021,Daniel-Vega,SJE,99,1,1,0,Daniel-Vega-2021-1,1
+76,2022,Tyler-Miller,MIN,245,11,3,8,Tyler-Miller-2022-1,1
+77,2022,Jimmy-Maurer,FCD,203,8,3,5,Jimmy-Maurer-2022-1,1
+78,2021,Jamal-Blackman,LAFC,812,35,13,21,Jamal-Blackman-2021-1,1
+79,2021,Marko-Maric,HOU,2188,104,32,68,Marko-Maric-2021-1,1
+80,2021,Stefan-Cleveland,SEA,1494,47,17,29,Stefan-Cleveland-2021-1,1
+81,2023,Clément-Diop,ATL,157,7,4,3,Clément-Diop-2023-1,1
+82,2023,Eloy-Room,CLB,304,10,3,7,Eloy-Room-2023-1,1
+83,2021,Nick-Marsman,MIA,2111,101,31,68,Nick-Marsman-2021-1,1
+84,2023,Eldin-Jakupovic,LAFC,201,7,1,6,Eldin-Jakupovic-2023-1,1
+85,2021,Jonathan-Klinsmann,LAG,293,11,4,7,Jonathan-Klinsmann-2021-1,1
+86,2022,Raúl-Gudiño,ATL,555,17,7,7,Raúl-Gudiño-2022-1,1
+87,2023,Joe-Willis,NSH,3104,125,29,94,Joe-Willis-2023-1,1
+88,2022,Kendall-McIntosh,SKC,190,10,2,8,Kendall-McIntosh-2022-1,1
+89,2023,Novak-Micovic,LAG,98,6,2,4,Novak-Micovic-2023-1,1
+90,2022,Abraham-Rodriguez,COL,51,5,3,2,Abraham-Rodriguez-2022-1,1
+91,2021,Eloy-Room,CLB,2983,125,39,83,Eloy-Room-2021-1,1
+92,2023,John-Pulskamp,SKC,495,20,7,13,John-Pulskamp-2023-1,1
+93,2022,Earl-Edwards-Jr.,NER,399,17,8,9,Earl-Edwards-Jr.-2022-1,1
+94,2022,Pablo-Sisniega,CLT,196,9,2,7,Pablo-Sisniega-2022-1,1
+95,2021,Brad-Knighton,NER,589,28,6,22,Brad-Knighton-2021-1,1
+96,2021,Kyle-Morton,HOU,94,6,2,4,Kyle-Morton-2021-1,1
+97,2023,William-Yarbrough,COL,1997,91,25,65,William-Yarbrough-2023-1,1
+98,2022,Ryan-Meara,NYRB,102,5,2,2,Ryan-Meara-2022-1,1
+99,2023,Pedro-Gallese,ORL,3031,112,32,78,Pedro-Gallese-2023-1,1
+100,2023,Clint-Irwin,MIN,405,22,8,14,Clint-Irwin-2023-1,1
+101,2021,Zac-MacMath,RSL,646,20,6,14,Zac-MacMath-2021-1,1
+102,2021,Mason-Stajduhar,ORL,500,16,5,10,Mason-Stajduhar-2021-1,1
+103,2022,George-Marks,CLT,102,3,2,1,George-Marks-2022-1,1
+104,2023,Pablo-Sisniega,CLT,299,15,6,9,Pablo-Sisniega-2023-1,1
+105,2021,Phelipe,FCD,1035,57,19,36,Phelipe-2021-1,1
+106,2023,Earl-Edwards-Jr.,NER,983,46,15,30,Earl-Edwards-Jr.-2023-1,1
+107,2023,Alec-Kann,CIN,104,5,2,3,Alec-Kann-2023-1,1
+108,2022,Michael-Nelson,HOU,169,13,8,5,Michael-Nelson-2022-1,1
+109,2023,Quentin-Westberg,ATL,550,19,9,10,Quentin-Westberg-2023-1,1
+110,2021,Andrew-Tarbell,ATX,97,5,3,2,Andrew-Tarbell-2021-1,1
+111,2021,Bobby-Shuttleworth,CHI,2283,110,36,73,Bobby-Shuttleworth-2021-1,1
+112,2023,James-Pantemis,MTL,182,14,5,7,James-Pantemis-2023-1,1
+113,2022,Clément-Diop,MIA,298,11,7,4,Clément-Diop-2022-1,1
+114,2022,Brad-Guzan,ATL,667,24,9,14,Brad-Guzan-2022-1,1
+115,2023,Steve-Clark,HOU,3235,117,36,79,Steve-Clark-2023-1,1
+116,2022,Jon-Kempin,DCU,199,11,5,6,Jon-Kempin-2022-1,1
+117,2022,Sean-Johnson,NYC,3441,120,39,80,Sean-Johnson-2022-1,1
+118,2021,David-Ochoa,RSL,2458,122,38,82,David-Ochoa-2021-1,1
+119,2022,Matt-Turner,NER,484,15,7,8,Matt-Turner-2022-1,1
+120,2023,Ben-Lundt,STL,106,7,3,4,Ben-Lundt-2023-1,1
+121,2021,Clint-Irwin,COL,98,6,3,3,Clint-Irwin-2021-1,1
+122,2021,Sebastian-Breza,MTL,793,29,8,21,Sebastian-Breza-2021-1,1
+123,2022,Joe-Willis,NSH,3178,138,38,98,Joe-Willis-2022-1,1
+124,2021,Adam-Grinwis,ORL,196,7,3,4,Adam-Grinwis-2021-1,1
+125,2023,John-McCarthy,LAFC,2518,99,31,67,John-McCarthy-2023-1,1
+126,2021,Andrew-Putna,RSL,243,12,7,5,Andrew-Putna-2021-1,1
+127,2021,Cody-Cropper,CIN,96,10,4,6,Cody-Cropper-2021-1,1
+128,2021,Pablo-Sisniega,LAFC,783,24,10,14,Pablo-Sisniega-2021-1,1
+129,2022,Bobby-Shuttleworth,ATL,621,21,11,10,Bobby-Shuttleworth-2022-1,1
+130,2022,Bill-Hamid,DCU,974,52,15,34,Bill-Hamid-2022-1,1
+131,2023,Sean-Johnson,TOR,1865,74,21,51,Sean-Johnson-2023-1,1
+132,2021,Thomas-Hasal,VAN,679,35,14,20,Thomas-Hasal-2021-1,1
+133,2023,Mason-Stajduhar,ORL,295,15,6,9,Mason-Stajduhar-2023-1,1
+134,2021,Hunter-Sulte,POR,127,8,5,3,Hunter-Sulte-2021-1,1
+135,2023,Spencer-Richey,CHI,485,17,7,10,Spencer-Richey-2023-1,1
+136,2021,Dayne-St.-Clair,MIN,395,21,10,11,Dayne-St.-Clair-2021-1,1
+137,2021,Jonathan-Bond,LAG,3069,171,48,121,Jonathan-Bond-2021-1,1
+138,2021,John-Pulskamp,SKC,584,20,7,13,John-Pulskamp-2021-1,1
+139,2023,Carlos-Coronel,NYRB,3336,89,37,51,Carlos-Coronel-2023-1,1
+140,2022,Alec-Kann,CIN,695,35,13,21,Alec-Kann-2022-1,1
+141,2023,Yohei-Takaoka,VAN,3207,135,44,89,Yohei-Takaoka-2023-1,1
+142,2021,Matt-Freese,PHI,560,22,7,15,Matt-Freese-2021-1,1
+143,2022,Zac-MacMath,RSL,3361,150,45,102,Zac-MacMath-2022-1,1
+144,2022,David-Ochoa,DCU,875,49,16,32,David-Ochoa-2022-1,1
+145,2021,Chris-Seitz,DCU,389,18,6,11,Chris-Seitz-2021-1,1
+146,2021,Brandon-Austin,ORL,501,16,8,8,Brandon-Austin-2021-1,1
+147,2022,Andrew-Tarbell,ATX,397,22,7,15,Andrew-Tarbell-2022-1,1
+148,2023,Drake-Callender,MIA,3328,173,50,121,Drake-Callender-2023-1,1
+149,2023,Jimmy-Maurer,FCD,483,21,8,13,Jimmy-Maurer-2023-1,1
+150,2021,Evan-Bush,CLB,396,13,6,7,Evan-Bush-2021-1,1
+151,2021,Jimmy-Maurer,FCD,2331,114,36,76,Jimmy-Maurer-2021-1,1
+152,2022,Roman-Celentano,CIN,2674,128,42,85,Roman-Celentano-2022-1,1
+153,2021,Quentin-Westberg,TOR,967,58,22,35,Quentin-Westberg-2021-1,1
+154,2023,Aljaz-Ivacic,POR,1488,83,26,55,Aljaz-Ivacic-2023-1,1
+155,2023,Jonathan-Sirois,MTL,3084,138,42,94,Jonathan-Sirois-2023-1,1
+156,2023,Jonathan-Klinsmann,LAG,938,37,15,22,Jonathan-Klinsmann-2023-1,1
+157,2023,Greg-Ranjitsingh,TOR,389,25,10,14,Greg-Ranjitsingh-2023-1,1
+158,2022,John-Pulskamp,SKC,1139,50,17,32,John-Pulskamp-2022-1,1
+159,2022,Thomas-Hasal,VAN,1655,78,27,49,Thomas-Hasal-2022-1,1
+160,2023,Gavin-Beavers,RSL,639,28,14,13,Gavin-Beavers-2023-1,1
+161,2022,Nick-Marsman,MIA,692,31,12,19,Nick-Marsman-2022-1,1
+162,2022,Carlos-Coronel,NYRB,3302,118,39,73,Carlos-Coronel-2022-1,1
+163,2022,Maxime-Crépeau,LAFC,3297,113,34,76,Maxime-Crépeau-2022-1,1
+164,2023,David-Bingham,POR,1814,72,26,45,David-Bingham-2023-1,1
+165,2023,Dayne-St.-Clair,MIN,2859,132,39,91,Dayne-St.-Clair-2023-1,1
+166,2023,Luis-Barraza,NYC,2425,92,30,62,Luis-Barraza-2023-1,1
+167,2023,Kendall-McIntosh,SKC,1333,58,20,38,Kendall-McIntosh-2023-1,1
+168,2021,John-McCarthy,MIA,1253,58,20,35,John-McCarthy-2021-1,1
+169,2022,Pedro-Gallese,ORL,3200,127,47,79,Pedro-Gallese-2022-1,1
+170,2021,Jon-Kempin,DCU,978,37,16,18,Jon-Kempin-2021-1,1
+171,2023,Joe-Bendik,PHI,792,31,12,15,Joe-Bendik-2023-1,1
+172,2022,Quentin-Westberg,TOR,979,59,23,36,Quentin-Westberg-2022-1,1
+173,2021,Alex-Bono,TOR,2374,126,42,82,Alex-Bono-2021-1,1
+174,2021,Kenneth-Vermeer,CIN,1849,94,34,57,Kenneth-Vermeer-2021-1,1
+175,2021,Michael-Nelson,HOU,1086,48,17,31,Michael-Nelson-2021-1,1
+176,2022,Rocco-Rios-Novo,ATL,1532,68,27,40,Rocco-Rios-Novo-2022-1,1
+177,2021,Bill-Hamid,DCU,1987,87,27,60,Bill-Hamid-2021-1,1
+178,2023,Brad-Guzan,ATL,2620,98,37,60,Brad-Guzan-2023-1,1
+179,2022,Cody-Cropper,VAN,1360,55,24,28,Cody-Cropper-2022-1,1
+180,2021,James-Pantemis,MTL,1783,83,25,56,James-Pantemis-2021-1,1
+181,2021,Tomás-Romero,LAFC,1799,62,28,33,Tomás-Romero-2021-1,1
+182,2022,Tim-Melia,SKC,2033,80,34,45,Tim-Melia-2022-1,1
+183,2022,Kristijan-Kahlina,CLT,3081,147,47,97,Kristijan-Kahlina-2022-1,1
+184,2023,Tyler-Miller,DCU,2481,101,37,63,Tyler-Miller-2023-1,1
+185,2023,Marko-Ilic,COL,1276,70,28,41,Marko-Ilic-2023-1,1
+186,2021,Przemyslaw-Tyton,CIN,1419,89,35,53,Przemyslaw-Tyton-2021-1,1
+187,2023,Jonathan-Bond,LAG,2275,123,44,78,Jonathan-Bond-2023-1,1
+188,2022,Rafael-Romo,DCU,1341,82,32,49,Rafael-Romo-2022-1,1
+189,2022,Jonathan-Bond,LAG,3396,146,51,90,Jonathan-Bond-2022-1,1
+190,2022,Sebastian-Breza,MTL,2295,88,37,49,Sebastian-Breza-2022-1,1
+191,2022,William-Yarbrough,COL,3336,159,54,99,William-Yarbrough-2022-1,1
+192,2022,JT-Marcinkowski,SJE,3181,182,66,111,JT-Marcinkowski-2022-1,1

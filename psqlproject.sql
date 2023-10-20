@@ -272,4 +272,4 @@ COPY  seasons FROM '/Users/henrique/Documents/IIT/IITFALL2023/CS425-Project/seas
     WITH CSV HEADER DELIMITER ',';
 
 
-
+select * from games;
