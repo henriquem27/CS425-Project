@@ -155,3 +155,7 @@ SELECT  cast(MIN(Base_Salary) as money) as Lowest_Salary, cast(MAX(Base_Salary) 
 --- MOVING AVG
 
 SELECT date,homegoals+games.awaygoals as Total_Goals,AVG(homegoals+games.awaygoals) OVER (ORDER BY Date ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING) as Moving_AVG_7_Day FROM Games LIMIT 20;
+
+
+
+SELECT * FROM Seasons;
