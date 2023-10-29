@@ -70,7 +70,6 @@ end_date= Entry(root, bd=5)
 end_date.focus_set()
 end_date.place(relx=0.2,rely=0.4,anchor='n')
 
-
 Button(root, text= "SUBMIT",width= 20, command=lambda:func_CreateData()).place(relx=0.2,rely=0.5,anchor='n')
 
 
