@@ -8,7 +8,7 @@ import tkinter.messagebox as MessageBox
 root = Tk()
 root.title('Major League Soccer Database')
 
-root.geometry("700x700")
+root.geometry("900x900")
 tabControl = ttk.Notebook(root)
 tabseason = ttk.Frame(tabControl)
 tabplayer = ttk.Frame(tabControl)
@@ -31,7 +31,7 @@ tabControl.add(tabteams,text='teams')
 tabControl.pack(expand=1, fill="both")
 
 
-#seasons
+#seasons--------------------------------------------------------------------------------
 def func_InsertSeasonData():
         
     conn = psycopg2.connect(
@@ -151,7 +151,7 @@ def func_UpdateSeasonDat():
         conn.close()
 
 
-def func_DeleteSeasonData():
+
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -329,7 +329,7 @@ Button(tabseason, text= "Delete",width= 20, command=lambda:func_DeleteSeasonDat(
 
 #player-start------------------------------------------------------------------
 
-def func_InsertSeasonData():
+def func_InsertPlayerData():
         
     conn = psycopg2.connect(
     host="127.0.0.1",
@@ -339,19 +339,21 @@ def func_InsertSeasonData():
         )
             
     try:
-        seasondata=int(season.get())
+        playername=Player.get()
+        teamp=Team.get()
+        seasonp=playerseason.get()
+        position1=position.get()
+        minutesp=minutes.get()
+        shotsp=shots.get()
+        shotogp=shotog.get()
+        goalsp=goals.get()
         
-        end = end_date.get()
-        year, month, day = map(int, end.split('-'))
-        end=datetime.date(year,month,day)
-        
-        start = start_date.get()
-        year, month, day = map(int, start.split('-'))
-        start=datetime.date(year,month,day)
+        team_id=teamp+seasonp
+        pid=playername+"-"+seasonp
 
         cursor = conn.cursor()
-        QUERY="INSERT INTO seasons VALUES (%s,%s,%s);"
-        DATA=(int(seasondata),start,end)
+        QUERY="INSERT INTO player VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);"
+        DATA=(pid,team_id,int(seasonp),playername,position1,int(minutesp),int(shotsp),int(shotogp),int(goalsp))
         cursor.execute(QUERY,DATA)
             
         
@@ -365,7 +367,7 @@ def func_InsertSeasonData():
         conn.close()
 
 
-def func_SelectSeasonData():
+def func_SelectPlayerData():
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -374,23 +376,44 @@ def func_SelectSeasonData():
         )
     
     try:
-        seasonselectdata=seasonselect.get()
-        if(seasonselectdata==""):
+        pidata=PIDSelect.get()
+        if(pidata==""):
                 MessageBox.showerror("Error","Please enter an ID to be Selected")
 
         else:
         
             cursor = conn.cursor()
-            DATA=int(seasonselectdata)
-            QUERY="SELECT * FROM seasons WHERE season_id=%s"
-            cursor.execute(QUERY,(DATA,))
+            DATA=(pidata,)
+            QUERY="SELECT * FROM player WHERE player_id=(%s)"
+            cursor.execute(QUERY,DATA)
             row=cursor.fetchall()
-            Label(tabplayer,text="Start-Date").grid(row=2,column=2)
+            Label(tabplayer,text="team_id").grid(row=2,column=2)
             LStart = Label(tabplayer, text=row[0][1])
             LStart.grid(row=2,column=3)
-            Label(tabplayer,text="End-Date").grid(row=3,column=2)
+            Label(tabplayer,text="season_id").grid(row=3,column=2)
             LEND = Label(tabplayer, text=row[0][2])
             LEND.grid(row=3,column=3)
+            
+            Label(tabplayer,text="Player-Name").grid(row=4,column=2)
+            LPname = Label(tabplayer, text=row[0][3])
+            LPname.grid(row=4,column=3)
+            
+            Label(tabplayer,text="Position").grid(row=5,column=2)
+            Label(tabplayer, text=row[0][4]).grid(row=5,column=3)
+
+            Label(tabplayer,text="Minutes Played").grid(row=6,column=2)
+            Label(tabplayer, text=row[0][5]).grid(row=6,column=3)
+
+            Label(tabplayer,text="Shots").grid(row=7,column=2)
+            Label(tabplayer, text=row[0][6]).grid(row=7,column=3)
+
+
+            Label(tabplayer,text="Shots on Goal").grid(row=7,column=2)
+            Label(tabplayer, text=row[0][6]).grid(row=7,column=3)
+
+            Label(tabplayer,text="Goals").grid(row=8,column=2)
+            Label(tabplayer, text=row[0][7]).grid(row=8,column=3)
+            
             
 
 
@@ -405,7 +428,7 @@ def func_SelectSeasonData():
         conn.close()
 
 
-def func_UpdateSeasonDat():
+def func_UpdatePlayerData():
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -414,15 +437,7 @@ def func_UpdateSeasonDat():
         )
     
     try:
-        seasonupdata=seasonupdate.get()
-        startupdatdata=start_date_update.get()
-        endupdatedata=end_date_update.get()
-        #format
-        year, month, day = map(int, startupdatdata.split('-'))
-        startupdatdata=datetime.date(year,month,day)
-        #format
-        year, month, day = map(int, endupdatedata.split('-'))
-        endupdatedata=datetime.date(year,month,day)
+        play
 
         if(seasonupdata==""):
                 MessageBox.showerror("Error","Please enter an ID to be Updated")
@@ -448,7 +463,7 @@ def func_UpdateSeasonDat():
         conn.close()
 
 
-def func_DeleteSeasonData():
+
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -520,107 +535,154 @@ def func_DeleteSeasonDat():
     
     
 
-# region
 
 
-#------------------------------------------------------------------------------------------------SEASONS--------------------------------------------------------------------------------------------------------------------------
-#Create an Entry widget to accept User Input for Season
-Creat_l= Label(tabplayer,text="Insert Into Seasons")
+#------------------------------------------------------------------------------------------------Player--------------------------------------------------------------------------------------------------------------------------
+#Create an Entry widget to accept User Input for Player
+Creat_l= Label(tabplayer,text="Insert a New player")
 Creat_l.grid(row=0,column=1,pady=30,padx=30)
 
-L1 = Label(tabplayer, text="Season_ID")
-L1.grid(row=1,column=0)
-season= Entry(tabplayer, bd=5)
-season.focus_set()
-season.grid(row=1,column=1)
+Label(tabplayer, text="Player-Name").grid(row=1,column=0)
+Player= Entry(tabplayer, bd=5)
+Player.focus_set()
+Player.grid(row=1,column=1)
+
+Label(tabplayer, text="Team").grid(row=2,column=0)
+Team= Entry(tabplayer, bd=4)
+Team.focus_set()
+Team.grid(row=2,column=1)
 
 
+Label(tabplayer, text="season").grid(row=3,column=0)
+playerseason= Entry(tabplayer, bd=4)
+playerseason.focus_set()
+playerseason.grid(row=3,column=1)
 
-#User input for Start-Date
-L2 = Label(tabplayer, text="Start_date")
-L2.grid(row=2,column=0)
-start_date= Entry(tabplayer, bd=5)
-start_date.focus_set()
-start_date.grid(row=2,column=1)
+Label(tabplayer, text="Position").grid(row=4,column=0)
+position= Entry(tabplayer, bd=4)
+position.focus_set()
+position.grid(row=4,column=1)
+
+Label(tabplayer, text="Minutes").grid(row=5,column=0)
+minutes= Entry(tabplayer, bd=4)
+minutes.focus_set()
+minutes.grid(row=5,column=1)
 
 
-#User input for End-Date
-L3 = Label(tabplayer, text="End_date")
-L3.grid(row=3,column=0)
-end_date= Entry(tabplayer, bd=5)
-end_date.focus_set()
-end_date.grid(row=3,column=1)
+Label(tabplayer, text="Shots").grid(row=6,column=0)
+shots= Entry(tabplayer, bd=4)
+shots.focus_set()
+shots.grid(row=6,column=1)
 
-Button(tabplayer, text= "SUBMIT",width= 20, command=lambda:func_InsertSeasonData()).grid(row=4,column=1)
+
+Label(tabplayer, text="Shots On Goal").grid(row=7,column=0)
+shotog= Entry(tabplayer, bd=4)
+shotog.focus_set()
+shotog.grid(row=7,column=1)
+
+
+Label(tabplayer, text="Goals").grid(row=8,column=0)
+goals= Entry(tabplayer, bd=4)
+goals.focus_set()
+goals.grid(row=8,column=1)
+
+
+Button(tabplayer, text= "SUBMIT",width= 20, command=lambda:func_InsertPlayerData()).grid(row=9,column=1)
 
 # Select Widget
 
-Creat_l= Label(tabplayer,text="Select a Season")
+Creat_l= Label(tabplayer,text="Select a Player")
 Creat_l.grid(row=0,column=2,pady=30,padx=30)
 #Entry for Select Statement
-L4 = Label(tabplayer, text="Season_ID")
+L4 = Label(tabplayer, text="Player_ID")
 L4.grid(row=1,column=2)
-seasonselect= Entry(tabplayer, bd=5)
-seasonselect.focus_set()
-seasonselect.grid(row=1,column=2)
+PIDSelect= Entry(tabplayer, bd=5)
+PIDSelect.focus_set()
+PIDSelect.grid(row=1,column=2)
 Label(tabplayer,text="DATA").grid(row=1,column=3)
 
 
-Button(tabplayer, text= "Select",width= 20, command=lambda:func_SelectSeasonData()).grid(row=4,column=2)
+Button(tabplayer, text= "Select",width= 20, command=lambda:func_SelectPlayerData()).grid(row=9,column=2)
 
 
 
 #Update an Entry widget to accept User Input for Season
-Update_l= Label(tabplayer,text="Update a Season")
-Update_l.grid(row=5,column=1,pady=30,padx=30)
 
-Label(tabplayer, text="Season_ID").grid(row=6,column=0)
-seasonupdate= Entry(tabplayer, bd=5)
-seasonupdate.focus_set()
-seasonupdate.grid(row=6,column=1)
+Creat_l= Label(tabplayer,text="Update Player Stats")
+Creat_l.grid(row=10,column=1,pady=30,padx=30)
 
+Label(tabplayer, text="Player_ID").grid(row=11,column=0)
+Pid1= Entry(tabplayer, bd=5)
+Pid1.focus_set()
+Pid1.grid(row=11,column=1)
 
-
-  
-
-#User input for Start-Date
-L2 = Label(tabplayer, text="Start_date")
-L2.grid(row=7,column=0)
-start_date_update= Entry(tabplayer, bd=5)
-start_date_update.focus_set()
-start_date_update.grid(row=7,column=1)
+Label(tabplayer, text="Team").grid(row=12,column=0)
+Team1= Entry(tabplayer, bd=4)
+Team1.focus_set()
+Team1.grid(row=12,column=1)
 
 
-#User input for End-Date
-L3 = Label(tabplayer, text="End_date")
-L3.grid(row=8,column=0)
-end_date_update= Entry(tabplayer, bd=5)
-end_date_update.focus_set()
-end_date_update.grid(row=8,column=1)
+Label(tabplayer, text="season").grid(row=13,column=0)
+playerseason1= Entry(tabplayer, bd=4)
+playerseason1.focus_set()
+playerseason1.grid(row=13,column=1)
 
-Button(tabplayer, text= "SUBMIT",width= 20, command=lambda:func_UpdateSeasonDat()).grid(row=9,column=1)
+Label(tabplayer, text="Position").grid(row=14,column=0)
+position1= Entry(tabplayer, bd=4)
+position1.focus_set()
+position1.grid(row=14,column=1)
+
+Label(tabplayer, text="Minutes").grid(row=15,column=0)
+minutes1= Entry(tabplayer, bd=4)
+minutes1.focus_set()
+minutes1.grid(row=15,column=1)
+
+
+Label(tabplayer, text="Shots").grid(row=16,column=0)
+shots1= Entry(tabplayer, bd=4)
+shots1.focus_set()
+shots1.grid(row=16,column=1)
+
+
+Label(tabplayer, text="Shots On Goal").grid(row=17,column=0)
+shotog1= Entry(tabplayer, bd=4)
+shotog1.focus_set()
+shotog1.grid(row=17,column=1)
+
+
+Label(tabplayer, text="Goals").grid(row=18,column=0)
+goals1= Entry(tabplayer, bd=4)
+goals1.focus_set()
+goals1.grid(row=18,column=1)
+
+Label(tabplayer, text="Player-Name").grid(row=19,column=0)
+goals1= Entry(tabplayer, bd=4)
+goals1.focus_set()
+goals1.grid(row=19,column=1)
+
+
+Button(tabplayer, text= "SUBMIT",width= 20, command=lambda:func_UpdatePlayerData()).grid(row=20,column=1)
 
 
 
 # Delete Widget
 
 Creat_l= Label(tabplayer,text="Select a Season to be deleted")
-Creat_l.grid(row=5,column=2,pady=30,padx=30)
+Creat_l.grid(row=10,column=2,pady=30,padx=30)
 #Entry for Delete Statement
 L4 = Label(tabplayer, text="Season_ID")
-L4.grid(row=6,column=2)
+L4.grid(row=12,column=2)
 seasondelete= Entry(tabplayer, bd=5)
 seasondelete.focus_set()
-seasondelete.grid(row=6,column=2)
+seasondelete.grid(row=12,column=2)
 
 
-Button(tabplayer, text= "Delete",width= 20, command=lambda:func_DeleteSeasonDat()).grid(row=9,column=2)
+Button(tabplayer, text= "Delete",width= 20, command=lambda:func_DeleteSeasonDat()).grid(row=13,column=2)
 
 
-#------------------------------------------------------------------------------------------------SEASONS--------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------Player--------------------------------------------------------------------------------------------------------------------------
 
 
-# endregion
 
 
 
