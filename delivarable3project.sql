@@ -162,3 +162,4 @@ SELECT * FROM Seasons;
 
 SELECT * FROM GoalKeepers;
 
+SELECT * FROM Player where goals >50;
