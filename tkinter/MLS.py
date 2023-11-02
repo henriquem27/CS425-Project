@@ -437,17 +437,28 @@ def func_UpdatePlayerData():
         )
     
     try:
-        play
+        Pid1data= Pid1.get()
+        Teamdata = Team1.get()
+        pseasondata = playerseason1.get()
+        namedata = pname1.get()
+        posdata = position1.get()
+        mindata = minutes1.get()
+        sdata = shotog1.get()
+        sotdata = shotog1.get()
+        gdata = goals1.get()
 
-        if(seasonupdata==""):
+        team_id=Teamdata+pseasondata
+
+
+        if(Pid1data==""):
                 MessageBox.showerror("Error","Please enter an ID to be Updated")
 
         else:
-        
+            
             cursor = conn.cursor()
             
-            DATA=(startupdatdata,endupdatedata,int(seasonupdata))
-            QUERY="UPDATE seasons SET (start_date,end_date)=(%s,%s) WHERE season_id=(%s)"
+            DATA=(team_id,int(pseasondata),namedata,posdata,int(mindata),int(sdata),int(sotdata),int(gdata),Pid1data)
+            QUERY="UPDATE player SET (team_id,season_id,player_name,position,minutes,shots,shotsongoal,goals)=(%s,%s,%s,%s,%s,%s,%s,%s) WHERE player_id=(%s)"
             cursor.execute(QUERY,DATA)
             MessageBox.showinfo("Sucesss","Data was Updated")
 
@@ -464,43 +475,6 @@ def func_UpdatePlayerData():
 
 
 
-    conn = psycopg2.connect(
-    host="127.0.0.1",
-    database='Project-Test',
-    user='postgres',
-    password='123qw123'
-        )
-    
-    try:
-        seasonselectdata=seasonselect.get()
-        if(seasonselectdata==""):
-                MessageBox.showerror("Error","Please enter an ID to be Selected")
-
-        else:
-        
-            cursor = conn.cursor()
-            DATA=int(seasonselectdata)
-            QUERY="SELECT * FROM seasons WHERE season_id=%s"
-            cursor.execute(QUERY,(DATA,))
-            row=cursor.fetchall()
-            Label(tabplayer,text="Start-Date").grid(row=2,column=2)
-            LStart = Label(tabplayer, text=row[0][1])
-            LStart.grid(row=2,column=3)
-            Label(tabplayer,text="End-Date").grid(row=3,column=2)
-            LEND = Label(tabplayer, text=row[0][2])
-            LEND.grid(row=3,column=3)
-            
-
-
-
-
-            
-            conn.commit()
-
-    except:
-        MessageBox.showinfo("ALERT", "something went wrong.")
-    finally:
-        conn.close()
 
 
 def func_DeleteSeasonDat():
@@ -512,17 +486,17 @@ def func_DeleteSeasonDat():
         )
     
     try:
-        seasondeldata=seasondelete.get()
+        playerdeletedata=playerdelete.get()
 
-        if(seasondeldata==""):
+        if(playerdelete==""):
                 MessageBox.showerror("Error","Please enter an ID to be Updated")
 
         else:
             
             cursor = conn.cursor()
             
-            DATA=(int(seasondeldata),)
-            QUERY="DELETE FROM seasons WHERE season_id=(%s)"
+            DATA=(playerdeletedata,)
+            QUERY="DELETE FROM player WHERE player_id=(%s)"
             cursor.execute(QUERY,DATA)
             MessageBox.showinfo("Sucesss","Data was Deleted")
 
@@ -656,9 +630,9 @@ goals1.focus_set()
 goals1.grid(row=18,column=1)
 
 Label(tabplayer, text="Player-Name").grid(row=19,column=0)
-goals1= Entry(tabplayer, bd=4)
-goals1.focus_set()
-goals1.grid(row=19,column=1)
+pname1= Entry(tabplayer, bd=4)
+pname1.focus_set()
+pname1.grid(row=19,column=1)
 
 
 Button(tabplayer, text= "SUBMIT",width= 20, command=lambda:func_UpdatePlayerData()).grid(row=20,column=1)
@@ -667,23 +641,19 @@ Button(tabplayer, text= "SUBMIT",width= 20, command=lambda:func_UpdatePlayerData
 
 # Delete Widget
 
-Creat_l= Label(tabplayer,text="Select a Season to be deleted")
+Creat_l= Label(tabplayer,text="Insert Player_ID to be deleted")
 Creat_l.grid(row=10,column=2,pady=30,padx=30)
 #Entry for Delete Statement
-L4 = Label(tabplayer, text="Season_ID")
-L4.grid(row=12,column=2)
-seasondelete= Entry(tabplayer, bd=5)
-seasondelete.focus_set()
-seasondelete.grid(row=12,column=2)
+Label(tabplayer, text="Player_ID").grid(row=12,column=2)
+playerdelete= Entry(tabplayer, bd=5)
+playerdelete.focus_set()
+playerdelete.grid(row=13,column=2)
 
 
-Button(tabplayer, text= "Delete",width= 20, command=lambda:func_DeleteSeasonDat()).grid(row=13,column=2)
+Button(tabplayer, text= "Delete",width= 20, command=lambda:func_DeleteSeasonDat()).grid(row=14,column=2)
 
 
 #------------------------------------------------------------------------------------------------Player--------------------------------------------------------------------------------------------------------------------------
-
-
-
 
 
 
