@@ -399,16 +399,21 @@ def func_SelectPlayerData():
             QUERY="SELECT * FROM player WHERE player_name=(%s)"
             cursor.execute(QUERY,DATA)
             records=cursor.fetchall()
+            #Clear the loop entries for the data after row 13
+            for label in tabplayer.grid_slaves():
+             if int(label.grid_info()["row"]) > 13:
+                label.grid_forget()
             output = ''
             # Loop thru the result
             Label(tabplayer,text="Player_id").grid(row=14,column=0)
             Label(tabplayer,text="Team").grid(row=14,column=1)
             Label(tabplayer,text="season_id").grid(row=14,column=2)
-            Label(tabplayer,text="Position").grid(row=14,column=3)
-            Label(tabplayer,text="Minutes").grid(row=14,column=4)
-            Label(tabplayer,text=" Shots ").grid(row=14,column=5)
-            Label(tabplayer,text=" ShotsOnGoal ").grid(row=14,column=6,padx=2)
-            Label(tabplayer,text="Goals").grid(row=14,column=7)
+            Label(tabplayer,text="Player Name").grid(row=14,column=3)
+            Label(tabplayer,text="Position").grid(row=14,column=4)
+            Label(tabplayer,text="Minutes").grid(row=14,column=5,padx=5)
+            Label(tabplayer,text=" Shots").grid(row=14,column=6,padx=5)
+            Label(tabplayer,text="Shots on Goal").grid(row=14,column=7,padx=5)
+            Label(tabplayer,text="Goals").grid(row=14,column=8,padx=5)
             for x in range(len(records)):
                  Label(tabplayer,text=records[x][0]).grid(row=x+15,column=0)
                  team=records[x][1]
@@ -419,6 +424,7 @@ def func_SelectPlayerData():
                  Label(tabplayer,text=records[x][5]).grid(row=x+15,column=5)
                  Label(tabplayer,text=records[x][6]).grid(row=x+15,column=6)
                  Label(tabplayer,text=records[x][7]).grid(row=x+15,column=7)
+                 Label(tabplayer,text=records[x][8]).grid(row=x+15,column=8)
             conn.commit()
         if(pidata!="" and fname=="" and lname==""):
             cursor = conn.cursor()
@@ -426,16 +432,19 @@ def func_SelectPlayerData():
             QUERY="SELECT * FROM player WHERE player_id=(%s)"
             cursor.execute(QUERY,DATA)
             records=cursor.fetchall()
+            for label in tabplayer.grid_slaves():
+             if int(label.grid_info()["row"]) > 13:
+                label.grid_forget()
             output = ''
             # Loop thru the result
             Label(tabplayer,text="Player_id").grid(row=14,column=0)
-            Label(tabplayer,text="Team").grid(row=14,column=1)
+            Label(tabplayer,text="Team_ID").grid(row=14,column=1)
             Label(tabplayer,text="season_id").grid(row=14,column=2)
             Label(tabplayer,text="Position").grid(row=14,column=3)
             Label(tabplayer,text="Minutes").grid(row=14,column=4)
             Label(tabplayer,text=" Shots ").grid(row=14,column=5)
             Label(tabplayer,text=" ShotsOnGoal ").grid(row=14,column=6,padx=2)
-            Label(tabplayer,text="Goals").grid(row=14,column=7)
+            Label(tabplayer,text="Goals").grid(row=14,column=7,padx=5)
             for x in range(len(records)):
                  Label(tabplayer,text=records[x][0]).grid(row=x+15,column=0)
                  Label(tabplayer,text=records[x][1]).grid(row=x+15,column=1)
@@ -508,9 +517,6 @@ def func_UpdatePlayerData():
         MessageBox.showinfo("ALERT", "something went wrong.")
     finally:
         conn.close()
-
-
-
 
 
 def func_DelePlayerDat():
