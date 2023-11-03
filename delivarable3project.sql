@@ -160,6 +160,6 @@ SELECT date,homegoals+games.awaygoals as Total_Goals,AVG(homegoals+games.awaygoa
 
 SELECT * FROM Seasons;
 
-SELECT * FROM GoalKeepers;
+SELECT * FROM GoalKeepers where Saves>99;
 
 SELECT * FROM Player where goals >50;

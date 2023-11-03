@@ -3,12 +3,14 @@ import psycopg2
 import datetime
 from tkinter import ttk
 import tkinter.messagebox as MessageBox
+import traceback
+
 
 
 root = Tk()
 root.title('Major League Soccer Database')
 
-root.geometry("900x900")
+root.geometry("1200x900")
 tabControl = ttk.Notebook(root)
 tabseason = ttk.Frame(tabControl)
 tabplayer = ttk.Frame(tabControl)
@@ -32,9 +34,15 @@ tabControl.pack(expand=1, fill="both")
 
 
 
-#player-start------------------------------------------------------------------
 
-def func_InsertPlayerData():
+
+
+
+
+
+#gk-----------------------------------------------------------------------------------------FUNCTIONS------------------------------------------------------------------
+
+def func_InsertgkData():
         
     conn = psycopg2.connect(
     host="127.0.0.1",
@@ -44,21 +52,22 @@ def func_InsertPlayerData():
         )
             
     try:
-        playername=Player.get()
-        teamp=Team.get()
-        seasonp=playerseason.get()
-        position1=position.get()
-        minutesp=minutes.get()
-        shotsp=shots.get()
-        shotogp=shotog.get()
-        goalsp=goals.get()
+        firstname=firstnameingk.get()
+        lastname= lastnameingk.get()
+        teamp=Teamgk.get()
+        seasonp=gkseason.get()
+        minutes=minutesgk.get()
+        shtsfaced=shtfa.get()
+        gconceded=gcon.get()
+        savesgk=saves.get()
         
+        gkname = firstname+"-"+lastname
         team_id=teamp+seasonp
-        pid=playername+"-"+seasonp
+        pid=gkname+"-"+seasonp
 
         cursor = conn.cursor()
-        QUERY="INSERT INTO player VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s);"
-        DATA=(pid,team_id,int(seasonp),playername,position1,int(minutesp),int(shotsp),int(shotogp),int(goalsp))
+        QUERY="INSERT INTO goalkeepers VALUES (%s,%s,%s,%s,%s,%s,%s,%s);"
+        DATA=(pid,team_id,int(seasonp),gkname,int(minutes),int(shtsfaced),int(gconceded),int(savesgk))
         cursor.execute(QUERY,DATA)
             
         
@@ -72,7 +81,7 @@ def func_InsertPlayerData():
         conn.close()
 
 
-def func_SelectPlayerData():
+def func_SelectgkData():
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -81,59 +90,99 @@ def func_SelectPlayerData():
         )
     
     try:
-        pidata=PIDSelect.get()
-        if(pidata==""):
-                MessageBox.showerror("Error","Please enter an ID to be Selected")
+        
+        pidata=PIDSelectgk.get()
+        fname = fnameSelectgk.get()
+        lname = lnameSelectgk.get()
+        gkname= fname+"-"+lname
 
-        else:
+        if(pidata=="" and fname=="" and lname==""):
+                MessageBox.showerror("Error","Please enter a gk_ID or First and Last name")
+        if(pidata!="" and fname!="" and lname!=""):
+                MessageBox.showerror("Error","Please make sure you are only using gk_ID or First and Last name")
+        
+
+        if(pidata=="" and fname!="" and lname!=""):
         
             cursor = conn.cursor()
-            DATA=(pidata,)
-            QUERY="SELECT * FROM player WHERE player_id=(%s)"
+            DATA=(gkname,)
+            QUERY="SELECT * FROM goalkeepers WHERE gk_name=(%s)"
             cursor.execute(QUERY,DATA)
-            row=cursor.fetchall()
-            Label(tabgk,text="team_id").grid(row=2,column=2)
-            LStart = Label(tabgk, text=row[0][1])
-            LStart.grid(row=2,column=3)
-            Label(tabgk,text="season_id").grid(row=3,column=2)
-            LEND = Label(tabgk, text=row[0][2])
-            LEND.grid(row=3,column=3)
-            
-            Label(tabgk,text="Player-Name").grid(row=4,column=2)
-            LPname = Label(tabgk, text=row[0][3])
-            LPname.grid(row=4,column=3)
-            
-            Label(tabgk,text="Position").grid(row=5,column=2)
-            Label(tabgk, text=row[0][4]).grid(row=5,column=3)
-
-            Label(tabgk,text="Minutes Played").grid(row=6,column=2)
-            Label(tabgk, text=row[0][5]).grid(row=6,column=3)
-
-            Label(tabgk,text="Shots").grid(row=7,column=2)
-            Label(tabgk, text=row[0][6]).grid(row=7,column=3)
-
-
-            Label(tabgk,text="Shots on Goal").grid(row=7,column=2)
-            Label(tabgk, text=row[0][6]).grid(row=7,column=3)
-
-            Label(tabgk,text="Goals").grid(row=8,column=2)
-            Label(tabgk, text=row[0][7]).grid(row=8,column=3)
-            
-            
-
-
-
-
-            
+            records=cursor.fetchall()
+            #Clear the loop entries for the data after row 13
+            for label in tabgk.grid_slaves():
+             if int(label.grid_info()["row"]) > 13:
+                label.grid_forget()
+            output = ''
+            # Loop thru the result
+            Label(tabgk,text="gk_id").grid(row=14,column=0)
+            Label(tabgk,text="Team").grid(row=14,column=1)
+            Label(tabgk,text="season_id").grid(row=14,column=2)
+            Label(tabgk,text="gk Name").grid(row=14,column=3)
+            Label(tabgk,text="Minutes").grid(row=14,column=4)
+            Label(tabgk,text="Shots Faced").grid(row=14,column=5,padx=5)
+            Label(tabgk,text="Goals Conceded").grid(row=14,column=6,padx=5)
+            Label(tabgk,text="Saves").grid(row=14,column=7,padx=5)
+            for x in range(len(records)):
+                 Label(tabgk,text=records[x][0]).grid(row=x+15,column=0)
+                 team=records[x][1]
+                 Label(tabgk,text=team[:3]).grid(row=x+15,column=1)
+                 Label(tabgk,text=records[x][2]).grid(row=x+15,column=2)
+                 Label(tabgk,text=records[x][3]).grid(row=x+15,column=3)
+                 Label(tabgk,text=records[x][4]).grid(row=x+15,column=4)
+                 Label(tabgk,text=records[x][5]).grid(row=x+15,column=5)
+                 Label(tabgk,text=records[x][6]).grid(row=x+15,column=6)
+                 Label(tabgk,text=records[x][7]).grid(row=x+15,column=7)
             conn.commit()
+        if(pidata!="" and fname=="" and lname==""):
+            cursor = conn.cursor()
+            DATA=(pidata,)
+            QUERY="SELECT * FROM goalkeepers WHERE gk_id=(%s)"
+            cursor.execute(QUERY,DATA)
+            records=cursor.fetchall()
+            for label in tabgk.grid_slaves():
+             if int(label.grid_info()["row"]) > 13:
+                label.grid_forget()
+            output = ''
+            # Loop thru the result
+            Label(tabgk,text="gk_id").grid(row=14,column=0)
+            Label(tabgk,text="Team_if").grid(row=14,column=1)
+            Label(tabgk,text="season_id").grid(row=14,column=2)
+            Label(tabgk,text="gk-Name").grid(row=14,column=3)
+            Label(tabgk,text="Minutes").grid(row=14,column=4)
+            Label(tabgk,text="Shots Faced").grid(row=14,column=5,padx=5)
+            Label(tabgk,text="Goals Conceded").grid(row=14,column=6,padx=5)
+            Label(tabgk,text="Saves").grid(row=14,column=7,padx=5)
+            for x in range(len(records)):
+                 Label(tabgk,text=records[x][0]).grid(row=x+15,column=0)
+                 Label(tabgk,text=records[x][1]).grid(row=x+15,column=1)
+                 Label(tabgk,text=records[x][2]).grid(row=x+15,column=2)
+                 Label(tabgk,text=records[x][3]).grid(row=x+15,column=3)
+                 Label(tabgk,text=records[x][4]).grid(row=x+15,column=4)
+                 Label(tabgk,text=records[x][5]).grid(row=x+15,column=5)
+                 Label(tabgk,text=records[x][6]).grid(row=x+15,column=6)
+                 Label(tabgk,text=records[x][7]).grid(row=x+15,column=7)
 
-    except:
+            conn.commit()
+             
+                 
+            
+
+
+
+
+            
+            
+        
+
+    except Exception:
+        traceback.print_exc()
         MessageBox.showinfo("ALERT", "something went wrong.")
     finally:
         conn.close()
 
 
-def func_UpdatePlayerData():
+def func_UpdategkData():
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -144,7 +193,7 @@ def func_UpdatePlayerData():
     try:
         Pid1data= Pid1.get()
         Teamdata = Team1.get()
-        pseasondata = playerseason1.get()
+        pseasondata = gkseason1.get()
         namedata = pname1.get()
         posdata = position1.get()
         mindata = minutes1.get()
@@ -163,7 +212,7 @@ def func_UpdatePlayerData():
             cursor = conn.cursor()
             
             DATA=(team_id,int(pseasondata),namedata,posdata,int(mindata),int(sdata),int(sotdata),int(gdata),Pid1data)
-            QUERY="UPDATE player SET (team_id,season_id,player_name,position,minutes,shots,shotsongoal,goals)=(%s,%s,%s,%s,%s,%s,%s,%s) WHERE player_id=(%s)"
+            QUERY="UPDATE gk SET (team_id,season_id,gk_name,position,minutes,shots,shotsongoal,goals)=(%s,%s,%s,%s,%s,%s,%s,%s) WHERE gk_id=(%s)"
             cursor.execute(QUERY,DATA)
             MessageBox.showinfo("Sucesss","Data was Updated")
 
@@ -179,10 +228,7 @@ def func_UpdatePlayerData():
         conn.close()
 
 
-
-
-
-def func_DeleteSeasonDat():
+def func_DelegkDat():
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -191,17 +237,17 @@ def func_DeleteSeasonDat():
         )
     
     try:
-        playerdeletedata=playerdelete.get()
+        gkdeletedata=gkdelete.get()
 
-        if(playerdelete==""):
+        if(gkdelete==""):
                 MessageBox.showerror("Error","Please enter an ID to be Updated")
 
         else:
             
             cursor = conn.cursor()
             
-            DATA=(playerdeletedata,)
-            QUERY="DELETE FROM player WHERE player_id=(%s)"
+            DATA=(gkdeletedata,)
+            QUERY="DELETE FROM goalkeepers WHERE gk_id=(%s)"
             cursor.execute(QUERY,DATA)
             MessageBox.showinfo("Sucesss","Data was Deleted")
 
@@ -213,175 +259,175 @@ def func_DeleteSeasonDat():
         conn.close()
     
     
+#gk-----------------------------------------------------------------------------------------FUNCTIONS------------------------------------------------------------------
 
 
 
-#------------------------------------------------------------------------------------------------Player--------------------------------------------------------------------------------------------------------------------------
-#Create an Entry widget to accept User Input for Player
-Creat_l= Label(tabgk,text="Insert a New player")
+#------------------------------------------------------------------------------------------------gk GUI--------------------------------------------------------------------------------------------------------------------------
+
+
+
+#Create an Entry widget to accept User Input for gk
+Creat_l= Label(tabgk,text="Insert a New gk")
 Creat_l.grid(row=0,column=1,pady=30,padx=30)
 
-Label(tabgk, text="Player-Name").grid(row=1,column=0)
-Player= Entry(tabgk, bd=5)
-Player.focus_set()
-Player.grid(row=1,column=1)
+Label(tabgk, text="First Name").grid(row=1,column=0,padx=1,pady=1)
+firstnameingk= Entry(tabgk, bd=5)
+firstnameingk.focus_set()
+firstnameingk.grid(row=1,column=1)
 
-Label(tabgk, text="Team").grid(row=2,column=0)
-Team= Entry(tabgk, bd=4)
-Team.focus_set()
-Team.grid(row=2,column=1)
+Label(tabgk, text="Last Name").grid(row=2,column=0)
+lastnameingk= Entry(tabgk, bd=4)
+lastnameingk.focus_set()
+lastnameingk.grid(row=2,column=1)
 
 
 Label(tabgk, text="season").grid(row=3,column=0)
-playerseason= Entry(tabgk, bd=4)
-playerseason.focus_set()
-playerseason.grid(row=3,column=1)
-
-Label(tabgk, text="Position").grid(row=4,column=0)
-position= Entry(tabgk, bd=4)
-position.focus_set()
-position.grid(row=4,column=1)
-
-Label(tabgk, text="Minutes").grid(row=5,column=0)
-minutes= Entry(tabgk, bd=4)
-minutes.focus_set()
-minutes.grid(row=5,column=1)
+gkseason= Entry(tabgk, bd=4)
+gkseason.focus_set()
+gkseason.grid(row=3,column=1)
 
 
-Label(tabgk, text="Shots").grid(row=6,column=0)
-shots= Entry(tabgk, bd=4)
-shots.focus_set()
-shots.grid(row=6,column=1)
+Label(tabgk, text="Minutes").grid(row=4,column=0)
+minutesgk= Entry(tabgk, bd=4)
+minutesgk.focus_set()
+minutesgk.grid(row=4,column=1)
 
 
-Label(tabgk, text="Shots On Goal").grid(row=7,column=0)
-shotog= Entry(tabgk, bd=4)
-shotog.focus_set()
-shotog.grid(row=7,column=1)
+Label(tabgk, text="Shots Faced").grid(row=5,column=0)
+shtfa= Entry(tabgk, bd=4)
+shtfa.focus_set()
+shtfa.grid(row=5,column=1)
 
 
-Label(tabgk, text="Goals").grid(row=8,column=0)
-goals= Entry(tabgk, bd=4)
-goals.focus_set()
-goals.grid(row=8,column=1)
+Label(tabgk, text="Goals Conceded").grid(row=6,column=0)
+gcon= Entry(tabgk, bd=4)
+gcon.focus_set()
+gcon.grid(row=6,column=1)
 
 
-Button(tabgk, text= "SUBMIT",width= 20, command=lambda:func_InsertPlayerData()).grid(row=9,column=1)
+Label(tabgk, text="Saves").grid(row=7,column=0)
+saves= Entry(tabgk, bd=4)
+saves.focus_set()
+saves.grid(row=7,column=1)
+
+Label(tabgk, text="Team").grid(row=8,column=0)
+Teamgk= Entry(tabgk, bd=4)
+Teamgk.focus_set()
+Teamgk.grid(row=8,column=1)
+
+
+Button(tabgk, text= "SUBMIT",width= 20, command=lambda:func_InsertgkData()).grid(row=10,column=1)
 
 # Select Widget
 
-Creat_l= Label(tabgk,text="Select a Player")
-Creat_l.grid(row=0,column=2,pady=30,padx=30)
+Creat_l= Label(tabgk,text="<<---Select a gk---->")
+Creat_l.grid(row= 11,column=2,pady=30,padx=30)
 #Entry for Select Statement
-L4 = Label(tabgk, text="Player_ID")
-L4.grid(row=1,column=2)
-PIDSelect= Entry(tabgk, bd=5)
-PIDSelect.focus_set()
-PIDSelect.grid(row=1,column=2)
-Label(tabgk,text="DATA").grid(row=1,column=3)
+L4 = Label(tabgk, text="gk_ID")
+L4.grid(row=11,column=1)
+PIDSelectgk= Entry(tabgk, bd=5)
+PIDSelectgk.focus_set()
+PIDSelectgk.grid(row=12,column=1)
 
 
-Button(tabgk, text= "Select",width= 20, command=lambda:func_SelectPlayerData()).grid(row=9,column=2)
+#Entry for Select Statement
+L4 = Label(tabgk, text="First Name")
+L4.grid(row=11,column=3)
+fnameSelectgk= Entry(tabgk, bd=5)
+fnameSelectgk.focus_set()
+fnameSelectgk.grid(row=12,column=3)
+
+L4 = Label(tabgk, text="Last Name")
+L4.grid(row=11,column=4)
+lnameSelectgk= Entry(tabgk, bd=5)
+lnameSelectgk.focus_set()
+lnameSelectgk.grid(row=12,column=4)
+
+
+
+
+Button(tabgk, text= "Select",width= 20, command=lambda:func_SelectgkData()).grid(row=12,column=2)
+
 
 
 
 #Update an Entry widget to accept User Input for Season
 
-Creat_l= Label(tabgk,text="Update Player Stats")
-Creat_l.grid(row=10,column=1,pady=30,padx=30)
+rowupdategk=0
 
-Label(tabgk, text="Player_ID").grid(row=11,column=0)
-Pid1= Entry(tabgk, bd=5)
+Creat_l= Label(tabgk,text="Update gk Stats")
+Creat_l.grid(row=rowupdategk,column=3,pady=30,padx=30)
+
+Label(tabgk, text="gk_ID").grid(row=rowupdategk+1,column=2,padx=2,pady=2)
+Pid1= Entry(tabgk, bd=4)
 Pid1.focus_set()
-Pid1.grid(row=11,column=1)
+Pid1.grid(row=rowupdategk+1,column=3)
 
-Label(tabgk, text="Team").grid(row=12,column=0)
+Label(tabgk, text="Team").grid(row=rowupdategk+2,column=2)
 Team1= Entry(tabgk, bd=4)
 Team1.focus_set()
-Team1.grid(row=12,column=1)
+Team1.grid(row=rowupdategk+2,column=3)
 
 
-Label(tabgk, text="season").grid(row=13,column=0)
-playerseason1= Entry(tabgk, bd=4)
-playerseason1.focus_set()
-playerseason1.grid(row=13,column=1)
+Label(tabgk, text="season").grid(row=rowupdategk+3,column=2)
+gkseason1= Entry(tabgk, bd=4)
+gkseason1.focus_set()
+gkseason1.grid(row=rowupdategk+3,column=3)
 
-Label(tabgk, text="Position").grid(row=14,column=0)
+Label(tabgk, text="Position").grid(row=rowupdategk+4,column=2)
 position1= Entry(tabgk, bd=4)
 position1.focus_set()
-position1.grid(row=14,column=1)
+position1.grid(row=rowupdategk+4,column=3)
 
-Label(tabgk, text="Minutes").grid(row=15,column=0)
+Label(tabgk, text="Minutes").grid(row=rowupdategk+5,column=2)
 minutes1= Entry(tabgk, bd=4)
 minutes1.focus_set()
-minutes1.grid(row=15,column=1)
+minutes1.grid(row=rowupdategk+5,column=3)
 
 
-Label(tabgk, text="Shots").grid(row=16,column=0)
+Label(tabgk, text="Shots").grid(row=rowupdategk+6,column=2)
 shots1= Entry(tabgk, bd=4)
 shots1.focus_set()
-shots1.grid(row=16,column=1)
+shots1.grid(row=rowupdategk+6,column=3)
 
 
-Label(tabgk, text="Shots On Goal").grid(row=17,column=0)
+Label(tabgk, text="Shots On Goal").grid(row=rowupdategk+7,column=2)
 shotog1= Entry(tabgk, bd=4)
 shotog1.focus_set()
-shotog1.grid(row=17,column=1)
+shotog1.grid(row=rowupdategk+7,column=3)
 
 
-Label(tabgk, text="Goals").grid(row=18,column=0)
+Label(tabgk, text="Goals").grid(row=rowupdategk+8,column=2)
 goals1= Entry(tabgk, bd=4)
 goals1.focus_set()
-goals1.grid(row=18,column=1)
+goals1.grid(row=rowupdategk+8,column=3)
 
-Label(tabgk, text="Player-Name").grid(row=19,column=0)
+Label(tabgk, text="Firstname-Lastname").grid(row=rowupdategk+9,column=2)
 pname1= Entry(tabgk, bd=4)
 pname1.focus_set()
-pname1.grid(row=19,column=1)
+pname1.grid(row=rowupdategk+9,column=3)
 
 
-Button(tabgk, text= "SUBMIT",width= 20, command=lambda:func_UpdatePlayerData()).grid(row=20,column=1)
+Button(tabgk, text= "SUBMIT",width= 20, command=lambda:func_UpdategkData()).grid(row=rowupdategk+10,column=3)
 
 
 
 # Delete Widget
 
-Creat_l= Label(tabgk,text="Insert Player_ID to be deleted")
-Creat_l.grid(row=10,column=2,pady=30,padx=30)
+Creat_l= Label(tabgk,text="Insert gk_ID to be deleted")
+Creat_l.grid(row=0,column=4,pady=30,padx=30)
 #Entry for Delete Statement
-Label(tabgk, text="Player_ID").grid(row=12,column=2)
-playerdelete= Entry(tabgk, bd=5)
-playerdelete.focus_set()
-playerdelete.grid(row=13,column=2)
+Label(tabgk, text="gk_ID").grid(row=1,column=4)
+gkdelete= Entry(tabgk, bd=5)
+gkdelete.focus_set()
+gkdelete.grid(row=2,column=4)
 
 
-Button(tabgk, text= "Delete",width= 20, command=lambda:func_DeleteSeasonDat()).grid(row=14,column=2)
+Button(tabgk, text= "Delete",width= 20, command=lambda:func_DelegkDat()).grid(row=4,column=4)
 
 
-#------------------------------------------------------------------------------------------------Player--------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#------------------------------------------------------------------------------------------------Player GUI--------------------------------------------------------------------------------------------------------------------------|
 
 
 
