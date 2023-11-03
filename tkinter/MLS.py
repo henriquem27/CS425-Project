@@ -7,6 +7,8 @@ import traceback
 
 
 
+
+
 root = Tk()
 root.title('Major League Soccer Database')
 
@@ -742,8 +744,6 @@ Button(tabplayer, text= "Delete",width= 20, command=lambda:func_DelePlayerDat())
 
 
 
-
-
 #gk-----------------------------------------------------------------------------------------FUNCTIONS------------------------------------------------------------------
 
 def func_InsertgkData():
@@ -1249,7 +1249,7 @@ def func_DeleteTeamData():
         password='123qw123'
     )
     try:
-        team_id = player_id_delete.get()
+        team_id = team_id_delete.get()
         if team_id== "":
             MessageBox.showerror("Error", "Please enter a Team ID to be deleted")
         else:
@@ -1376,9 +1376,9 @@ Delete_l.grid(row=0, column=4, pady=30, padx=30)
 
 L14 = Label(tabteams, text="Team_ID")
 L14.grid(row=1, column=4)
-player_id_delete = Entry(tabteams, bd=5)
-player_id_delete.focus_set()
-player_id_delete.grid(row=2, column=4)
+team_id_delete = Entry(tabteams, bd=5)
+team_id_delete.focus_set()
+team_id_delete.grid(row=2, column=4)
 
 Button(tabteams, text="DELETE", width=20, command=lambda: func_DeleteTeamData()).grid(row=3, column=4)
 
@@ -1403,10 +1403,10 @@ def func_InsertSalaryData():
     )
     
     try:
-        player_id = player_id_entry.get()
+        player_id = player_id_entrys.get()
         base_salary = float(base_salary_entry.get())
         guaranteed_compensation = float(guaranteed_comp_entry.get())
-        season_id = int(season_entry.get())
+        season_id = int(season_entrys.get())
         cursor = conn.cursor()
         QUERY = "INSERT INTO Salaries (Player_ID, Base_Salary, GuaranteedCompensation,season_id) VALUES (%s, %s, %s, %s);"
         DATA = (player_id, base_salary, guaranteed_compensation,season_id)
@@ -1481,7 +1481,7 @@ def func_UpdateSalaryData():
     )
     
     try:
-        player_id = player_id_update.get()
+        player_id = player_id_updates.get()
         base_salary = base_salary_update.get()
         guaranteed_compensation = guaranteed_compensation_update.get()
         season_id = season_update.get()
@@ -1543,9 +1543,9 @@ Create_l.grid(row=0, column=1, pady=30, padx=30)
 
 L1 = Label(tabsalary, text="Player_ID")
 L1.grid(row=1, column=0)
-player_id_entry = Entry(tabsalary, bd=5)
-player_id_entry.focus_set()
-player_id_entry.grid(row=1, column=1)
+player_id_entrys = Entry(tabsalary, bd=5)
+player_id_entrys.focus_set()
+player_id_entrys.grid(row=1, column=1)
 
 L2 = Label(tabsalary, text="Base Salary")
 L2.grid(row=2, column=0)
@@ -1561,9 +1561,9 @@ guaranteed_comp_entry.grid(row=3, column=1)
 
 L3 = Label(tabsalary, text="Season")
 L3.grid(row=4, column=0)
-season_entry = Entry(tabsalary, bd=5)
-season_entry.focus_set()
-season_entry.grid(row=4, column=1)
+season_entrys = Entry(tabsalary, bd=5)
+season_entrys.focus_set()
+season_entrys.grid(row=4, column=1)
 
 
 Button(tabsalary, text="INSERT", width=20, command=lambda: func_InsertSalaryData()).grid(row=5, column=1)
@@ -1589,10 +1589,10 @@ Button(tabsalary, text="Select", width=20, command=lambda: func_SelectSalaryData
 Update_l = Label(tabsalary, text="Update a Player's Salary")
 Update_l.grid(row=6, column=1, pady=30, padx=30)
 
-Label(tabsalary, text="Player_Name").grid(row=7, column=0)
-player_id_update = Entry(tabsalary, bd=5)
-player_id_update.focus_set()
-player_id_update.grid(row=7, column=1)
+Label(tabsalary, text="Player_ID").grid(row=7, column=0)
+player_id_updates = Entry(tabsalary, bd=5)
+player_id_updates.focus_set()
+player_id_updates.grid(row=7, column=1)
 
 L2 = Label(tabsalary, text="Base Salary")
 L2.grid(row=8, column=0)
@@ -1633,6 +1633,10 @@ Button(tabsalary, text="Delete", width=20, command=lambda: func_DeleteSalaryData
 #---------------------------------------------------------------------------------SALARIES_--------------------------------------
 
 #end the program
+
+
+
+
 root.mainloop()
 
 
