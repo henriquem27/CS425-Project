@@ -162,6 +162,10 @@ SELECT * FROM Seasons;
 
 SELECT * FROM GoalKeepers where Saves>99;
 
-SELECT * FROM Player where goals >50;
+SELECT * FROM Player where Player_ID='kiko-rio-2022';
 
-SELECT * FROM Teams;
+SELECT * FROM Team;
+
+select * from salaries;
+
+SELECT p.player_id,team_id,player_name,Base_Salary,p.Season_ID,Position,Goals from player p,salaries s where p.player_id = s.player_id and Player_Name='Aaron-Long';
