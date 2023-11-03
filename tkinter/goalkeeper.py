@@ -191,15 +191,14 @@ def func_UpdategkData():
         )
     
     try:
-        Pid1data= Pid1.get()
-        Teamdata = Team1.get()
+        Pid1data= Pid1gk.get()
+        Teamdata = Team1gk.get()
         pseasondata = gkseason1.get()
-        namedata = pname1.get()
-        posdata = position1.get()
-        mindata = minutes1.get()
-        sdata = shotog1.get()
-        sotdata = shotog1.get()
-        gdata = goals1.get()
+        namedata = flnamegk.get()
+        mindata = minutes1gk.get()
+        shtfaced= shfacedgk.get()
+        gcon = gcon1gk.get()
+        saves = savesgk1.get()
 
         team_id=Teamdata+pseasondata
 
@@ -211,8 +210,8 @@ def func_UpdategkData():
             
             cursor = conn.cursor()
             
-            DATA=(team_id,int(pseasondata),namedata,posdata,int(mindata),int(sdata),int(sotdata),int(gdata),Pid1data)
-            QUERY="UPDATE gk SET (team_id,season_id,gk_name,position,minutes,shots,shotsongoal,goals)=(%s,%s,%s,%s,%s,%s,%s,%s) WHERE gk_id=(%s)"
+            DATA=(team_id,int(pseasondata),namedata,int(mindata),int(shtfaced),int(gcon),int(saves),Pid1data)
+            QUERY="UPDATE goalkeepers SET (team_id,season_id,gk_name,minutes,shotsfaced,goalsconceded,saves)=(%s,%s,%s,%s,%s,%s,%s) WHERE gk_id=(%s)"
             cursor.execute(QUERY,DATA)
             MessageBox.showinfo("Sucesss","Data was Updated")
 
@@ -222,7 +221,8 @@ def func_UpdategkData():
             
             conn.commit()
 
-    except:
+    except Exception:
+        traceback.print_exc()
         MessageBox.showinfo("ALERT", "something went wrong.")
     finally:
         conn.close()
@@ -360,14 +360,14 @@ Creat_l= Label(tabgk,text="Update gk Stats")
 Creat_l.grid(row=rowupdategk,column=3,pady=30,padx=30)
 
 Label(tabgk, text="gk_ID").grid(row=rowupdategk+1,column=2,padx=2,pady=2)
-Pid1= Entry(tabgk, bd=4)
-Pid1.focus_set()
-Pid1.grid(row=rowupdategk+1,column=3)
+Pid1gk= Entry(tabgk, bd=4)
+Pid1gk.focus_set()
+Pid1gk.grid(row=rowupdategk+1,column=3)
 
 Label(tabgk, text="Team").grid(row=rowupdategk+2,column=2)
-Team1= Entry(tabgk, bd=4)
-Team1.focus_set()
-Team1.grid(row=rowupdategk+2,column=3)
+Team1gk= Entry(tabgk, bd=4)
+Team1gk.focus_set()
+Team1gk.grid(row=rowupdategk+2,column=3)
 
 
 Label(tabgk, text="season").grid(row=rowupdategk+3,column=2)
@@ -375,38 +375,33 @@ gkseason1= Entry(tabgk, bd=4)
 gkseason1.focus_set()
 gkseason1.grid(row=rowupdategk+3,column=3)
 
-Label(tabgk, text="Position").grid(row=rowupdategk+4,column=2)
-position1= Entry(tabgk, bd=4)
-position1.focus_set()
-position1.grid(row=rowupdategk+4,column=3)
+Label(tabgk, text="First-Lastname").grid(row=rowupdategk+4,column=2)
+flnamegk= Entry(tabgk, bd=4)
+flnamegk.focus_set()
+flnamegk.grid(row=rowupdategk+4,column=3)
 
 Label(tabgk, text="Minutes").grid(row=rowupdategk+5,column=2)
-minutes1= Entry(tabgk, bd=4)
-minutes1.focus_set()
-minutes1.grid(row=rowupdategk+5,column=3)
+minutes1gk= Entry(tabgk, bd=4)
+minutes1gk.focus_set()
+minutes1gk.grid(row=rowupdategk+5,column=3)
 
 
-Label(tabgk, text="Shots").grid(row=rowupdategk+6,column=2)
-shots1= Entry(tabgk, bd=4)
-shots1.focus_set()
-shots1.grid(row=rowupdategk+6,column=3)
+Label(tabgk, text="Shots Faced").grid(row=rowupdategk+6,column=2)
+shfacedgk= Entry(tabgk, bd=4)
+shfacedgk.focus_set()
+shfacedgk.grid(row=rowupdategk+6,column=3)
 
 
-Label(tabgk, text="Shots On Goal").grid(row=rowupdategk+7,column=2)
-shotog1= Entry(tabgk, bd=4)
-shotog1.focus_set()
-shotog1.grid(row=rowupdategk+7,column=3)
+Label(tabgk, text="Goals Conceded").grid(row=rowupdategk+7,column=2)
+gcon1gk= Entry(tabgk, bd=4)
+gcon1gk.focus_set()
+gcon1gk.grid(row=rowupdategk+7,column=3)
 
 
-Label(tabgk, text="Goals").grid(row=rowupdategk+8,column=2)
-goals1= Entry(tabgk, bd=4)
-goals1.focus_set()
-goals1.grid(row=rowupdategk+8,column=3)
-
-Label(tabgk, text="Firstname-Lastname").grid(row=rowupdategk+9,column=2)
-pname1= Entry(tabgk, bd=4)
-pname1.focus_set()
-pname1.grid(row=rowupdategk+9,column=3)
+Label(tabgk, text="Saves").grid(row=rowupdategk+8,column=2)
+savesgk1= Entry(tabgk, bd=4)
+savesgk1.focus_set()
+savesgk1.grid(row=rowupdategk+8,column=3)
 
 
 Button(tabgk, text= "SUBMIT",width= 20, command=lambda:func_UpdategkData()).grid(row=rowupdategk+10,column=3)
