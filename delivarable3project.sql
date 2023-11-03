@@ -163,3 +163,5 @@ SELECT * FROM Seasons;
 SELECT * FROM GoalKeepers where Saves>99;
 
 SELECT * FROM Player where goals >50;
+
+SELECT * FROM Teams;
