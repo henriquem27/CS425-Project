@@ -4,7 +4,6 @@ Github Group J's MYSQL Project - Major League Soccer Database
 
 
 # In order to run the file the following sql schema must be used:
-
 -- Create the Season table
 CREATE TABLE Seasons (
     Season_ID INT PRIMARY KEY,
@@ -84,7 +83,9 @@ CREATE TABLE Passes (
 
 
 
-# Once tables are imported you can the run the GUI with
+# Once tables are imported you can the run the GUI with:
 
 ```python3 MLS.py```
 
+
+## Note: The code for each tab can also be found in its own ``` "tab".py ``` file. eg: ```seasons.py```

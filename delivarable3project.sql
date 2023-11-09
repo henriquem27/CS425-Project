@@ -34,7 +34,7 @@ CREATE TABLE Player (
 
 
 
--- Create the Games table home team id
+-- Create the Games table home team id need to add season_ID for this
 CREATE TABLE Games (
     GameID SERIAL Primary KEY,
     Date DATE,
