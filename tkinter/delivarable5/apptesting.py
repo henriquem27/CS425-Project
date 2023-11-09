@@ -46,7 +46,7 @@ Label(tabhome, bg='red', text="this page is still under construction",
       font=('Times New Roman', 15)).pack(padx=30, pady=30)
 
 
-def team_budgets():
+def points_rollup():
     conn = psycopg2.connect(
     host="127.0.0.1",
     database='Project-Test',
@@ -57,8 +57,19 @@ def team_budgets():
     try:
         top_window = Toplevel(root)
         cursor=conn.cursor()
-
-        cursor.execute("SELECT Team,Season_ID,SUM(Points) FROM teams WHERE team IN ('ATL','MIA')GROUP BY ROLLUP(Team,Season_ID) ORDER BY Team,Season_ID;")
+        selected = box.curselection()
+        teamnames=()
+        for idx in selected:
+            teamnames+=(box.get(idx),)
+        print(teamnames)
+        QUERY = "SELECT Team,Season_ID,SUM(Points) FROM teams WHERE team IN %s GROUP BY ROLLUP(Team,Season_ID) ORDER BY Team,Season_ID;"
+        cursor.execute(QUERY,(teamnames,))
+        records= cursor.fetchall()
+        for x in range(len(records)):
+            Label(top_window, text=records[x][0]).grid(row=x, column=0)
+            Label(top_window, text=records[x][1]).grid(row=x, column=2)
+            Label(top_window, text=records[x][2]).grid(row=x, column=3)
+        
         conn.commit()
         MessageBox.showinfo("OK","Data Sucessfully Inserted")
     
@@ -69,6 +80,29 @@ def team_budgets():
 
     finally:
         conn.close()
+
+
+def clicked():
+    print("clicked")
+    selected = box.curselection()  # returns a tuple
+    for idx in selected:
+        print(box.get(idx))
+
+
+box = Listbox(tabhome,selectmode=MULTIPLE,height=4)
+
+values=['MIA','CHI','NYC','LAFC','LAG','NSH']
+
+for val in values:
+    box.insert(END, val)
+box.pack()
+
+Button(tabhome, text="Points Rollup", width=20,
+       command=lambda: points_rollup()).pack()
+
+
+
+
 
 
 # call function to fill salary tab
