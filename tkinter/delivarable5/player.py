@@ -5,6 +5,8 @@ import datetime
 from tkinter import ttk
 import tkinter.messagebox as MessageBox
 import traceback
+from connection import *
+
 # player-----------------------------------------------------------------------------------------FUNCTIONS------------------------------------------------------------------
 
 # Insert Player data function
@@ -12,12 +14,7 @@ def generate_player(tabplayer):
 
     def func_InsertPlayerData():
 
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             firstname = firstnamein.get()
@@ -54,12 +51,7 @@ def generate_player(tabplayer):
 
 
     def func_SelectPlayerData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
 
@@ -152,12 +144,7 @@ def generate_player(tabplayer):
 
 
     def func_UpdatePlayerData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             Pid1data = Pid1.get()
@@ -197,12 +184,7 @@ def generate_player(tabplayer):
 
 
     def func_DelePlayerDat():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             playerdeletedata = playerdelete.get()

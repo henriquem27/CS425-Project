@@ -6,17 +6,13 @@ import datetime
 from tkinter import ttk
 import tkinter.messagebox as MessageBox
 import traceback
+from connection import *
 # Team insert data function
 
 def generate_teams(tabteams):
 
     def func_InsertTeamData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         try:
             team = team_id_entry.get()
             games = int(games_entry.get())
@@ -43,12 +39,7 @@ def generate_teams(tabteams):
 
 
     def func_SelectTeamData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         try:
             team_id = team_id_select.get()
             if team_id == "":
@@ -93,12 +84,7 @@ def generate_teams(tabteams):
 
 
     def func_UpdateTeamData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         try:
             team_id = team_id_update.get()
             games = int(games_update.get())
@@ -128,12 +114,7 @@ def generate_teams(tabteams):
 
 
     def func_DeleteTeamData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         try:
             team_id = team_id_delete.get()
             if team_id == "":

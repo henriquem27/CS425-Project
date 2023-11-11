@@ -5,6 +5,8 @@ import datetime
 from tkinter import ttk
 import tkinter.messagebox as MessageBox
 import traceback
+from connection import *
+
 # seasons--------------------------------------------------------------------------------
 
 # Insert Season data function
@@ -13,12 +15,7 @@ import traceback
 def generate_season(tabseason):
     def func_InsertSeasonData():
 
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             seasondata = int(season.get())
@@ -51,12 +48,7 @@ def generate_season(tabseason):
 
 
     def func_SelectSeasonData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             seasonselectdata = seasonselect.get()
@@ -88,12 +80,7 @@ def generate_season(tabseason):
 
 
     def func_UpdateSeasonDat():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             seasonupdata = seasonupdate.get()
@@ -125,12 +112,7 @@ def generate_season(tabseason):
         finally:
             conn.close()
 
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             seasonselectdata = seasonselect.get()
@@ -162,12 +144,7 @@ def generate_season(tabseason):
 
 
     def func_DeleteSeasonDat():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             seasondeldata = seasondelete.get()

@@ -5,18 +5,14 @@ import datetime
 from tkinter import ttk
 import tkinter.messagebox as MessageBox
 import traceback
+from connection import *
 
 # gk-----------------------------------------------------------------------------------------FUNCTIONS------------------------------------------------------------------
 def generate_gk(tabgk):
     # Insert goalkeeper data function
     def func_InsertgkData():
 
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             firstname = firstnameingk.get()
@@ -52,12 +48,7 @@ def generate_gk(tabgk):
 
 
     def func_SelectgkData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
 
@@ -146,12 +137,7 @@ def generate_gk(tabgk):
 
 
     def func_UpdategkData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             Pid1data = Pid1gk.get()
@@ -191,12 +177,7 @@ def generate_gk(tabgk):
 
 
     def func_DelegkDat():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
 
         try:
             gkdeletedata = gkdelete.get()

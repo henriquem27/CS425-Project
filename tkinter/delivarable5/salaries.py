@@ -5,19 +5,14 @@ from tkinter import ttk
 import tkinter.messagebox as MessageBox
 import traceback
 
-
+from connection import *
 
 def generate_salary(tabsalary):
 
 
 
     def func_InsertSalaryData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         
         try:
             player_id = player_id_entry.get()
@@ -40,12 +35,7 @@ def generate_salary(tabsalary):
             conn.close()
 
     def func_SelectSalaryData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         
         try:
             player_fname = player_fname_select.get()
@@ -90,12 +80,7 @@ def generate_salary(tabsalary):
             conn.close()
 
     def func_UpdateSalaryData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         
         try:
             player_id = player_id_update.get()
@@ -121,12 +106,7 @@ def generate_salary(tabsalary):
             conn.close()
 
     def func_DeleteSalaryData():
-        conn = psycopg2.connect(
-            host="127.0.0.1",
-            database='Project-Test',
-            user='postgres',
-            password='123qw123'
-        )
+        conn = get_conn()
         
         try:
             player_id = player_id_delete.get()
