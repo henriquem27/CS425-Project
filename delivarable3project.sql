@@ -41,7 +41,8 @@ CREATE TABLE Games (
     Home_Team_ID VARCHAR(30) REFERENCES Teams (Team_ID),
     HomeGoals INT,
     Away_team_ID VARCHAR(30) REFERENCES Teams (Team_ID),
-    AwayGoals INT
+    AwayGoals INT,
+    Season_ID INT references Seasons(season_id)
 );
 
 -- Create the GoalKeepers table
@@ -74,6 +75,9 @@ CREATE TABLE Passes (
     Distance DECIMAL(10, 2),
     Vertical DECIMAL(10, 2)
 );
+
+
+
 
 INSERT INTO seasons(Season_ID, Start_date, End_date) VALUES (2022,'2022-01-01','2022-12-31');
 INSERT INTO seasons(Season_ID, Start_date, End_date) VALUES (2021,'2021-01-01','2021-12-31');
@@ -164,7 +168,9 @@ SELECT * FROM GoalKeepers where Saves>99;
 
 SELECT * FROM Player where Player_ID='kiko-rio-2022';
 
-SELECT * FROM Team;
+SELECT * FROM Teams;
+
+SELECT DISTINCT Team from Teams;
 
 select * from salaries;
 
