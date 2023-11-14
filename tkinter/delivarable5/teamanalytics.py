@@ -148,6 +148,9 @@ def generate_teamsanalytics(tabhome,root):
             cursor = conn.cursor()
             selected = box.curselection()
             teamnames = ()
+            
+            
+            
             for idx in selected:
                 teamnames += (box.get(idx),)
 
@@ -196,7 +199,16 @@ def generate_teamsanalytics(tabhome,root):
         try:
             top_window = Toplevel(root)
             top_window.title('Average Home-Away Performance')
-            top_window.geometry('700x900')
+            top_window.geometry('700x400')
+            popCanv = Canvas(top_window, width=600, height = 300,
+                         scrollregion=(0,0,500,800)) #width=1256, height = 1674)
+            frame = Frame(popCanv)
+            ksbar = Scrollbar(top_window, orient=VERTICAL,
+                              command=popCanv.yview)
+            popCanv.configure(yscrollcommand = ksbar.set)
+            
+            
+            
             cursor = conn.cursor()
             selected = box.curselection()
             teamnames = ()
@@ -206,29 +218,33 @@ def generate_teamsanalytics(tabhome,root):
             QUERY = "SELECT x.Team,x.Season_ID as Season,x.HomeAVG,y.AwayAvg, X.HomeAVG-y.AwayAvg as AVG_GOAL_DIFFERENTIAl FROM (SELECT t.team,ROUND(AVG(g.Homegoals),4) as HomeAVG,t.Season_ID,g.home_team_id FROM teams t,games g WHERE t.team_id=g.home_team_id  GROUP BY t.team_id,g.home_team_id ORDER BY Team_ID) as x,(SELECT t.team,ROUND(AVG(g.AwayGoals),4) as AwayAvg,g.Season_ID,g.away_team_id FROM teams t,games g WHERE t.team_id=g.away_team_id GROUP BY t.team_id,g.away_team_id,g.Season_ID ORDER BY Team_ID) as y WHERE x.Home_Team_ID=y.Away_team_ID AND x.team IN %s;"
             cursor.execute(QUERY, (teamnames,))
             records = cursor.fetchall()
-            Label(top_window, text="Team", background='grey').grid(
+            Label(frame, text="Team", background='grey').grid(
                 row=0, column=0, padx=5)
-            Label(top_window, text="Season", background='grey').grid(
+            Label(frame, text="Season", background='grey').grid(
                 row=0, column=1, padx=5)
-            Label(top_window, text="Average Home Goals", background='grey').grid(
+            Label(frame, text="Average Home Goals", background='grey').grid(
                 row=0, column=2, padx=5)
-            Label(top_window, text="Average Away Goals", background='grey').grid(
+            Label(frame, text="Average Away Goals", background='grey').grid(
                 row=0, column=3, padx=5)
-            Label(top_window, text="Average Home-Away Goal Differrential", background='grey').grid(
+            Label(frame, text="Average Home-Away Goal Differrential", background='grey').grid(
                 row=0, column=4, padx=5)
             
             
             for x in range(len(records)):
-                Label(top_window, text=records[x][0]).grid(
+                Label(frame, text=records[x][0]).grid(
                     row=x+1, column=0, padx=5)
-                Label(top_window, text=records[x][1]).grid(
+                Label(frame, text=records[x][1]).grid(
                     row=x+1, column=1, padx=5)
-                Label(top_window, text=records[x][2]).grid(
+                Label(frame, text=records[x][2]).grid(
                     row=x+1, column=2, padx=5)
-                Label(top_window, text=records[x][3]).grid(
+                Label(frame, text=records[x][3]).grid(
                     row=x+1, column=3, padx=5)
-                Label(top_window, text=records[x][4]).grid(
+                Label(frame, text=records[x][4]).grid(
                     row=x+1, column=4, padx=5)
+                
+            ksbar.pack(side="right", fill="y")
+            popCanv.pack(side="left", fill="both", expand=True)
+            popCanv.create_window((4,4), window=frame, anchor="nw")  
             conn.commit()
 
         except Exception:
