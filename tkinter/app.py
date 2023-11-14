@@ -1,7 +1,13 @@
-import tkinter as tk
+from tkinter import *
 
-window = tk.Tk()
-label = tk.Label(text="Python rocks!")
-label.pack()
+from tkinter import ttk
 
-window.mainloop()
+
+root = Tk()
+root.title('Major League Soccer Database')
+
+root.geometry("1200x900")
+
+Label(text="TYPE HERE").pack()
+
+root.mainloop()

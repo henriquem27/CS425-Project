@@ -110,7 +110,9 @@ SELECT x.Team,x.Season_ID as Season,x.HomeAVG,y.AwayAvg, X.HomeAVG-y.AwayAvg as 
 
 ---- Top 10 goalkeepers in the league all time;
 
-SELECT GK_Name,Season_ID,concat(round(cast(Saves as DECIMAL)/cast(ShotsFaced as decimal)*100),'%') as RATIO_GOALSSAVED from goalkeepers WHERE ShotsFaced>100 GROUP BY Season_ID, concat(round(cast(Saves as DECIMAL)/cast(ShotsFaced as decimal)*100),'%'), GK_Name ORDER BY RATIO_GOALSSAVED DESC LIMIT 10;
+SELECT GK_Name,Season_ID,concat(round(cast(Saves as DECIMAL)/cast(ShotsFaced as decimal)*100),'%') as
+    RATIO_GOALSSAVED from goalkeepers WHERE ShotsFaced>100 GROUP BY Season_ID, concat(round(cast(Saves as DECIMAL)/cast(ShotsFaced as decimal)*100),'%'),
+                                                                    GK_Name ORDER BY RATIO_GOALSSAVED DESC LIMIT 10;
 
 
 ---- Top 10 Strikers in 2022 based on goals/shotsongoal;
