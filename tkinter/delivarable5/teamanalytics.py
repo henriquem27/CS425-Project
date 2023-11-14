@@ -15,7 +15,7 @@ import traceback
 def generate_teamsanalytics(tabhome,root):
 
 
-
+    Label(tabhome,text='Please Select the Teams:',font=('Arial',20),padx=5,pady=10).pack()
 
     def clicked():
         print("clicked")
@@ -45,7 +45,7 @@ def generate_teamsanalytics(tabhome,root):
 
         try:
             top_window = Toplevel(root)
-            top_window.title('Total Games Rollup')
+            top_window.title('Team Budget(s)')
             top_window.geometry('400x400')
             cursor = conn.cursor()
             selected = box.curselection()
@@ -59,17 +59,25 @@ def generate_teamsanalytics(tabhome,root):
             Label(top_window,text="Team").grid(row=0,column=0)
             Label(top_window,text="Season").grid(row=0, column=1)
             Label(top_window,text="Games Played").grid(row=0,column=2)
+            ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                row=0, columnspan=2, sticky='ns')
+            ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                row=0, columnspan=3, sticky='ns')
             for x in range(len(records)):
                 Label(top_window, text=records[x][0]).grid(row=x+1, column=0)
                 Label(top_window, text=records[x][1]).grid(row=x+1, column=1)
                 Label(top_window, text=records[x][2]).grid(row=x+1, column=2)
+                ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                    row=x+1, columnspan=2, sticky='ns')
+                ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                    row=x+1, columnspan=3, sticky='ns')
 
             conn.commit()
 
         except Exception:
             traceback.print_exc()
             MessageBox.showerror(
-                "OPS", " something went wrong. Please check the data")
+                "OPS", " something went wrong. Please make sure you have at least one team selected")
 
         finally:
             conn.close()
@@ -77,3 +85,163 @@ def generate_teamsanalytics(tabhome,root):
 
     Button(tabhome, text="Games Rollup", width=20,
         command=lambda: points_rollup()).pack()
+    
+
+    def team_budgets():
+        conn = get_conn()
+
+        try:
+            top_window = Toplevel(root)
+            top_window.title('Team Budgets')
+            top_window.geometry('400x400')
+            cursor = conn.cursor()
+            selected = box.curselection()
+            teamnames = ()
+            for idx in selected:
+                teamnames += (box.get(idx),)
+
+            QUERY = "SELECT Team,Season_ID,team_budget, SUM(TEAM_BUDGET.Team_Budget) OVER (PARTITION BY team order by season_id ROWS UNBOUNDED PRECEDING) FROM team_budget WHERE team IN %s ORDER BY Team,Season_ID;"
+            cursor.execute(QUERY, (teamnames,))
+            records = cursor.fetchall()
+            Label(top_window,text="Team",background='grey').grid(row=0,column=0,padx=5)
+            Label(top_window,text="Season",background='grey').grid(row=0, column=1,padx=5)
+            Label(top_window,text="Budget",background='grey').grid(row=0,column=2,padx=5)
+            Label(top_window, text="Budget Running Total", background='grey').grid(
+                row=0, column=3, padx=5)
+            ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                    row=0, columnspan=2, sticky='ns')
+            ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                    row=0, columnspan=3, sticky='ns')
+            ttk.Separator(top_window, orient=VERTICAL).grid(
+                row=0, column=3, columnspan=1, rowspan=2, sticky='e')
+            
+            for x in range(len(records)):
+                Label(top_window, text=records[x][0]).grid(row=x+1, column=0,padx=5)
+                Label(top_window, text=records[x][1]).grid(row=x+1, column=1,padx=5)
+                Label(top_window, text=records[x][2]).grid(row=x+1, column=2,padx=5)
+                Label(top_window, text=records[x][3]).grid(row=x+1, column=3, padx=5)
+                ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                    row=x+1, columnspan=2, sticky='ns')
+                ttk.Separator(top_window, orient=HORIZONTAL).grid(
+                    row=x+1, columnspan=3, sticky='ns')
+            conn.commit()
+
+        except Exception:
+            traceback.print_exc()
+            MessageBox.showerror(
+                "OPS", " something went wrong. Please make sure you have at least one team selected")
+
+        finally:
+            conn.close()
+    
+    
+    Button(tabhome, text="Team Budget", width=20,
+           command=lambda: team_budgets()).pack()
+
+    def Home_Away_avg():
+        conn = get_conn()
+
+        try:
+            top_window = Toplevel(root)
+            top_window.title('Average Home-Away Performance')
+            top_window.geometry('700x900')
+            cursor = conn.cursor()
+            selected = box.curselection()
+            teamnames = ()
+            for idx in selected:
+                teamnames += (box.get(idx),)
+
+            QUERY = "SELECT x.Team,x.Season_ID as Season,x.HomeAVG,y.AwayAvg, X.HomeAVG-y.AwayAvg as AVG_GOAL_DIFFERENTIAl FROM (SELECT t.team,ROUND(AVG(g.Homegoals),4) as HomeAVG,t.Season_ID,g.home_team_id FROM teams t,games g WHERE t.team_id=g.home_team_id  GROUP BY t.team_id,g.home_team_id ORDER BY Team_ID) as x,(SELECT t.team,ROUND(AVG(g.AwayGoals),4) as AwayAvg,g.Season_ID,g.away_team_id FROM teams t,games g WHERE t.team_id=g.away_team_id GROUP BY t.team_id,g.away_team_id,g.Season_ID ORDER BY Team_ID) as y WHERE x.Home_Team_ID=y.Away_team_ID AND x.team IN %s;"
+            cursor.execute(QUERY, (teamnames,))
+            records = cursor.fetchall()
+            Label(top_window, text="Team", background='grey').grid(
+                row=0, column=0, padx=5)
+            Label(top_window, text="Season", background='grey').grid(
+                row=0, column=1, padx=5)
+            Label(top_window, text="Average Home Goals", background='grey').grid(
+                row=0, column=2, padx=5)
+            Label(top_window, text="Average Away Goals", background='grey').grid(
+                row=0, column=3, padx=5)
+            Label(top_window, text="Average Home-Away Goal Differrential", background='grey').grid(
+                row=0, column=4, padx=5)
+            
+            
+            for x in range(len(records)):
+                Label(top_window, text=records[x][0]).grid(
+                    row=x+1, column=0, padx=5)
+                Label(top_window, text=records[x][1]).grid(
+                    row=x+1, column=1, padx=5)
+                Label(top_window, text=records[x][2]).grid(
+                    row=x+1, column=2, padx=5)
+                Label(top_window, text=records[x][3]).grid(
+                    row=x+1, column=3, padx=5)
+                Label(top_window, text=records[x][4]).grid(
+                    row=x+1, column=4, padx=5)
+            conn.commit()
+
+        except Exception:
+            traceback.print_exc()
+            MessageBox.showerror(
+                "OPS", " something went wrong. Please make sure you have at least one team selected")
+
+        finally:
+            conn.close()
+
+    Button(tabhome, text="Home-Away-Performance", width=20,
+           command=lambda: Home_Away_avg()).pack()
+
+    def Home_Away_avg2():
+        conn = get_conn()
+
+        try:
+            top_window = Toplevel(root)
+            top_window.title('Average Home-Away Performance')
+            top_window.geometry('700x900')
+            cursor = conn.cursor()
+            selected = box.curselection()
+            teamnames = ()
+            for idx in selected:
+                teamnames += (box.get(idx),)
+
+            QUERY = "SELECT x.Team,x.Season_ID as Season,x.HomeAVG,y.AwayAvg, X.HomeAVG-y.AwayAvg as AVG_GOAL_DIFFERENTIAl FROM (SELECT t.team,ROUND(AVG(g.Homegoals),4) as HomeAVG,t.Season_ID,g.home_team_id FROM teams t,games g WHERE t.team_id=g.home_team_id  GROUP BY t.team_id,g.home_team_id ORDER BY Team_ID) as x,(SELECT t.team,ROUND(AVG(g.AwayGoals),4) as AwayAvg,g.Season_ID,g.away_team_id FROM teams t,games g WHERE t.team_id=g.away_team_id GROUP BY t.team_id,g.away_team_id,g.Season_ID ORDER BY Team_ID) as y WHERE x.Home_Team_ID=y.Away_team_ID AND x.team IN %s;"
+            cursor.execute(QUERY, (teamnames,))
+            records = cursor.fetchall()
+            Label(top_window, text="Team", background='grey').grid(
+                row=0, column=0, padx=5)
+            Label(top_window, text="Season", background='grey').grid(
+                row=0, column=1, padx=5)
+            Label(top_window, text="Average Home Goals", background='grey').grid(
+                row=0, column=2, padx=5)
+            Label(top_window, text="Average Away Goals", background='grey').grid(
+                row=0, column=3, padx=5)
+            Label(top_window, text="Average Home-Away Goal Differrential", background='grey').grid(
+                row=0, column=4, padx=5)
+            
+            
+            for x in range(len(records)):
+                Label(top_window, text=records[x][0]).grid(
+                    row=x+1, column=0, padx=5)
+                Label(top_window, text=records[x][1]).grid(
+                    row=x+1, column=1, padx=5)
+                Label(top_window, text=records[x][2]).grid(
+                    row=x+1, column=2, padx=5)
+                Label(top_window, text=records[x][3]).grid(
+                    row=x+1, column=3, padx=5)
+                Label(top_window, text=records[x][4]).grid(
+                    row=x+1, column=4, padx=5)
+            conn.commit()
+
+        except Exception:
+            traceback.print_exc()
+            MessageBox.showerror(
+                "OPS", " something went wrong. Please make sure you have at least one team selected")
+
+        finally:
+            conn.close()
+
+    
+    Button(tabhome, text="Home-Away-Performance2", width=20,
+           command=lambda: Home_Away_avg2()).pack()
+
+
+

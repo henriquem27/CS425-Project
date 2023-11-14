@@ -103,9 +103,9 @@ SELECT t.Team, p.Player_Name,dense_rank() OVER (PARTITION BY t.Team ORDER BY s.G
 
 ---- HomexAway Perfomance per season for all teams
 
-SELECT x.Team,x.Season_ID as Season,x.HomeAVG,y.AwayAvg, X.HomeAVG-y.AwayAvg as AVG_GOAL_DIFFERENTIAl FROM (SELECT t.team,ROUND(AVG(g.Homegoals),4) as HomeAVG,Season_ID,g.home_team_id FROM teams t,games g WHERE t.team_id=g.home_team_id  GROUP BY t.team_id,g.home_team_id ORDER BY Team_ID) as x,
-              (SELECT t.team,ROUND(AVG(g.AwayGoals),4) as AwayAvg,Season_ID,g.away_team_id FROM teams t,games g WHERE t.team_id=g.away_team_id GROUP BY t.team_id,g.away_team_id ORDER BY Team_ID) as y
-         WHERE x.Home_Team_ID=y.Away_team_ID;
+SELECT x.Team,x.Season_ID as Season,x.HomeAVG,y.AwayAvg, X.HomeAVG-y.AwayAvg as AVG_GOAL_DIFFERENTIAl FROM (SELECT t.team,ROUND(AVG(g.Homegoals),4) as HomeAVG,t.Season_ID,g.home_team_id FROM teams t,games g WHERE t.team_id=g.home_team_id  GROUP BY t.team_id,g.home_team_id ORDER BY Team_ID) as x,
+              (SELECT t.team,ROUND(AVG(g.AwayGoals),4) as AwayAvg,g.Season_ID,g.away_team_id FROM teams t,games g WHERE t.team_id=g.away_team_id GROUP BY t.team_id,g.away_team_id,g.Season_ID ORDER BY Team_ID) as y
+         WHERE x.Home_Team_ID=y.Away_team_ID AND x.team='MIA';
 
 
 ---- Top 10 goalkeepers in the league all time;
@@ -174,4 +174,10 @@ SELECT DISTINCT Team from Teams;
 
 select * from salaries;
 
+select * from team_budget order by team,season_id;
+
 SELECT p.player_id,team_id,player_name,Base_Salary,p.Season_ID,Position,Goals from player p,salaries s where p.player_id = s.player_id and Player_Name='Aaron-Long';
+
+
+
+SELECT Team,Season_ID,team_budget, SUM(TEAM_BUDGET.Team_Budget) OVER (PARTITION BY team order by season_id ROWS UNBOUNDED PRECEDING) FROM team_budget  ORDER BY Team,Season_ID;
