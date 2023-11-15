@@ -15,7 +15,9 @@ import traceback
 def generate_teamsanalytics(tabhome,root):
 
 
-    Label(tabhome,text='Please Select the Teams:',font=('Arial',20),padx=5,pady=10).pack()
+    Label(tabhome,text="Analitical Query's",font=('Times New Roman',20)).pack()
+
+    Label(tabhome,text='Select the Team(s) and Click a button to display the query:').pack(anchor='w')
 
     def clicked():
         print("clicked")
@@ -38,40 +40,43 @@ def generate_teamsanalytics(tabhome,root):
 
     for val in values:
         box.insert(END, val)
-    box.pack()
+    box.pack(anchor='w')
 
     def points_rollup():
         conn = get_conn()
 
         try:
             top_window = Toplevel(root)
-            top_window.title('Games Played')
+            top_window.title('Points by Season')
             top_window.geometry('400x400')
+            popCanv = Canvas(top_window, width=600, height=300,
+            scrollregion=(0, 0, 2000, 2000))  # width=1256, height = 1674)
+            frame = Frame(popCanv)
+            ksbar = Scrollbar(top_window, orient=VERTICAL,
+                              command=popCanv.yview)
+            popCanv.configure(yscrollcommand=ksbar.set)
             cursor = conn.cursor()
             selected = box.curselection()
             teamnames = ()
             for idx in selected:
                 teamnames += (box.get(idx),)
 
-            QUERY = "SELECT Team,Season_ID,SUM(gamesplayed) FROM teams WHERE team IN %s GROUP BY ROLLUP(Team,Season_ID) ORDER BY Team,Season_ID;"
+            QUERY = "SELECT Team,Season_ID,SUM(points) FROM teams WHERE team IN %s GROUP BY ROLLUP(Team,Season_ID) ORDER BY Team,Season_ID;"
             cursor.execute(QUERY, (teamnames,))
             records = cursor.fetchall()
-            Label(top_window,text="Team").grid(row=0,column=0)
-            Label(top_window,text="Season").grid(row=0, column=1)
-            Label(top_window,text="Games Played").grid(row=0,column=2)
-            ttk.Separator(top_window, orient=HORIZONTAL).grid(
-                row=0, columnspan=2, sticky='ns')
-            ttk.Separator(top_window, orient=HORIZONTAL).grid(
-                row=0, columnspan=3, sticky='ns')
+            Label(frame,text="Team").grid(row=0,column=0)
+            Label(frame,text="Season").grid(row=0, column=1)
+            Label(frame,text="Points").grid(row=0,column=2)
             for x in range(len(records)):
-                Label(top_window, text=records[x][0]).grid(row=x+1, column=0)
-                Label(top_window, text=records[x][1]).grid(row=x+1, column=1)
-                Label(top_window, text=records[x][2]).grid(row=x+1, column=2)
-                ttk.Separator(top_window, orient=HORIZONTAL).grid(
-                    row=x+1, columnspan=2, sticky='ns')
-                ttk.Separator(top_window, orient=HORIZONTAL).grid(
-                    row=x+1, columnspan=3, sticky='ns')
+                Label(frame, text=records[x][0]).grid(row=x+1, column=0)
+                Label(frame, text=records[x][1]).grid(row=x+1, column=1)
+                Label(frame, text=records[x][2]).grid(row=x+1, column=2)
+                ttk.Separator(frame, orient='horizontal').grid(
+                    row=x+1, column=0, columnspan=5, ipadx=100, sticky='s')
 
+            ksbar.pack(side="right", fill="y")
+            popCanv.pack(side="left", fill="both", expand=True)
+            popCanv.create_window((4, 4), window=frame, anchor="nw")
             conn.commit()
 
         except Exception:
@@ -82,9 +87,9 @@ def generate_teamsanalytics(tabhome,root):
         finally:
             conn.close()
 
-
-    Button(tabhome, text="Games Rollup", width=20,
-        command=lambda: points_rollup()).pack()
+    Label(tabhome,text='Shows total Points by Season and the total:').pack(anchor='w')
+    Button(tabhome, text="Total Points by Season", width=20,
+        command=lambda: points_rollup()).pack(anchor='w')
     
 
     def team_budgets():
@@ -95,11 +100,12 @@ def generate_teamsanalytics(tabhome,root):
             top_window.title('Team Budgets')
             top_window.geometry('400x400')
             popCanv = Canvas(top_window, width=600, height=300,
-                             scrollregion=(0, 0, 10000, 10000))  # width=1256, height = 1674)
+                             scrollregion=(0, 0, 2000, 2000))  # width=1256, height = 1674)
             frame = Frame(popCanv)
             ksbar = Scrollbar(top_window, orient=VERTICAL,
                               command=popCanv.yview)
             popCanv.configure(yscrollcommand=ksbar.set)
+            
             cursor = conn.cursor()
             selected = box.curselection()
             teamnames = ()
@@ -135,6 +141,8 @@ def generate_teamsanalytics(tabhome,root):
                     row=x+1, columnspan=2, sticky='ns')
                 ttk.Separator(frame, orient=HORIZONTAL).grid(
                     row=x+1, columnspan=3, sticky='ns')
+                ttk.Separator(frame, orient='horizontal').grid(
+                    row=x+1, column=0, columnspan=5, ipadx=350, sticky='s')
             
             ksbar.pack(side="right", fill="y")
             popCanv.pack(side="left", fill="both", expand=True)
@@ -149,9 +157,10 @@ def generate_teamsanalytics(tabhome,root):
         finally:
             conn.close()
     
-    
+    Label(tabhome, text='Shows the team budgets by season with a running total:').pack(
+        anchor='w')
     Button(tabhome, text="Team Budget", width=20,
-           command=lambda: team_budgets()).pack()
+           command=lambda: team_budgets()).pack(anchor='w')
 
     def Home_Away_avg2():
         conn = get_conn()
@@ -204,6 +213,8 @@ def generate_teamsanalytics(tabhome,root):
                     row=x+1, column=3, padx=5)
                 Label(frame, text=records[x][4]).grid(
                     row=x+1, column=4, padx=5)
+                ttk.Separator(frame, orient='horizontal').grid(row=x+1,column=0,columnspan=5,ipadx=350,sticky='s')
+
                 
             ksbar.pack(side="right", fill="y")
             popCanv.pack(side="left", fill="both", expand=True)
@@ -218,11 +229,9 @@ def generate_teamsanalytics(tabhome,root):
         finally:
             conn.close()
 
-
+    Label(tabhome, text='Displays the Average Home-Away Performance in terms of goal:').pack(
+        anchor='w')
     Button(tabhome, text="Home-Away-Performance", width=20,
-           command=lambda: Home_Away_avg2()).pack()
-    
-    
-
+           command=lambda: Home_Away_avg2()).pack(anchor='w')  
 
 
