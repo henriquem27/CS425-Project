@@ -32,7 +32,7 @@ tabControl.add(tabplayer, text='Player')
 tabControl.add(tabgk, text='Goalkeepers')
 tabControl.add(tabteams, text='Teams')
 tabControl.add(tabsalary, text='Salaries')
-tabControl.add(tabanalytics, text='Team Analytics')
+tabControl.add(tabanalytics, text='Explore the Database')
 
 
 tabControl.pack(expand=1, fill="both")
