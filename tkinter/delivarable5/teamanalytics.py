@@ -393,14 +393,14 @@ def generate_teamsanalytics(tabhome,root):
             tree_scroll.config(command=my_tree.yview)
 
             my_tree['columns'] = ("Player-Name", "Position",
-                                  "Team", "Season", "Shots On Goal", "Goals")
+                                  "Team", "Season", "Guaranteed Compensation", "Rank")
             my_tree.column("#0", width=0, stretch=NO)
             my_tree.column("Player-Name", anchor=CENTER, width=100)
             my_tree.column("Position", anchor=CENTER, width=60)
             my_tree.column("Team", anchor=CENTER, width=50)
             my_tree.column("Season", anchor=CENTER, width=60)
-            my_tree.column("Shots On Goal", anchor=CENTER, width=60)
-            my_tree.column("Goals", anchor=CENTER, width=40)
+            my_tree.column("Guaranteed Compensation", anchor=CENTER, width=150)
+            my_tree.column("Rank", anchor=CENTER, width=40)
 
             # Create Headings
             my_tree.heading("#0", text="", anchor=W)
@@ -409,9 +409,9 @@ def generate_teamsanalytics(tabhome,root):
 
             my_tree.heading("Team", text="Team", anchor=CENTER)
             my_tree.heading("Season", text="Season", anchor=CENTER)
-            my_tree.heading("Shots On Goal",
-                            text="Shots On Goal", anchor=CENTER)
-            my_tree.heading("Goals", text="Goals", anchor=CENTER)
+            my_tree.heading("Guaranteed Compensation",
+                            text="Guaranteed Compensation", anchor=CENTER)
+            my_tree.heading("Rank", text="Rank", anchor=CENTER)
 
             my_tree.tag_configure('oddrow', background="#084370")
             my_tree.tag_configure('evenrow')
@@ -435,8 +435,7 @@ def generate_teamsanalytics(tabhome,root):
             #FORMAT TO POSTGRESQL TUPLE (year1,year2...)
             forseason = tuple(item[0] for item in seasonsel)
 
-            QUERY = "SELECT player_name,position,Team,player.Season_ID,ShotsOnGoal,Goals"
-            QUERY = QUERY+" FROM player,Teams WHERE Player.Season_ID IN %s AND minutes>1000 AND player.Team_ID=Teams.Team_ID AND team IN %s AND ShotsOnGoal>1 ORDER BY Goals DESC"
+            QUERY ="SELECT p.Player_Name,p.Position,t.team,p.Season_ID,CAST(guaranteedcompensation AS money),dense_rank() OVER (ORDER BY s.GuaranteedCompensation DESC) as Dense_Rank  FROM Teams t ,Salaries s ,Player p WHERE s.Season_ID IN %s AND t.team IN %s AND p.Player_ID=S.Player_ID AND p.Team_ID=t.team_id order by Dense_Rank;"
 
             cursor.execute(QUERY, (forseason, teamnames,))
 
