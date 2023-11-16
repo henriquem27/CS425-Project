@@ -117,8 +117,7 @@ SELECT GK_Name,Season_ID,concat(round(cast(Saves as DECIMAL)/cast(ShotsFaced as 
 
 ---- Top 10 Strikers in 2022 based on goals/shotsongoal;
 
-SELECT Player_Name,ShotsOnGoal,Goals
-     ,concat(round(cast(goals as decimal)/cast(shotsongoal as decimal)*100,2),'%') AS Ratio_GoalsVSShotsonGoal FROM player WHERE Season_ID=2022 AND minutes>1000 AND Position='ST' order by Ratio_GoalsVSShotsonGoal DESC limit 10;
+SELECT Player_Name,ShotsOnGoal,Goals,concat(round(cast(goals as decimal)/cast(shotsongoal as decimal)*100,2),'%') AS Ratio_GoalsVSShotsonGoal FROM player WHERE Season_ID=2022 AND minutes>1000 AND Position='ST' order by Ratio_GoalsVSShotsonGoal DESC limit 10;
 
 ---- Best scoring positions
 SELECT Position,CONCAT(ROUND(cast(percent_rank() OVER (ORDER BY SUM(Goals)) as DECIMAL),2)*100,'%') as Position_Rank FROM Player WHERE NOT Position='GK' GROUP BY Position;
@@ -186,3 +185,7 @@ SELECT Team,Season_ID,team_budget, SUM(TEAM_BUDGET.Team_Budget) OVER (PARTITION 
 
 
 SELECT Player_Name,Team,ShotsOnGoal,Goals, Player.Season_ID FROM player,Teams WHERE  minutes>1000 AND player.Team_ID=Teams.Team_ID AND ShotsOnGoal>1;
+
+
+
+SELECT Player_Name,player.season_id,team,ShotsOnGoal,Goals,round(cast(goals as decimal)/cast(shotsongoal as decimal)*100,2) AS Ratio_GoalsVSShotsonGoal FROM player,teams WHERE player.Season_ID in (2021,2022,2023)AND minutes>1000 group by Player_Name,player.Season_ID,Team,ShotsOnGoal,Goals HAVING count(distinct Player_Name)=1 order by Ratio_GoalsVSShotsonGoal DESC;

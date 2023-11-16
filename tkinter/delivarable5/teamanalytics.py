@@ -88,9 +88,13 @@ def generate_teamsanalytics(tabhome,root):
     Button(tabhome, text="Select All", command=lambda: seasonbox.select_set(0, END)).grid(row=5,column=1)
     Button(tabhome, text="Clear All Selections", command=lambda: seasonbox.selection_clear(0,END)).grid(row=6, column=1)
     Button(tabhome, text="Clear All Selections",command=lambda: teambox.selection_clear(0, END)).grid(row=6, column=2)
+    Button(tabhome, text="Select All", command=lambda: box.select_set(
+        0, END)).grid(row=5, column=0)
+    Button(tabhome, text="Clear All Selections",
+           command=lambda: box.selection_clear(0, END)).grid(row=6, column=0)
 
-
-
+    #OLAP
+    
     def points_rollup():
         conn = get_conn()
 
@@ -137,10 +141,11 @@ def generate_teamsanalytics(tabhome,root):
             conn.close()
 
     Label(tabhome, text='Shows total Points by Season and the total:', relief='ridge',padx=5,pady=5).grid(
-        row=5, column=0)
+        row=7, column=0)
     Button(tabhome, text="Total Points by Season", width=20,
-           command=lambda: points_rollup()).grid(row=6, column=0)
+           command=lambda: points_rollup()).grid(row=8, column=0)
     
+    # OLAP
     def team_budgets2():
         conn = get_conn()
 
@@ -204,11 +209,11 @@ def generate_teamsanalytics(tabhome,root):
 
         finally:
             conn.close()
-
+    
     Label(tabhome, text='Shows the team budgets by season with a running total:', relief='ridge', padx=5, pady=5).grid(
-        row=7, column=0)
-    Button(tabhome, text="Team Budget2", width=20,
-           command=lambda: team_budgets2()).grid(row=8, column=0)
+        row=9, column=0)
+    Button(tabhome, text="Team Budget", width=20,
+           command=lambda: team_budgets2()).grid(row=10, column=0)
 
     def home_away_perf():
         conn = get_conn()
@@ -284,9 +289,102 @@ def generate_teamsanalytics(tabhome,root):
             conn.close()
 
     Label(tabhome, text='Displays the Average Home-Away Performance in terms of goal:',
-          relief='ridge', padx=5, pady=5).grid(row=9, column=0)
+          relief='ridge', padx=5, pady=5).grid(row=11, column=0)
     Button(tabhome, text="Avg Home-Away Performance", width=20,
-           command=lambda: home_away_perf()).grid(row=10, column=0)
+           command=lambda: home_away_perf()).grid(row=12, column=0)
+
+    def Budget_with_Subtotals():
+        conn = get_conn()
+
+        try:
+            top_window = Toplevel(root)
+            top_window.title('Team Budgets')
+            top_window.geometry('520x400')
+            tree_frame = Frame(top_window)
+            tree_frame.pack(fill='both', expand=1, pady=20)
+            tree_scroll = Scrollbar(tree_frame)
+            tree_scroll.pack(side=RIGHT, fill=Y)
+            my_tree = ttk.Treeview(
+                tree_frame, yscrollcommand=tree_scroll.set, selectmode="extended")
+
+            my_tree.pack(fill='both', expand=1)
+
+            tree_scroll.config(command=my_tree.yview)
+
+            my_tree['columns'] = (
+                "Year", "Team", "$USD")
+            my_tree.column("#0", width=0, stretch=NO)
+            my_tree.column("Year", anchor=CENTER, width=100)
+            my_tree.column("Team", anchor=CENTER, width=100)
+            my_tree.column("$USD", anchor=CENTER, width=140)
+
+            # Create Headings
+            my_tree.heading("#0", text="", anchor=W)
+            my_tree.heading("Year", text="Year", anchor=CENTER)
+            my_tree.heading("Team", text="Team", anchor=CENTER)
+            my_tree.heading("$USD",text="Budget in $USD", anchor=CENTER)
+
+            my_tree.tag_configure('none', background="#084370")
+            my_tree.tag_configure('all')
+            my_tree.tag_configure('Total', background="#700808")
+            my_tree.tag_configure('year', background="#008000")
+
+            cursor = conn.cursor()
+            selected = box.curselection()
+            teamnames = ()
+            for idx in selected:
+                teamnames += (box.get(idx),)
+            QUERY = "SELECT season_id,team,SUM(team_budget) As Total_Budget from team_budget where team in %s GROUP BY CUBE(season_id,team) ORDER BY (team,season_id);"
+            cursor.execute(QUERY, (teamnames,))
+            records = cursor.fetchall()
+            x = 0
+
+            for x in range(len(records)):
+                if records[x][0] is None and records[x][1] is not None:
+                    # Convert the tuple to a list
+                    record_list = list(records[x])
+                    # Assign a new value to the first element of the list
+                    record_list[0] = "Subtotal"
+                    # Convert the list back to a tuple
+                    records[x] = tuple(record_list)
+                    my_tree.insert(parent='', index='end', text="", values=(records[x][0], records[x][1], records[x][2]), tags=('none',))
+                
+                elif records[x][0] is not None and records[x][1] is None:
+                    # Convert the tuple to a list
+                    record_list = list(records[x])
+                    # Assign a new value to the first element of the list
+                    record_list[1] = "Subtotal"
+                    # Convert the list back to a tuple
+                    records[x] = tuple(record_list)
+                    my_tree.insert(parent='', index='end', text="", values=(
+                        records[x][0], records[x][1], records[x][2]), tags=('year',))
+                elif records[x][1] is None and records[x][0] is None:
+                    # Convert the tuple to a list
+                    record_list = list(records[x])
+                    # Assign a new value to the first element of the list
+                    record_list[1] = "Total"
+                    record_list[0] = "-----"
+                    # Convert the list back to a tuple
+                    records[x] = tuple(record_list)
+                    my_tree.insert(parent='', index='end', text="",values=(
+                        records[x][0], records[x][1], records[x][2]), tags=('Total',))
+                
+                elif records[x][0] is not None and records[x][1] is not None:
+                    my_tree.insert(parent='', index='end', text="", values=(
+                        records[x][0], records[x][1], records[x][2]), tags=('all',))
+
+        except Exception:
+            traceback.print_exc()
+            MessageBox.showerror(
+                "OPS", " something went wrong. Please make sure you have at least one team selected")
+
+        finally:
+            conn.close()
+
+    Label(tabhome, text='Displays the Team Budgets with Subtotals',
+          relief='ridge', padx=5, pady=5).grid(row=13, column=0)
+    Button(tabhome, text="Budget with subtotals", width=20,
+           command=lambda: Budget_with_Subtotals()).grid(row=14, column=0)
     
     def top_scorers():
         conn = get_conn()
@@ -379,7 +477,7 @@ def generate_teamsanalytics(tabhome,root):
 
         try:
             top_window = Toplevel(root)
-            top_window.title('Top Scorers')
+            top_window.title('Player Salaries Rank')
             top_window.geometry('600x600')
             tree_frame = Frame(top_window)
             tree_frame.pack(fill='both', expand=1, pady=20)
@@ -463,6 +561,91 @@ def generate_teamsanalytics(tabhome,root):
     Button(tabhome, text="Top Salaries", width=20,
            command=lambda: top_salaries()).grid(row=10, column=1, columnspan=2)
 
+    def top_accuracy():
+        conn = get_conn()
 
+        try:
+            top_window = Toplevel(root)
+            top_window.title('Top Accuracy')
+            top_window.geometry('600x600')
+            tree_frame = Frame(top_window)
+            tree_frame.pack(fill='both', expand=1, pady=20)
+            tree_scroll = Scrollbar(tree_frame)
+            tree_scroll.pack(side=RIGHT, fill=Y)
+            my_tree = ttk.Treeview(
+                tree_frame, yscrollcommand=tree_scroll.set, selectmode="extended")
 
+            my_tree.pack(fill='both', expand=1)
 
+            tree_scroll.config(command=my_tree.yview)
+
+            my_tree['columns'] = ("Player-Name", "Position",
+                                  "Team", "Season", "Guaranteed Compensation", "Rank")
+            my_tree.column("#0", width=0, stretch=NO)
+            my_tree.column("Player-Name", anchor=CENTER, width=100)
+            my_tree.column("Position", anchor=CENTER, width=60)
+            my_tree.column("Team", anchor=CENTER, width=50)
+            my_tree.column("Season", anchor=CENTER, width=60)
+            my_tree.column("Guaranteed Compensation", anchor=CENTER, width=150)
+            my_tree.column("Rank", anchor=CENTER, width=40)
+
+            # Create Headings
+            my_tree.heading("#0", text="", anchor=W)
+            my_tree.heading("Player-Name", text="Player-Name", anchor=CENTER)
+            my_tree.heading("Position", text="Position", anchor=CENTER)
+
+            my_tree.heading("Team", text="Team", anchor=CENTER)
+            my_tree.heading("Season", text="Season", anchor=CENTER)
+            my_tree.heading("Guaranteed Compensation",
+                            text="Guaranteed Compensation", anchor=CENTER)
+            my_tree.heading("Rank", text="Rank", anchor=CENTER)
+
+            my_tree.tag_configure('oddrow', background="#084370")
+            my_tree.tag_configure('evenrow')
+
+            cursor = conn.cursor()
+
+            # grab selectiions
+            selected = teambox.curselection()
+            teamnames = ()
+            seasonsel = []
+            for idx in selected:
+                teamnames += (teambox.get(idx),)
+
+            # grab selections
+
+            seasons = seasonbox.curselection()
+
+            for idx in seasons:
+                seasonsel.append(seasonbox.get(idx))
+
+            # FORMAT TO POSTGRESQL TUPLE (year1,year2...)
+            forseason = tuple(item[0] for item in seasonsel)
+
+            QUERY = "SELECT Player_Name,player.season_id,team,ShotsOnGoal,Goals,round(cast(goals as decimal)/cast(shotsongoal as decimal)*100,2) AS Ratio_GoalsVSShotsonGoal FROM player,teams WHERE player.Season_ID in %s AND team in %s AND minutes>1000 AND Shotsongoal>1 order by Ratio_GoalsVSShotsonGoal DESC"
+
+            cursor.execute(QUERY, (forseason, teamnames,))
+
+            records = cursor.fetchall()
+            x = 0
+
+            for x in range(len(records)):
+                if x % 2 == 0:
+                    my_tree.insert(parent='', index='end', iid=x, text="", values=(
+                        records[x][0], records[x][1], records[x][2], records[x][3], records[x][4], records[x][5]), tags=('evenrow',))
+                else:
+                    my_tree.insert(parent='', index='end', iid=x, text="", values=(
+                        records[x][0], records[x][1], records[x][2], records[x][3], records[x][4], records[x][5]), tags=('oddrow',))
+
+        except Exception:
+            traceback.print_exc()
+            MessageBox.showerror(
+                "OPS", " something went wrong. Please make sure you have at least one team selected")
+
+        finally:
+            conn.close()
+
+    Label(tabhome, text='Shows Top Accuracy', relief='ridge', padx=5, pady=5).grid(
+        row=11, column=1, columnspan=2, pady=5)
+    Button(tabhome, text="Top Accuracy", width=20,
+           command=lambda: top_accuracy()).grid(row=12, column=1, columnspan=2)
