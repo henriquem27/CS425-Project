@@ -180,6 +180,9 @@ select * from team_budget order by team,season_id;
 
 SELECT p.player_id,team_id,player_name,Base_Salary,p.Season_ID,Position,Goals from player p,salaries s where p.player_id = s.player_id and Player_Name='Aaron-Long';
 
-
+SELECT DISTINCT Season_ID from Seasons ORDER BY Season_ID;
 
 SELECT Team,Season_ID,team_budget, SUM(TEAM_BUDGET.Team_Budget) OVER (PARTITION BY team order by season_id ROWS UNBOUNDED PRECEDING) FROM team_budget  ORDER BY Team,Season_ID;
+
+
+SELECT Player_Name,Team,ShotsOnGoal,Goals, Player.Season_ID FROM player,Teams WHERE  minutes>1000 AND player.Team_ID=Teams.Team_ID AND ShotsOnGoal>1;
