@@ -10,7 +10,7 @@ Every table has its own CRUD on a designated tab, and the analytics tab may be u
 
 ## Database
 
-The database schemas are provided in `schemas.py`, below is a demonstration for creating the Tables using the provided schemas.
+The database schemas are provided in `database.sql`, below is a demonstration for creating the Tables using the provided schemas.
 
 #### Seasons Table
 
@@ -23,7 +23,26 @@ CREATE TABLE Seasons ( Season_ID INT PRIMARY KEY, Start_date DATE, End_date DATE
 | `INT`     | `DATE`         | `DATE`                  |
 
 
+## File Structure
 
+```
+CS425-Project
+│   README.md
+│   file001.txt    
+│
+└───folder1
+│   │   file011.txt
+│   │   file012.txt
+│   │
+│   └───subfolder1
+│       │   file111.txt
+│       │   file112.txt
+│       │   ...
+│   
+└───folder2
+    │   file021.txt
+    │   file022.txt
+```
 
 ## Environment Variables
 
@@ -41,7 +60,7 @@ To run this project, you will need to Setup the Database and add the Database Na
 After setting up the database, run the following command in the terminal to open and use the GUI.
 
 ```python
-python3 apptesting.py
+python3 MLS.py
 ```
 
 
