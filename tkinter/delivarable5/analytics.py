@@ -15,13 +15,14 @@ import traceback
 def generate_teamsanalytics(tabhome,root):
 
 
-    Label(tabhome,text="Data Exploration",font=('Times New Roman',20),relief='raised',padx=5,pady=10,bd=5).grid(row=0,column=1,pady=5)
+    Label(tabhome,text="Data Exploration",font=('Times New Roman',20),relief='raised',padx=5,pady=10,bd=5).grid(row=0,column=1,columnspan=2,pady=5)
 
-    
     Label(tabhome, text="Team Seaction",
           font=('Times New Roman', 15), relief='raised', padx=5, pady=5, bd=5).grid(row=2, column=0,pady=5)
     Label(tabhome, text="Player Section",
           font=('Times New Roman', 15), relief='raised', padx=5, pady=5, bd=5).grid(row=2, column=1,columnspan=2,pady=5)
+    Label(tabhome, text="Games Seaction",
+          font=('Times New Roman', 15), relief='raised', padx=5, pady=5, bd=5).grid(row=2, column=3, pady=5,padx=10)
     
     
 
@@ -32,6 +33,8 @@ def generate_teamsanalytics(tabhome,root):
     Label(tabhome, text='Select the Team(s) and Click one of the buttons to display the query:', relief='ridge', padx=5, pady=5, wraplength=200).grid(
         row=3, column=2)
     
+    Label(tabhome, text='Queries related to the Games table: ', relief='ridge', padx=5, pady=5, wraplength=200).grid(
+        row=3, column=3,padx=10)
 
     def clicked():
         print("clicked")
@@ -83,15 +86,29 @@ def generate_teamsanalytics(tabhome,root):
         teambox.insert(END, val)
     teambox.grid(row=4, column=2,padx=5,pady=5)
 
+
+    #Games
+    gamesbox = Listbox(tabhome, selectmode=MULTIPLE,
+                        height=10, exportselection=0)
+
+    values4 = get_seasons()
+
+    for val in values4:
+        gamesbox.insert(END, val)
+    gamesbox.grid(row=4, column=3)
+
+
+
     # Buttons to select all and clear all
     Button(tabhome, text="Select All", command=lambda: teambox.select_set(0, END)).grid(row=5,column=2)
     Button(tabhome, text="Select All", command=lambda: seasonbox.select_set(0, END)).grid(row=5,column=1)
     Button(tabhome, text="Clear All Selections", command=lambda: seasonbox.selection_clear(0,END)).grid(row=6, column=1)
     Button(tabhome, text="Clear All Selections",command=lambda: teambox.selection_clear(0, END)).grid(row=6, column=2)
-    Button(tabhome, text="Select All", command=lambda: box.select_set(
-        0, END)).grid(row=5, column=0)
-    Button(tabhome, text="Clear All Selections",
-           command=lambda: box.selection_clear(0, END)).grid(row=6, column=0)
+    Button(tabhome, text="Select All", command=lambda: box.select_set(0, END)).grid(row=5, column=0)
+    Button(tabhome, text="Clear All Selections",command=lambda: box.selection_clear(0, END)).grid(row=6, column=0)
+    # games
+    Button(tabhome, text="Select All", command=lambda: gamesbox.select_set(0, END)).grid(row=5, column=3)
+    Button(tabhome, text="Clear All Selections",command=lambda: gamesbox.selection_clear(0, END)).grid(row=6, column=3)
 
     #OLAP
     
@@ -288,8 +305,8 @@ def generate_teamsanalytics(tabhome,root):
         finally:
             conn.close()
 
-    Label(tabhome, text='Displays the Average Home-Away Performance in terms of goal:',
-          relief='ridge', padx=5, pady=5, wraplength=200).grid(row=11, column=0)
+    Label(tabhome, text='Displays the Average Home-Away Performance in terms of goals:',
+          relief='ridge', padx=2, pady=2, wraplength=200).grid(row=11, column=0)
     Button(tabhome, text="Avg Home-Away Performance", width=20,
            command=lambda: home_away_perf()).grid(row=12, column=0)
 
@@ -462,7 +479,7 @@ def generate_teamsanalytics(tabhome,root):
         except Exception:
             traceback.print_exc()
             MessageBox.showerror(
-                "OPS", " something went wrong. Please make sure you have at least one team selected")
+                "OPS", " something went wrong. Please make sure you have at least one team selected and One season selected")
 
         finally:
             conn.close()
@@ -551,7 +568,7 @@ def generate_teamsanalytics(tabhome,root):
         except Exception:
             traceback.print_exc()
             MessageBox.showerror(
-                "OPS", " something went wrong. Please make sure you have at least one team selected")
+                "OPS", " something went wrong. Please make sure you have at least one team selected and one Season selected")
 
         finally:
             conn.close()
@@ -638,7 +655,7 @@ def generate_teamsanalytics(tabhome,root):
         except Exception:
             traceback.print_exc()
             MessageBox.showerror(
-                "OPS", " something went wrong. Please make sure you have at least one team selected")
+                "OPS", " something went wrong. Please make sure you have at least one team selected and one season selected")
 
         finally:
             conn.close()
@@ -648,3 +665,83 @@ def generate_teamsanalytics(tabhome,root):
         row=11, column=1, columnspan=2, pady=5)
     Button(tabhome, text="Top Accuracy", width=20,
            command=lambda: top_accuracy()).grid(row=12, column=1, columnspan=2)
+    
+    def games_moving_avg():
+        conn = get_conn()
+
+        try:
+            top_window = Toplevel(root)
+            top_window.title('Top Accuracy')
+            top_window.geometry('600x600')
+            tree_frame = Frame(top_window)
+            tree_frame.pack(fill='both', expand=1, pady=20)
+            tree_scroll = Scrollbar(tree_frame)
+            tree_scroll.pack(side=RIGHT, fill=Y)
+            my_tree = ttk.Treeview(
+                tree_frame, yscrollcommand=tree_scroll.set, selectmode="extended")
+
+            my_tree.pack(fill='both', expand=1)
+
+            tree_scroll.config(command=my_tree.yview)
+
+            my_tree['columns'] = ("Date",
+                                  "Goals", "AVG")
+            my_tree.column("#0", width=0, stretch=NO)
+            my_tree.column("Date", anchor=CENTER, width=100)
+            my_tree.column("Goals", anchor=CENTER, width=60)
+            my_tree.column("AVG", anchor=CENTER, width=100)
+            
+
+            # Create Headings
+            my_tree.heading("#0", text="", anchor=W)
+            my_tree.heading("Date", text="Date", anchor=CENTER)
+            my_tree.heading("Goals", text="Total Goals", anchor=CENTER)
+            my_tree.heading("AVG", text="7-Day Moving Average Total Goals", anchor=CENTER)
+    
+
+            my_tree.tag_configure('oddrow', background="#084370")
+            my_tree.tag_configure('evenrow')
+
+            cursor = conn.cursor()
+            seasons = gamesbox.curselection()
+            seasonsel = []
+            for idx in seasons:
+                seasonsel.append(gamesbox.get(idx))
+
+            # FORMAT TO POSTGRESQL TUPLE (year1,year2...)
+            forseason = tuple(item[0] for item in seasonsel)
+
+            QUERY = "SELECT date,homegoals+games.awaygoals as Total_Goals,ROUND(AVG(homegoals+games.awaygoals) OVER (ORDER BY Date ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING),2) as Moving_AVG_7_Day FROM Games WHERE season_id IN %s;"
+            cursor.execute(QUERY,(forseason,))
+
+            records = cursor.fetchall()
+            x = 0
+
+            for x in range(len(records)):
+                if x % 2 == 0:
+                    my_tree.insert(parent='', index='end', iid=x, text="", values=(
+                        records[x][0], records[x][1], records[x][2]), tags=('evenrow',))
+                else:
+                    my_tree.insert(parent='', index='end', iid=x, text="", values=(
+                        records[x][0], records[x][1], records[x][2]), tags=('oddrow',))
+
+        except Exception:
+            traceback.print_exc()
+            MessageBox.showerror(
+                "OPS", " something went wrong. Please make sure you have at least one season selected")
+
+        finally:
+            conn.close()
+
+
+
+
+
+
+    Label(tabhome, text='7-Day Moving Average for Total Goals', relief='ridge', wraplength=200, padx=5, pady=5).grid(
+        row=7, column=3, pady=5)
+    Button(tabhome, text="Top Goals MA", width=20,
+           command=lambda: games_moving_avg()).grid(row=8, column=3)
+
+
+
