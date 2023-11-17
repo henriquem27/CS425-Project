@@ -1,91 +1,56 @@
-# CS425-Project
-Github Group J's MYSQL Project - Major League Soccer Database
+
+# Major League Soccer Database
+
+Data on players, teams, goalkeepers, wages, seasons, etc. are all included in the database. It can be managed via an Interactive User Interface (UI) that can accomplish both basic CRUD operations and sophisticated OLAP procedures on the database.
+
+Every table has its own CRUD on a designated tab, and the analytics tab may be used to carry out sophisticated SQL operations and analytics.
 
 
 
-# In order to run the file the following sql schema must be used:
--- Create the Season table
-CREATE TABLE Seasons (
-    Season_ID INT PRIMARY KEY,
-    Start_date DATE,
-    End_date DATE
-);
 
+## Database
 
--- Create the Teams table
-CREATE TABLE Teams (
-    Team_ID VARCHAR(30) PRIMARY KEY,
-    Season_ID INT REFERENCES Seasons(Season_ID),
-    Team VARCHAR(4),
-    GamesPlayed INT,
-    ShotsFor INT,
-    ShotsAgainst INT,
-    GoalsFor INT,
-    GoalsAgainst INT,
-    Points INT
-);
+The database schemas are provided in `schemas.py`, below is a demonstration for creating the Tables using the provided schemas.
 
+#### Seasons Table
 
-CREATE TABLE Player (
-    Player_ID VARCHAR(100) PRIMARY KEY,
-    Team_ID VARCHAR(30) REFERENCES Teams (Team_ID),
-    Season_ID INT REFERENCES Seasons(Season_ID),
-    Player_Name VARCHAR(45),
-    Position VARCHAR(4),
-    Minutes INT,
-    Shots INT,
-    ShotsOnGoal INT,
-    Goals INT
-);
+```http
+CREATE TABLE Seasons ( Season_ID INT PRIMARY KEY, Start_date DATE, End_date DATE );
+```
+
+| Season_ID | Start_date     | End_date                |
+| :-------- | :-------       | :---------------------- |
+| `INT`     | `DATE`         | `DATE`                  |
 
 
 
--- Create the Games table home team id
-CREATE TABLE Games (
-    GameID SERIAL Primary KEY,
-    Date DATE,
-    Home_Team_ID VARCHAR(30) REFERENCES Teams (Team_ID),
-    HomeGoals INT,
-    Away_team_ID VARCHAR(30) REFERENCES Teams (Team_ID),
-    AwayGoals INT
-);
 
--- Create the GoalKeepers table
-CREATE TABLE GoalKeepers (
-    GK_ID VARCHAR(100) PRIMARY KEY,
-    Team_ID VARCHAR(30) REFERENCES Teams (Team_ID),
-    Season_ID INT REFERENCES Seasons(Season_ID),
-    GK_Name VARCHAR(45),
-    Minutes INT,
-    ShotsFaced INT,
-    GoalsConceded INT,
-    Saves INT
-);
+## Environment Variables
+
+To run this project, you will need to Setup the Database and add the Database Name, Username and Password of your Database in the `connection.py`
+
+`database='Project-Test'`
+
+`user='User_name'`
+
+`password='Password'`
 
 
+## Running the GUI
 
--- Create the Salaries table
-CREATE TABLE Salaries (
-    Player_ID VARCHAR(100) PRIMARY KEY REFERENCES Player (Player_ID),
-    Base_Salary DECIMAL(20, 2),
-    Season_ID INT REFERENCES Seasons(Season_ID),
-    GuaranteedCompensation DECIMAL(20, 2)
-);
+After setting up the database, run the following command in the terminal to open and use the GUI.
 
--- Create the Passes table
-CREATE TABLE Passes (
-    Player_ID VARCHAR(100) REFERENCES Player (Player_ID),
-    Season_ID INT REFERENCES Seasons(Season_ID),
-    Passes INT, SCORE DECIMAL(10,2),
-    Distance DECIMAL(10, 2),
-    Vertical DECIMAL(10, 2)
-);
+```python
+python3 apptesting.py
+```
 
 
+## GUI
 
-# Once tables are imported you can the run the GUI with:
+![Seasons Tab](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-```python3 MLS.py```
+![Analytics Tab](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## Demo
 
+Insert gif or link to demo
 
-## Note: The code for each tab can also be found in its own ``` "tab".py ``` file. eg: ```seasons.py```
