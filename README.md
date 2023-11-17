@@ -23,7 +23,6 @@ CREATE TABLE Seasons ( Season_ID INT PRIMARY KEY, Start_date DATE, End_date DATE
 | `INT`     | `DATE`         | `DATE`                  |
 
 
-## File Structure
 
 
 ## Environment Variables
@@ -69,10 +68,14 @@ database.sql
 
 ![Analytics Tab](/analyticstab.png)
 
+## Repository Link
+
+[Repository](https://github.com/henriquem27/CS425-Project)
+
 
 ## Demo
 
-Insert gif or link to demo
+[VIDEO](https://www.loom.com/share/3a2d12fc361843fa8d78c4f20b479ade)
 
 
 

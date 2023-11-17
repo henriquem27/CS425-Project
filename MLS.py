@@ -34,6 +34,17 @@ tabControl.add(tabteams, text='Teams')
 tabControl.add(tabsalary, text='Salaries')
 tabControl.add(tabanalytics, text='Explore the Database')
 
+
+# Load your image file
+image_path = "MLS.gif"
+img = PhotoImage(file=image_path)
+# Resize the image
+img = img.subsample(10)  # You can adjust the subsample to control the size
+
+# Add a label for the image
+image_label = Label(tabhome, image=img)
+image_label.pack(pady=10)
+
 Label(tabhome, text="Major League Soccer Database GUI",
       font=('Arial', 30)).pack(padx=30, pady=10)
 Label(tabhome, text="This GUI is connected to a Major league Soccer and Allows for C.R.U.D Operations",
@@ -41,7 +52,7 @@ Label(tabhome, text="This GUI is connected to a Major league Soccer and Allows f
 
 # Usage Guidelines for the Home tab
 usage_guidelines = """
-Tabs Usage Guidelines (Scroll throw for details):\n
+Tabs Usage Guidelines:\n
 --> Seasons, Players, Goalkeepers, Teams, Salaries: CRUD operations for the respective tables.\n\n
 --> Explore the Database: The GUI is organized into different sections such as "Data Exploration," "Team Section," 
   and "Player Section." Navigate through these sections to access various features.\n\n

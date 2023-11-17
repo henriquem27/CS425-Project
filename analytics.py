@@ -14,6 +14,30 @@ import traceback
 
 def generate_teamsanalytics(tabhome,root):
 
+    #not used
+    def download_sql_query_to_csv(sql_query,seasoninput,file_path):
+        try:
+            # Establish a connection to the PostgreSQL database
+            conn = get_conn()
+            db_cursor=conn.cursor()
+            # Build the SQL query for file output
+            sql_for_file_output = "COPY ({0}) TO STDOUT WITH CSV HEADER".format(sql_query)
+
+            # Open the file for writing
+            with open(file_path, 'w') as f_output:
+                # Execute the copy_expert method to export data to CSV
+                db_cursor.copy_expert(sql_for_file_output, f_output)
+
+            print(f"Query results downloaded to {file_path}")
+
+        except psycopg2.Error as e:
+            print("Error: Unable to download query results.")
+            print(e)
+
+        finally:
+            # Close the cursor and connection
+            if conn:
+                conn.close()
 
     Label(tabhome,text="Data Exploration",font=('Times New Roman',20),relief='raised',padx=5,pady=10,bd=5).grid(row=0,column=1,columnspan=2,pady=5)
 
@@ -310,6 +334,7 @@ def generate_teamsanalytics(tabhome,root):
     Button(tabhome, text="Avg Home-Away Performance", width=20,
            command=lambda: home_away_perf()).grid(row=12, column=0)
 
+    # Olap
     def Budget_with_Subtotals():
         conn = get_conn()
 
@@ -351,7 +376,7 @@ def generate_teamsanalytics(tabhome,root):
             teamnames = ()
             for idx in selected:
                 teamnames += (box.get(idx),)
-            QUERY = "SELECT season_id,team,SUM(team_budget) As Total_Budget from team_budget where team in %s GROUP BY CUBE(season_id,team) ORDER BY (team,season_id);"
+            QUERY = "SELECT se4ason_id,team,SUM(team_budget) As Total_Budget from team_budget where team in %s GROUP BY CUBE(season_id,team) ORDER BY (team,season_id);"
             cursor.execute(QUERY, (teamnames,))
             records = cursor.fetchall()
             x = 0
@@ -711,7 +736,7 @@ def generate_teamsanalytics(tabhome,root):
             # FORMAT TO POSTGRESQL TUPLE (year1,year2...)
             forseason = tuple(item[0] for item in seasonsel)
 
-            QUERY = "SELECT date,homegoals+games.awaygoals as Total_Goals,ROUND(AVG(homegoals+games.awaygoals) OVER (ORDER BY Date ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING),2) as Moving_AVG_7_Day FROM Games WHERE season_id IN %s;"
+            QUERY = "SELECT date,homegoals+games.awaygoals as Total_Goals,ROUND(AVG(homegoals+games.awaygoals) OVER (ORDER BY Date ROWS BETWEEN 3 PRECEDING AND 3 FOLLOWING),2) as Moving_AVG_7_Day FROM Games WHERE season_id IN %s ;"
             cursor.execute(QUERY,(forseason,))
 
             records = cursor.fetchall()
@@ -732,10 +757,6 @@ def generate_teamsanalytics(tabhome,root):
 
         finally:
             conn.close()
-
-
-
-
 
 
     Label(tabhome, text='7-Day Moving Average for Total Goals', relief='ridge', wraplength=200, padx=5, pady=5).grid(
