@@ -65,9 +65,9 @@ database.sql
 
 ## GUI
 
-![Seasons Tab](/Users/henrique/Documents/IIT/IITFALL2023/CS425-Project/playertab.png)
+![Seasons Tab](/playertab.png)
 
-![Analytics Tab](/Users/henrique/Documents/IIT/IITFALL2023/CS425-Project/analyticstab.png)
+![Analytics Tab](/analyticstab.png)
 
 
 ## Demo
