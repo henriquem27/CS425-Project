@@ -188,4 +188,5 @@ SELECT Player_Name,Team,ShotsOnGoal,Goals, Player.Season_ID FROM player,Teams WH
 
 
 
-SELECT Player_Name,player.season_id,team,ShotsOnGoal,Goals,round(cast(goals as decimal)/cast(shotsongoal as decimal)*100,2) AS Ratio_GoalsVSShotsonGoal FROM player,teams WHERE player.Season_ID in (2021,2022,2023)AND minutes>1000 group by Player_Name,player.Season_ID,Team,ShotsOnGoal,Goals HAVING count(distinct Player_Name)=1 order by Ratio_GoalsVSShotsonGoal DESC;
+SELECT Player_Name,max(Team),AVG(ShotsOnGoal),AVG(Goals),AVG(round(cast(goals as decimal)/cast(shotsongoal as decimal),2)) AS Ratio_GoalsVSShotsonGoal FROM player,teams  WHERE player.team_id=teams.team_id AND player.Season_ID in (2021,2022,2023) AND team in ('MIA','ATL') AND minutes>1000 AND Shotsongoal>1 group by Player_Name order by Ratio_GoalsVSShotsonGoal;
+select * from player where Team_ID='MIA2022';

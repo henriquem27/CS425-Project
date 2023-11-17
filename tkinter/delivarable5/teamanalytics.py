@@ -289,7 +289,7 @@ def generate_teamsanalytics(tabhome,root):
             conn.close()
 
     Label(tabhome, text='Displays the Average Home-Away Performance in terms of goal:',
-          relief='ridge', padx=5, pady=5).grid(row=11, column=0)
+          relief='ridge', padx=5, pady=5, wraplength=200).grid(row=11, column=0)
     Button(tabhome, text="Avg Home-Away Performance", width=20,
            command=lambda: home_away_perf()).grid(row=12, column=0)
 
@@ -561,6 +561,8 @@ def generate_teamsanalytics(tabhome,root):
     Button(tabhome, text="Top Salaries", width=20,
            command=lambda: top_salaries()).grid(row=10, column=1, columnspan=2)
 
+
+
     def top_accuracy():
         conn = get_conn()
 
@@ -579,26 +581,22 @@ def generate_teamsanalytics(tabhome,root):
 
             tree_scroll.config(command=my_tree.yview)
 
-            my_tree['columns'] = ("Player-Name", "Position",
-                                  "Team", "Season", "Guaranteed Compensation", "Rank")
+            my_tree['columns'] = ("Player-Name",
+                                  "Team", "Goals", "SoG","gsog")
             my_tree.column("#0", width=0, stretch=NO)
             my_tree.column("Player-Name", anchor=CENTER, width=100)
-            my_tree.column("Position", anchor=CENTER, width=60)
-            my_tree.column("Team", anchor=CENTER, width=50)
-            my_tree.column("Season", anchor=CENTER, width=60)
-            my_tree.column("Guaranteed Compensation", anchor=CENTER, width=150)
-            my_tree.column("Rank", anchor=CENTER, width=40)
+            my_tree.column("Team", anchor=CENTER, width=60)
+            my_tree.column("Goals", anchor=CENTER, width=100)
+            my_tree.column("SoG", anchor=CENTER, width=150)
+            my_tree.column("gsog", anchor=CENTER, width=100)
 
             # Create Headings
             my_tree.heading("#0", text="", anchor=W)
             my_tree.heading("Player-Name", text="Player-Name", anchor=CENTER)
-            my_tree.heading("Position", text="Position", anchor=CENTER)
-
             my_tree.heading("Team", text="Team", anchor=CENTER)
-            my_tree.heading("Season", text="Season", anchor=CENTER)
-            my_tree.heading("Guaranteed Compensation",
-                            text="Guaranteed Compensation", anchor=CENTER)
-            my_tree.heading("Rank", text="Rank", anchor=CENTER)
+            my_tree.heading("Goals", text="Average Goals", anchor=CENTER)
+            my_tree.heading("SoG",text="Average Shots on Goal", anchor=CENTER)
+            my_tree.heading("gsog", text="Average Ration of Goal/Shots on Goal", anchor=CENTER)
 
             my_tree.tag_configure('oddrow', background="#084370")
             my_tree.tag_configure('evenrow')
@@ -622,7 +620,7 @@ def generate_teamsanalytics(tabhome,root):
             # FORMAT TO POSTGRESQL TUPLE (year1,year2...)
             forseason = tuple(item[0] for item in seasonsel)
 
-            QUERY = "SELECT Player_Name,player.season_id,team,ShotsOnGoal,Goals,round(cast(goals as decimal)/cast(shotsongoal as decimal)*100,2) AS Ratio_GoalsVSShotsonGoal FROM player,teams WHERE player.Season_ID in %s AND team in %s AND minutes>1000 AND Shotsongoal>1 order by Ratio_GoalsVSShotsonGoal DESC"
+            QUERY = "SELECT Player_Name,MAX(team),round(AVG(Goals),2) as AGoals,round(AVG(ShotsOnGoal),2),round(AVG(cast(goals as decimal)/cast(shotsongoal as decimal)),2) AS Ratio_GoalsVSShotsonGoal FROM player JOIN teams on player.team_id = teams.team_id WHERE player.Season_ID in %s AND team in %s AND minutes>1000 AND Shotsongoal>1 AND goals>1  group by Player_Name order by AGoals DESC,Ratio_GoalsVSShotsonGoal DESC"
 
             cursor.execute(QUERY, (forseason, teamnames,))
 
@@ -632,10 +630,10 @@ def generate_teamsanalytics(tabhome,root):
             for x in range(len(records)):
                 if x % 2 == 0:
                     my_tree.insert(parent='', index='end', iid=x, text="", values=(
-                        records[x][0], records[x][1], records[x][2], records[x][3], records[x][4], records[x][5]), tags=('evenrow',))
+                        records[x][0], records[x][1], records[x][2], records[x][3], records[x][4]), tags=('evenrow',))
                 else:
                     my_tree.insert(parent='', index='end', iid=x, text="", values=(
-                        records[x][0], records[x][1], records[x][2], records[x][3], records[x][4], records[x][5]), tags=('oddrow',))
+                        records[x][0], records[x][1], records[x][2], records[x][3], records[x][4]), tags=('oddrow',))
 
         except Exception:
             traceback.print_exc()
@@ -645,7 +643,8 @@ def generate_teamsanalytics(tabhome,root):
         finally:
             conn.close()
 
-    Label(tabhome, text='Shows Top Accuracy', relief='ridge', padx=5, pady=5).grid(
+    
+    Label(tabhome, text='Shows Top Accuracy based on a Average over the Seasons of Goals,Shots on Goal and Goals/Shots On Goal', relief='ridge',wraplength=200, padx=5, pady=5).grid(
         row=11, column=1, columnspan=2, pady=5)
     Button(tabhome, text="Top Accuracy", width=20,
            command=lambda: top_accuracy()).grid(row=12, column=1, columnspan=2)
